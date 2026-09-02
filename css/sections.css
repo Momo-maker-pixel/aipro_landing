@@ -685,7 +685,7 @@
   color: #fff;
 }
 .sticky-time b { color: var(--c-accent-2); }
-.sticky-time span { font-family: var(--font-sans); font-size: 11px; font-weight: 400; color: rgba(255, 255, 255, .55); }
+.sticky-time span { font-family: var(--font-sans); font-size: 12px; font-weight: 400; color: rgba(255, 255, 255, .75); }
 .sticky-bar .btn { min-height: 44px; padding: 0 22px; font-size: 15px; }
 
 /* ==================== 响应式 ==================== */
@@ -710,10 +710,8 @@
   .countdown { padding: 10px 16px; }
   .countdown-time { font-size: 18px; }
   .countdown-time b { font-size: 20px; }
-  .hero-visual { min-height: 340px; max-width: 480px; margin-inline: auto; }
-  .mock-board { left: 2%; }
-  .mock-chat { left: 0; width: 56%; }
-  .mock-donut { width: 44%; }
+  /* Hero — 手机端隐藏 CSS 主视觉占位，留纯深色渐变背景 */
+  .hero-visual { display: none; }
   .brand-name { font-size: 15px; }
 
   /* S1 */
@@ -760,8 +758,5 @@
 @media (max-width: 480px) {
   .topbar-right .btn { display: none; } /* 极窄屏隐藏顶栏 CTA，吸底栏仍在 */
   .container { width: min(var(--container), 100% - 32px); }
-  .mock-kpis { gap: 6px; }
-  .kpi { padding: 8px 8px; }
-  .kpi-val { font-size: 14px; }
   .prizes { grid-template-columns: 1fr 1fr; }
 }
