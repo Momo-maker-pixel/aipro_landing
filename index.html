@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>AIPro 新手训练营第一期 · 免费报名中</title>
+  <meta name="description" content="5 天从 0 到 1 玩转 AIPro，导师带教，打卡赢好礼，完成学习可得官方认证证书">
+  <meta name="theme-color" content="#0A1F4D">
+  <!-- FR-03 分享卡片：og:image 待运营提供 ≥300×300 分享卡图后取消注释并填入地址 -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="AIPro 新手训练营开班！免费报名中">
+  <meta property="og:description" content="5 天从 0 到 1 玩转 AIPro，导师带教，打卡赢好礼，完成学习可得官方认证证书">
+  <!-- <meta property="og:image" content=""> -->
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/sections.css">
+</head>
+<body>
+
+<!-- ==================== SVG 图标库（全页复用） ==================== -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="display:none" aria-hidden="true">
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></symbol>
+  <symbol id="i-zap" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></symbol>
+  <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+  <symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></symbol>
+  <symbol id="i-award" viewBox="0 0 24 24"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></symbol>
+  <symbol id="i-gift" viewBox="0 0 24 24"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 2l1.9 6.1L20 10l-6.1 1.9L12 18l-1.9-6.1L4 10l6.1-1.9L12 2z"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></symbol>
+  <symbol id="i-activity" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></symbol>
+  <symbol id="i-database" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></symbol>
+  <symbol id="i-headset" viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></symbol>
+  <symbol id="i-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></symbol>
+</svg>
+
+<!-- ==================== 顶栏（悬浮于首屏） ==================== -->
+<header class="topbar">
+  <div class="container topbar-inner">
+    <div class="brand">
+      <!-- Logo 源文件待运营提供（素材清单 #6），此处为占位 -->
+      <span class="brand-mark"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-spark" xlink:href="#i-spark"/></svg></span>
+      <span class="brand-name">Quick BI · AIPro</span>
+    </div>
+    <div class="topbar-right">
+      <!-- FR-06 语言切换：?lang= 参数 + localStorage 持久化 -->
+      <div class="lang-switch" role="group" aria-label="Language">
+        <button class="lang-btn is-active" type="button" data-lang="zh-CN">中</button>
+        <button class="lang-btn" type="button" data-lang="en-US">EN</button>
+      </div>
+      <a class="btn btn--primary btn--sm js-signup" href="#" target="_blank" rel="noopener" data-track="cta_click" data-track-loc="topbar"><span data-i18n="nav.cta">立即报名</span></a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- ==================== S0 首屏 Hero ==================== -->
+  <section class="hero" id="hero" data-module="S0-hero">
+    <div class="hero-grid container">
+      <div class="hero-copy">
+        <p class="hero-eyebrow" data-i18n="hero.eyebrow">AIPro 新手训练营 · 第一期</p>
+        <h1 class="hero-title" data-i18n="hero.title">5 天，从 0 到 1 玩转 <em>AIPro</em></h1>
+        <p class="hero-sub" data-i18n="hero.sub">官方带教 · 社群伴学 · 打卡激励 · 免费参加</p>
+
+        <!-- 关键信息条（日期由配置驱动，见 main.js renderDates） -->
+        <ul class="hero-info">
+          <li><svg class="icon" aria-hidden="true"><use href="#i-calendar" xlink:href="#i-calendar"/></svg><span id="info-start">9 月 7 日（周一）开营</span></li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-clock" xlink:href="#i-clock"/></svg><span id="info-duration">5 天 · 9/7–9/11</span></li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-zap" xlink:href="#i-zap"/></svg><span id="info-daily">每天约 40 分钟</span></li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check" xlink:href="#i-check"/></svg><span data-i18n="hero.info.free">免费参加</span></li>
+          <li class="hero-info--hot"><svg class="icon" aria-hidden="true"><use href="#i-target" xlink:href="#i-target"/></svg><span data-i18n="hero.info.quota">名额有限 · 报满即止</span></li>
+        </ul>
+
+        <!-- 主 CTA + 报名截止倒计时（FR-01） -->
+        <div class="hero-cta">
+          <a class="btn btn--primary btn--xl js-signup" href="#" target="_blank" rel="noopener" data-track="cta_click" data-track-loc="hero">
+            <span data-i18n="cta.signup">立即报名</span>
+            <svg class="icon" aria-hidden="true"><use href="#i-arrow" xlink:href="#i-arrow"/></svg>
+          </a>
+          <div class="countdown js-countdown" role="timer" aria-live="polite">
+            <span class="countdown-label" data-i18n="countdown.label">距报名截止</span>
+            <span class="countdown-time">
+              <b class="js-cd-d">--</b><span data-i18n="unit.day">天</span>
+              <b class="js-cd-h">--</b><span data-i18n="unit.hour">时</span>
+              <b class="js-cd-m">--</b><span data-i18n="unit.min">分</span>
+            </span>
+            <span class="cd-expired" data-i18n="countdown.expired">报名已截止</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 首屏主视觉（CSS 占位版，KV PNG 到位后整体替换为 <img>/<picture>） -->
+      <div class="hero-visual" aria-hidden="true">
+        <div class="hero-glow hero-glow--cyan"></div>
+        <div class="hero-glow hero-glow--orange"></div>
+
+        <!-- 主看板：AI 生成的仪表板 -->
+        <div class="mock mock-board">
+          <div class="mock-board-head">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="mock-board-title" data-i18n="hero.mock.board">销售分析看板</span>
+          </div>
+          <div class="mock-kpis">
+            <div class="kpi"><span class="kpi-label">GMV</span><span class="kpi-val">¥ 826.4 万</span><span class="kpi-delta up">+12.4%</span></div>
+            <div class="kpi"><span class="kpi-label">ORDERS</span><span class="kpi-val">56,201</span><span class="kpi-delta up">+8.1%</span></div>
+            <div class="kpi"><span class="kpi-label">REFUND</span><span class="kpi-val">1.9%</span><span class="kpi-delta down">-0.6%</span></div>
+          </div>
+          <div class="mock-linechart">
+            <svg viewBox="0 0 320 96" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="heroLineGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#00C8D4" stop-opacity=".35"/>
+                  <stop offset="1" stop-color="#00C8D4" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <path class="ml-area" d="M0 78 L40 68 L80 72 L120 52 L160 58 L200 38 L240 44 L280 22 L320 26 L320 96 L0 96 Z"/>
+              <polyline class="ml-line" points="0,78 40,68 80,72 120,52 160,58 200,38 240,44 280,22 320,26"/>
+              <circle class="ml-dot" cx="320" cy="26" r="4"/>
+              <circle class="ml-ring" cx="320" cy="26" r="4"/>
+            </svg>
+          </div>
+          <div class="mock-barchart">
+            <b style="--h:45%"></b><b style="--h:70%"></b><b style="--h:55%"></b><b style="--h:85%"></b><b style="--h:60%"></b><b style="--h:95%"></b><b style="--h:75%"></b><b style="--h:88%"></b>
+          </div>
+        </div>
+
+        <!-- 对话气泡：自然语言问数（AIPro 核心卖点） -->
+        <div class="mock mock-chat">
+          <div class="mock-chat-head">
+            <span class="mock-avatar"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-spark" xlink:href="#i-spark"/></svg></span>
+            <span class="mock-q" data-i18n="hero.mock.question">9 月各区域销售额是多少？</span>
+          </div>
+          <div class="mock-bars">
+            <b style="--h:38%"></b><b style="--h:64%"></b><b style="--h:52%"></b><b style="--h:88%"></b><b style="--h:70%"></b>
+          </div>
+          <div class="mock-ans">
+            <svg class="icon icon--fill" aria-hidden="true"><use href="#i-spark" xlink:href="#i-spark"/></svg>
+            <span data-i18n="hero.mock.answer">已生成分析图表</span>
+          </div>
+        </div>
+
+        <!-- 环形图悬浮卡 -->
+        <div class="mock mock-donut">
+          <div class="donut-wrap">
+            <div class="donut"></div>
+            <span class="donut-val">46%</span>
+          </div>
+          <ul class="donut-legend">
+            <li><i style="background:#FF6A00"></i>46%</li>
+            <li><i style="background:#33BBFF"></i>30%</li>
+            <li><i style="background:#00C8D4"></i>24%</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== S1 产品速览 ==================== -->
+  <section class="section" id="product" data-module="S1-product">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-eyebrow" data-i18n="s1.eyebrow">产品速览</p>
+        <h2 data-i18n="s1.title">先认识 AIPro</h2>
+      </div>
+      <p class="s1-tagline" data-i18n="s1.tagline">AIPro 是 <em>AI-native</em> 的企业级智能分析产品，助力企业实现数据驱动业务增长</p>
+      <p class="s1-sub" data-i18n="s1.sub">用自然语言向数据提问，不写 SQL、不等排期，快速完成数据分析</p>
+
+      <div class="s1-cards">
+        <div class="cap-card">
+          <div class="cap-icon cap-icon--1"><svg class="icon" aria-hidden="true"><use href="#i-chat" xlink:href="#i-chat"/></svg></div>
+          <h3 data-i18n="s1.c1.title">智能问答</h3>
+          <p data-i18n="s1.c1.desc">向数据提问，秒级生成图表答案</p>
+        </div>
+        <div class="cap-card">
+          <div class="cap-icon cap-icon--2"><svg class="icon" aria-hidden="true"><use href="#i-chart" xlink:href="#i-chart"/></svg></div>
+          <h3 data-i18n="s1.c2.title">AI 搭建报表</h3>
+          <p data-i18n="s1.c2.desc">描述需求，AI 辅助生成图表与仪表板</p>
+        </div>
+        <div class="cap-card">
+          <div class="cap-icon cap-icon--3"><svg class="icon" aria-hidden="true"><use href="#i-activity" xlink:href="#i-activity"/></svg></div>
+          <h3 data-i18n="s1.c3.title">智能洞察</h3>
+          <p data-i18n="s1.c3.desc">自动发现数据波动与异常原因</p>
+        </div>
+      </div>
+
+      <!-- 产品截图占位（待运营提供 ≥1200px 脱敏截图） -->
+      <div class="shots">
+        <div class="shot"><span data-i18n="s1.shots.note">产品界面截图 · 待提供（≥1200px，内容脱敏）</span></div>
+        <div class="shot"><span data-i18n="s1.shots.note">产品界面截图 · 待提供（≥1200px，内容脱敏）</span></div>
+        <div class="shot"><span data-i18n="s1.shots.note">产品界面截图 · 待提供（≥1200px，内容脱敏）</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== S2 训练营亮点 ==================== -->
+  <section class="section section--alt" id="highlights" data-module="S2-highlights">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-eyebrow" data-i18n="s2.eyebrow">训练营亮点</p>
+        <h2 data-i18n="s2.title">为什么参加训练营</h2>
+      </div>
+
+      <div class="s2-cards">
+        <div class="hl-card">
+          <span class="hl-num">01</span>
+          <div class="hl-icon"><svg class="icon" aria-hidden="true"><use href="#i-book" xlink:href="#i-book"/></svg></div>
+          <h3 data-i18n="s2.h1.title">阶梯式学习</h3>
+          <p data-i18n="s2.h1.desc">5 天课程由浅入深，平均每天约 40 分钟，用最短路径掌握核心功能</p>
+        </div>
+        <div class="hl-card">
+          <span class="hl-num">02</span>
+          <div class="hl-icon"><svg class="icon" aria-hidden="true"><use href="#i-users" xlink:href="#i-users"/></svg></div>
+          <h3 data-i18n="s2.h2.title">双导师伴学</h3>
+          <p data-i18n="s2.h2.desc">专属学习社群，产品运营带教 + 技术专家答疑，全流程陪伴你的学习</p>
+        </div>
+        <div class="hl-card">
+          <span class="hl-num">03</span>
+          <div class="hl-icon"><svg class="icon" aria-hidden="true"><use href="#i-award" xlink:href="#i-award"/></svg></div>
+          <h3 data-i18n="s2.h3.title">激励与认证</h3>
+          <p data-i18n="s2.h3.desc">完成每日打卡可参与当日抽奖，完成全部任务可参加结营特别抽奖，并获得官方认证证书</p>
+        </div>
+      </div>
+
+      <!-- 往期成果数据条（mock 数据走配置，上线前替换或置 show:false 隐藏，FR-02 红线） -->
+      <div class="stats" id="statsStrip">
+        <div class="stats-grid">
+          <div class="stat">
+            <p class="stat-num"><span class="js-stat" data-stat="sessions">12</span><i data-i18n="s2.stats.u1">期</i></p>
+            <p class="stat-label" data-i18n="s2.stats.l1">已连续举办</p>
+          </div>
+          <div class="stat">
+            <p class="stat-num"><span class="js-stat" data-stat="learners">3,000</span><i>+</i></p>
+            <p class="stat-label" data-i18n="s2.stats.l2">累计学员参与</p>
+          </div>
+          <div class="stat">
+            <p class="stat-num"><span class="js-stat" data-stat="certified">800</span><i>+</i></p>
+            <p class="stat-label" data-i18n="s2.stats.l3">获得官方认证</p>
+          </div>
+        </div>
+        <p class="stats-note" data-i18n="s2.stats.note">数据口径：Quick BI 新手训练营历史数据</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== S3 课程安排 ==================== -->
+  <section class="section" id="courses" data-module="S3-courses">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-eyebrow" data-i18n="s3.eyebrow">课程安排</p>
+        <h2 data-i18n="s3.title">5 天课程安排</h2>
+        <p class="section-sub" data-i18n="s3.sub">由浅入深，每天一个学习主题</p>
+      </div>
+
+      <!-- DAY 徽章格式统一「DAY1、DAY2…」大写 + 数字（训练营物料规范） -->
+      <div class="tl">
+        <div class="tl-item">
+          <div class="tl-node">DAY1</div>
+          <div class="tl-card">
+            <h3 data-i18n="s3.d1.theme">新手入门：认识 AIPro，搭建你的第一个仪表板</h3>
+            <p class="tl-out"><svg class="icon" aria-hidden="true"><use href="#i-check" xlink:href="#i-check"/></svg><span data-i18n="s3.d1.out">一个可分享的数据仪表板</span></p>
+            <span class="tl-dur" data-i18n="s3.duration">约 40 分钟</span>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-node">DAY2</div>
+          <div class="tl-card">
+            <h3 data-i18n="s3.d2.theme">掌握常见的表格组件</h3>
+            <p class="tl-out"><svg class="icon" aria-hidden="true"><use href="#i-check" xlink:href="#i-check"/></svg><span data-i18n="s3.d2.out">明细表 / 交叉表报表</span></p>
+            <span class="tl-dur" data-i18n="s3.duration">约 40 分钟</span>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-node">DAY3</div>
+          <div class="tl-card">
+            <h3 data-i18n="s3.d3.theme">掌握常见的图表组件</h3>
+            <p class="tl-out"><svg class="icon" aria-hidden="true"><use href="#i-check" xlink:href="#i-check"/></svg><span data-i18n="s3.d3.out">多图表组合的分析看板</span></p>
+            <span class="tl-dur" data-i18n="s3.duration">约 40 分钟</span>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-node">DAY4</div>
+          <div class="tl-card">
+            <h3 data-i18n="s3.d4.theme">掌握数据加工与基础函数使用</h3>
+            <p class="tl-out"><svg class="icon" aria-hidden="true"><use href="#i-check" xlink:href="#i-check"/></svg><span data-i18n="s3.d4.out">带计算字段的数据集</span></p>
+            <span class="tl-dur" data-i18n="s3.duration">约 40 分钟</span>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-node tl-node--final">DAY5</div>
+          <div class="tl-card">
+            <h3 data-i18n="s3.d5.theme">通过一个综合案例融会贯通</h3>
+            <p class="tl-out"><svg class="icon" aria-hidden="true"><use href="#i-check" xlink:href="#i-check"/></svg><span data-i18n="s3.d5.out">一份完整的行业分析案例</span></p>
+            <span class="tl-dur" data-i18n="s3.duration">约 40 分钟</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="s3-note-wrap">
+        <p class="s3-note" data-i18n="s3.note">打卡时间不强制，可按自己的节奏学习，结营前完成全部任务即可（含补卡期）</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== S4 适合人群 ==================== -->
+  <section class="section section--alt" id="audience" data-module="S4-audience">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-eyebrow" data-i18n="s4.eyebrow">适合人群</p>
+        <h2 data-i18n="s4.title">适合谁参加</h2>
+      </div>
+
+      <div class="s4-cards">
+        <div class="persona-card">
+          <div class="persona-icon persona-icon--1"><svg class="icon" aria-hidden="true"><use href="#i-user" xlink:href="#i-user"/></svg></div>
+          <h3 data-i18n="s4.p1.title">零基础新手</h3>
+          <p data-i18n="s4.p1.desc">第一次接触 BI / AIPro，想系统入门而不是碎片化看文档</p>
+        </div>
+        <div class="persona-card">
+          <div class="persona-icon persona-icon--2"><svg class="icon" aria-hidden="true"><use href="#i-users" xlink:href="#i-users"/></svg></div>
+          <h3 data-i18n="s4.p2.title">需要带教督学</h3>
+          <p data-i18n="s4.p2.desc">自学容易放弃，需要社群氛围和班主任督促</p>
+        </div>
+        <div class="persona-card">
+          <div class="persona-icon persona-icon--3"><svg class="icon" aria-hidden="true"><use href="#i-briefcase" xlink:href="#i-briefcase"/></svg></div>
+          <h3 data-i18n="s4.p3.title">客户方新员工</h3>
+          <p data-i18n="s4.p3.desc">公司已采购产品，新接手报表工作，想快速上手</p>
+        </div>
+      </div>
+
+      <div class="gains">
+        <h3 data-i18n="s4.gain.title">参加训练营，你将收获</h3>
+        <ul class="gains-grid">
+          <li><span class="gain-check"><svg class="icon" aria-hidden="true"><use href="#i-check" xlink:href="#i-check"/></svg></span><span data-i18n="s4.gain.1">独立搭建数据仪表板的能力</span></li>
+          <li><span class="gain-check"><svg class="icon" aria-hidden="true"><use href="#i-check" xlink:href="#i-check"/></svg></span><span data-i18n="s4.gain.2">官方认证证书</span></li>
+          <li><span class="gain-check"><svg class="icon" aria-hidden="true"><use href="#i-check" xlink:href="#i-check"/></svg></span><span data-i18n="s4.gain.3">奖品与课程奖励</span></li>
+          <li><span class="gain-check"><svg class="icon" aria-hidden="true"><use href="#i-check" xlink:href="#i-check"/></svg></span><span data-i18n="s4.gain.4">专属学习社群与答疑资源</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== S5 激励与认证 ==================== -->
+  <section class="section" id="rewards" data-module="S5-rewards">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-eyebrow" data-i18n="s5.eyebrow">激励与认证</p>
+        <h2 data-i18n="s5.title">完成任务，赢取奖励</h2>
+      </div>
+
+      <div class="prize-block">
+        <div class="prize-block-head"><h3 data-i18n="s5.daily.label">每日打卡抽奖</h3><span data-i18n="s5.daily.note">完成当天打卡任务，即可获得次日抽奖资格，每天开奖</span></div>
+        <div class="prizes">
+          <div class="prize-card">
+            <div class="prize-img"><svg class="icon" aria-hidden="true"><use href="#i-gift" xlink:href="#i-gift"/></svg><span data-i18n="s5.imgNote">占位图 · 待提供</span></div>
+            <p class="prize-name" data-i18n="s5.daily.p1">第一行代码帆布包</p>
+          </div>
+          <div class="prize-card">
+            <div class="prize-img"><svg class="icon" aria-hidden="true"><use href="#i-gift" xlink:href="#i-gift"/></svg><span data-i18n="s5.imgNote">占位图 · 待提供</span></div>
+            <p class="prize-name" data-i18n="s5.daily.p2">阿里云折叠雨伞</p>
+          </div>
+          <div class="prize-card">
+            <div class="prize-img"><svg class="icon" aria-hidden="true"><use href="#i-gift" xlink:href="#i-gift"/></svg><span data-i18n="s5.imgNote">占位图 · 待提供</span></div>
+            <p class="prize-name" data-i18n="s5.daily.p3">云小宝公仔</p>
+          </div>
+          <div class="prize-card">
+            <div class="prize-img"><svg class="icon" aria-hidden="true"><use href="#i-gift" xlink:href="#i-gift"/></svg><span data-i18n="s5.imgNote">占位图 · 待提供</span></div>
+            <p class="prize-name" data-i18n="s5.daily.p4">阿里云保温杯</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="prize-block">
+        <div class="prize-block-head"><h3 data-i18n="s5.final.label">结营特别奖</h3><span data-i18n="s5.final.note">完成全部 5 天打卡任务，可参与结营特别抽奖</span></div>
+        <div class="tiers">
+          <div class="tier tier--1">
+            <span class="tier-rank" data-i18n="s5.final.t1.rank">一等奖 · 1 名</span>
+            <p class="tier-name" data-i18n="s5.final.t1.name">阿里云拍拍灯 + 数据分析师课程名额</p>
+            <span class="tier-value" data-i18n="s5.final.t1.value">价值 ¥2,400</span>
+          </div>
+          <div class="tier">
+            <span class="tier-rank" data-i18n="s5.final.t2.rank">二等奖 · 3 名</span>
+            <p class="tier-name" data-i18n="s5.final.t2.name">云小宝大抱枕 + Quick BI 课程名额</p>
+            <span class="tier-value" data-i18n="s5.final.t2.value">价值 ¥699</span>
+          </div>
+          <div class="tier">
+            <span class="tier-rank" data-i18n="s5.final.t3.rank">三等奖 · 5 名</span>
+            <p class="tier-name" data-i18n="s5.final.t3.name">Quick BI 课程名额</p>
+            <span class="tier-value" data-i18n="s5.final.t3.value">价值 ¥699</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="prize-block">
+        <div class="cert-card">
+          <div class="cert-img"><svg class="icon" aria-hidden="true"><use href="#i-award" xlink:href="#i-award"/></svg><span data-i18n="s5.imgNote">证书样式 · 待提供</span></div>
+          <div class="cert-info">
+            <h3 data-i18n="s5.cert.label">官方认证证书</h3>
+            <p data-i18n="s5.cert.note">结营前完成全部打卡任务，可获得官方认证证书（结营后统一发放）</p>
+            <span class="cert-name" data-i18n="s5.cert.name">证书名称待定（往期：《Quick BI 初级开发者认证》）</span>
+          </div>
+        </div>
+      </div>
+
+      <p class="s5-compliance" data-i18n="s5.compliance">* 奖品以当期实际发放为准；奖品与证书图片为占位，待运营提供</p>
+    </div>
+  </section>
+
+  <!-- ==================== S6 参与流程 ==================== -->
+  <section class="section section--alt" id="process" data-module="S6-process">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-eyebrow" data-i18n="s6.eyebrow">参与流程</p>
+        <h2 data-i18n="s6.title">四步，从报名到结营</h2>
+      </div>
+
+      <ol class="steps">
+        <li class="step">
+          <span class="step-num">1</span>
+          <h3 data-i18n="s6.s1.title">立即报名</h3>
+          <p data-i18n="s6.s1.desc">点击「立即报名」填写报名表单（约 1 分钟）</p>
+        </li>
+        <li class="step">
+          <span class="step-num">2</span>
+          <h3 data-i18n="s6.s2.title">加入社群</h3>
+          <p data-i18n="s6.s2.desc">按表单引导加入专属学习群，领取学习资料</p>
+        </li>
+        <li class="step">
+          <span class="step-num">3</span>
+          <h3 data-i18n="s6.s3.title">每日打卡</h3>
+          <p data-i18n="s6.s3.desc">每天约 40 分钟：看课程 + 做习题 + 提交打卡（时间不强制，含补卡期）</p>
+        </li>
+        <li class="step">
+          <span class="step-num">4</span>
+          <h3 data-i18n="s6.s4.title">结营领奖</h3>
+          <p data-i18n="s6.s4.desc">完成全部任务，获得官方认证证书并参与结营特别抽奖</p>
+        </li>
+      </ol>
+
+      <h3 class="preps-title" data-i18n="s6.prep.title">开始前的准备</h3>
+      <div class="preps">
+        <div class="prep">
+          <div class="prep-icon"><svg class="icon" aria-hidden="true"><use href="#i-shield" xlink:href="#i-shield"/></svg></div>
+          <h3 data-i18n="s6.prep1.title">账号准备</h3>
+          <!-- 含免费试用链接（config.links.trial），由 main.js 注入 -->
+          <p id="prep1Desc"></p>
+        </div>
+        <div class="prep">
+          <div class="prep-icon"><svg class="icon" aria-hidden="true"><use href="#i-headset" xlink:href="#i-headset"/></svg></div>
+          <h3 data-i18n="s6.prep2.title">答疑支持</h3>
+          <p data-i18n="s6.prep2.desc">学习群内班主任 + 技术专家答疑；产品内「帮助与反馈 → AI 助理」7×24 快速响应</p>
+        </div>
+        <div class="prep">
+          <div class="prep-icon"><svg class="icon" aria-hidden="true"><use href="#i-database" xlink:href="#i-database"/></svg></div>
+          <h3 data-i18n="s6.prep3.title">数据准备</h3>
+          <p data-i18n="s6.prep3.desc">无需连接自己的数据库，下载官方数据源文件即可开始学习</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== S7 常见问题 ==================== -->
+  <section class="section" id="faq" data-module="S7-faq">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-eyebrow" data-i18n="s7.eyebrow">常见问题</p>
+        <h2 data-i18n="s7.title">你可能想问</h2>
+      </div>
+
+      <div class="faq">
+        <div class="faq-item is-open">
+          <h3 class="faq-q-wrap"><button class="faq-q" type="button" aria-expanded="true" aria-controls="faq-a1" id="faq-q1"><span data-i18n="s7.q1">完全零基础可以参加吗？</span><svg class="icon faq-chev" aria-hidden="true"><use href="#i-chevron" xlink:href="#i-chevron"/></svg></button></h3>
+          <div class="faq-a" id="faq-a1" role="region" aria-labelledby="faq-q1"><div class="faq-a-inner"><p data-i18n="s7.a1">可以。课程从零开始设计，每天任务配有学习文档与操作视频，跟着做就能完成。</p></div></div>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-q-wrap"><button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a2" id="faq-q2"><span data-i18n="s7.q2">每天需要花多少时间？打卡有强制时间吗？</span><svg class="icon faq-chev" aria-hidden="true"><use href="#i-chevron" xlink:href="#i-chevron"/></svg></button></h3>
+          <div class="faq-a" id="faq-a2" role="region" aria-labelledby="faq-q2"><div class="faq-a-inner"><p data-i18n="s7.a2">平均每天约 40 分钟。打卡时间不强制，可按自己的节奏学习，结营前完成全部任务即可，另设补卡期。</p></div></div>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-q-wrap"><button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a3" id="faq-q3"><span data-i18n="s7.q3">需要提前准备什么？要连接自己的数据库吗？</span><svg class="icon faq-chev" aria-hidden="true"><use href="#i-chevron" xlink:href="#i-chevron"/></svg></button></h3>
+          <div class="faq-a" id="faq-a3" role="region" aria-labelledby="faq-q3"><div class="faq-a-inner"><p data-i18n="s7.a3">不需要。下载官方提供的数据源文件，按任务指引上传后即可开始学习。</p></div></div>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-q-wrap"><button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a4" id="faq-q4"><span data-i18n="s7.q4">没有产品账号怎么办？</span><svg class="icon faq-chev" aria-hidden="true"><use href="#i-chevron" xlink:href="#i-chevron"/></svg></button></h3>
+          <div class="faq-a" id="faq-a4" role="region" aria-labelledby="faq-q4"><div class="faq-a-inner"><p data-i18n="s7.a4">已购买产品的客户使用正式账号即可；暂无账号可点击申请免费试用。</p></div></div>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-q-wrap"><button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a5" id="faq-q5"><span data-i18n="s7.q5">学习中遇到问题怎么办？</span><svg class="icon faq-chev" aria-hidden="true"><use href="#i-chevron" xlink:href="#i-chevron"/></svg></button></h3>
+          <div class="faq-a" id="faq-a5" role="region" aria-labelledby="faq-q5"><div class="faq-a-inner"><p data-i18n="s7.a5">三重支持：① 学习群内班主任与技术专家答疑；② 产品内「帮助与反馈 → AI 助理」7×24 快速响应；③ 官方帮助文档。</p></div></div>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-q-wrap"><button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a6" id="faq-q6"><span data-i18n="s7.q6">证书如何获得？</span><svg class="icon faq-chev" aria-hidden="true"><use href="#i-chevron" xlink:href="#i-chevron"/></svg></button></h3>
+          <div class="faq-a" id="faq-a6" role="region" aria-labelledby="faq-q6"><div class="faq-a-inner"><p data-i18n="s7.a6">结营前完成全部打卡任务即可获得官方认证证书，结营后统一发放。</p></div></div>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-q-wrap"><button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a7" id="faq-q7"><span data-i18n="s7.q7">名额满了 / 错过报名怎么办？</span><svg class="icon faq-chev" aria-hidden="true"><use href="#i-chevron" xlink:href="#i-chevron"/></svg></button></h3>
+          <div class="faq-a" id="faq-a7" role="region" aria-labelledby="faq-q7"><div class="faq-a-inner"><p data-i18n="s7.a7">本期名额有限、报满即止，可关注后续开营通知。</p></div></div>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-q-wrap"><button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a8" id="faq-q8"><span data-i18n="s7.q8">抽奖如何参与、何时开奖？</span><svg class="icon faq-chev" aria-hidden="true"><use href="#i-chevron" xlink:href="#i-chevron"/></svg></button></h3>
+          <div class="faq-a" id="faq-a8" role="region" aria-labelledby="faq-q8"><div class="faq-a-inner"><p data-i18n="s7.a8">完成当日打卡即获得次日抽奖资格；完成全部任务可参与结营特别抽奖，开奖结果在学习群内公布。</p></div></div>
+        </div>
+      </div>
+
+      <p class="faq-more"><span data-i18n="s7.more">更多产品问题，可查阅</span> <a class="js-help-link" href="https://help.aliyun.com/zh/quick-bi/" target="_blank" rel="noopener" data-i18n="s7.doc">Quick BI 官方帮助文档</a></p>
+    </div>
+  </section>
+
+  <!-- ==================== S8 底部 CTA + 页脚 ==================== -->
+  <section class="s8" id="enroll" data-module="S8-footer">
+    <div class="container s8-inner">
+      <h2 data-i18n="s8.title">名额有限，立即报名</h2>
+      <p class="s8-sub" id="s8Sub">9 月 7 日开营 · 免费 · 报满即止</p>
+      <div class="s8-cta">
+        <a class="btn btn--primary btn--xl js-signup" href="#" target="_blank" rel="noopener" data-track="cta_click" data-track-loc="footer">
+          <span data-i18n="cta.signup">立即报名</span>
+          <svg class="icon" aria-hidden="true"><use href="#i-arrow" xlink:href="#i-arrow"/></svg>
+        </a>
+        <div class="countdown js-countdown" role="timer" aria-live="polite">
+          <span class="countdown-label" data-i18n="countdown.label">距报名截止</span>
+          <span class="countdown-time">
+            <b class="js-cd-d">--</b><span data-i18n="unit.day">天</span>
+            <b class="js-cd-h">--</b><span data-i18n="unit.hour">时</span>
+            <b class="js-cd-m">--</b><span data-i18n="unit.min">分</span>
+          </span>
+          <span class="cd-expired" data-i18n="countdown.expired">报名已截止</span>
+        </div>
+      </div>
+
+      <div class="s8-contact">
+        <div class="qr-box"><svg class="icon" aria-hidden="true"><use href="#i-users" xlink:href="#i-users"/></svg><span data-i18n="s8.contact.note">二维码 · 待提供</span></div>
+        <p><span data-i18n="s8.contact.label">报名咨询</span>：<span class="js-contact-name">班主任</span></p>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <p><span data-i18n="footer.organizer">主办方</span>：<span class="js-organizer">主办方名称（待确认）</span></p>
+        <p class="footer-legal"><span id="footerCopyright">© 2026 主办方名称（待确认） 版权所有</span> · <span data-i18n="footer.icp">备案号待提供</span></p>
+      </div>
+    </footer>
+  </section>
+
+</main>
+
+<!-- ==================== 移动端吸底报名栏（常驻） ==================== -->
+<div class="sticky-bar">
+  <div class="sticky-info js-countdown">
+    <span class="countdown-label" data-i18n="countdown.label">距报名截止</span>
+    <span class="sticky-time">
+      <b class="js-cd-d">--</b><span data-i18n="unit.day">天</span>
+      <b class="js-cd-h">--</b><span data-i18n="unit.hour">时</span>
+      <b class="js-cd-m">--</b><span data-i18n="unit.min">分</span>
+    </span>
+    <span class="cd-expired" data-i18n="countdown.expired">报名已截止</span>
+  </div>
+  <a class="btn btn--primary js-signup" href="#" target="_blank" rel="noopener" data-track="cta_click" data-track-loc="sticky"><span data-i18n="cta.signup">立即报名</span></a>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
