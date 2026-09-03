@@ -264,11 +264,12 @@
     });
   }
 
-  /* ---------------- S1 五维能力轮播（大图 + 选项卡） ----------------
-   * 自动轮播 SC_DUR 毫秒/张；悬停 / 键盘聚焦 / 离开视口时暂停；移动端支持左右滑动切换；
+  /* ---------------- S1 五维能力轮播（全宽大图 + 横排选项卡） ----------------
+   * 自动轮播 SC_DUR 毫秒/张；悬停 / 键盘聚焦 / 全屏查看大图 / 离开视口时暂停；移动端支持左右滑动切换；
+   * 点击舞台大图可全屏查看原图（点遮罩任意处或按 Esc 关闭）；
    * 系统偏好「减少动态效果」时不自动轮播，仅保留手动点选。 */
-  var SC_DUR = 5000;
-  var sc = { slides: [], tabs: [], bars: [], idx: 0, elapsed: 0, last: 0, running: false, visible: true };
+  var SC_DUR = 3500; /* 2026-09-03 提速：原 5s/张偏慢，改为 3.5s/张 */
+  var sc = { slides: [], tabs: [], bars: [], idx: 0, elapsed: 0, last: 0, running: false, visible: true, hover: false, focus: false, zoomed: false };
 
   function selectShowcase(i, manual) {
     var n = sc.slides.length;
@@ -332,27 +333,60 @@
       }
     }, { passive: true });
 
+    /* 暂停原因统一管理：悬停 / 键盘聚焦 / 全屏查看大图 / 离开视口 / 系统减少动态效果，任一存在即暂停 */
+    function updateRun() {
+      sc.running = !reduceMotion && sc.visible && !sc.hover && !sc.focus && !sc.zoomed;
+    }
+
     if (!reduceMotion) {
-      var play = function () { if (sc.visible) sc.running = true; };
-      var pause = function () { sc.running = false; };
       /* 进入视口才自动播放，滚走即停（省电） */
       if ('IntersectionObserver' in window) {
         var io = new IntersectionObserver(function (entries) {
           entries.forEach(function (en) {
             sc.visible = en.isIntersecting;
-            if (en.isIntersecting) play(); else pause();
+            updateRun();
           });
         }, { threshold: 0.25 });
         io.observe(root);
       } else {
         sc.visible = true;
-        play();
       }
-      root.addEventListener('mouseenter', pause);
-      root.addEventListener('mouseleave', play);
-      root.addEventListener('focusin', pause);
-      root.addEventListener('focusout', play);
+      root.addEventListener('mouseenter', function () { sc.hover = true; updateRun(); });
+      root.addEventListener('mouseleave', function () { sc.hover = false; updateRun(); });
+      root.addEventListener('focusin', function () { sc.focus = true; updateRun(); });
+      root.addEventListener('focusout', function () { sc.focus = false; updateRun(); });
+      updateRun();
       requestAnimationFrame(showcaseFrame);
+    }
+
+    /* 点击舞台大图：全屏查看原图（图内细节较多，可放大细看；点遮罩任意处或按 Esc 关闭） */
+    var stage = $('.sc-stage', root);
+    if (stage) {
+      stage.addEventListener('click', function () {
+        var img = sc.slides[sc.idx] && $('img', sc.slides[sc.idx]);
+        if (!img) return;
+        sc.zoomed = true;
+        updateRun();
+        var ov = document.createElement('div');
+        ov.className = 'sc-lightbox';
+        ov.setAttribute('role', 'dialog');
+        ov.innerHTML = '<img src="' + img.getAttribute('src') + '" alt="' + (img.getAttribute('alt') || '') + '">';
+        document.body.appendChild(ov);
+        document.body.style.overflow = 'hidden'; /* 遮罩期间锁定背景滚动 */
+        function closeBox() {
+          ov.removeEventListener('click', closeBox);
+          document.removeEventListener('keydown', onKey);
+          if (ov.parentNode) ov.parentNode.removeChild(ov);
+          document.body.style.overflow = '';
+          sc.zoomed = false;
+          updateRun();
+        }
+        function onKey(e) {
+          if (e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27) closeBox();
+        }
+        ov.addEventListener('click', closeBox);
+        document.addEventListener('keydown', onKey);
+      });
     }
     selectShowcase(0, false); /* 同步初始 aria 状态（HTML 默认第一张激活） */
   }

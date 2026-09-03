@@ -226,32 +226,65 @@
 .s1-tagline em { font-style: normal; color: var(--c-primary-3); }
 .s1-sub { margin-top: 12px; text-align: center; font-size: 15px; color: var(--ink-3); }
 
-/* 五维能力轮播：左侧大图舞台（约 700px 宽，约为旧卡片版 3.5 倍）+ 右侧选项卡 */
-.showcase { margin-top: 48px; display: grid; grid-template-columns: 1.5fr 1fr; gap: 28px; align-items: start; }
+/* 五维能力轮播（2026-09-03 布局定稿）：五个能力选项卡竖排左侧（阅读顺序：先能力后配图）+ 大图右侧约 820px；
+   「图上、选项卡在下」的横排不显眼且先图后文，已弃用；点击大图可全屏查看原图（sc-lightbox，main.js 动态创建） */
+.showcase { margin-top: 48px; display: grid; grid-template-columns: minmax(280px, 1fr) minmax(0, 2.3fr); gap: 24px; align-items: start; }
+.sc-stage { grid-column: 2; } /* DOM 保持图在前（无 CSS 时先见图），布局上放到右侧 */
+.sc-tabs { grid-column: 1; }
 
-/* 舞台：5 张图叠放同一网格单元，淡入切换（微缩放） */
+/* 舞台：5 张图叠放同一网格单元，淡入切换（微缩放）；hover 显示「点击放大」提示 */
 .sc-stage {
+  position: relative;
   display: grid;
   border: 1px solid var(--line);
   border-radius: var(--radius-l);
   background: #fff;
   box-shadow: var(--shadow-card);
   overflow: hidden;
+  cursor: zoom-in;
 }
 .sc-slide { grid-area: 1 / 1; opacity: 0; transition: opacity .5s ease; }
 .sc-slide.is-active { opacity: 1; z-index: 1; }
 .sc-slide img { width: 100%; height: auto; transform: scale(1.03); transition: transform .55s ease; }
 .sc-slide.is-active img { transform: none; }
+.sc-zoom-hint {
+  position: absolute;
+  right: 12px; bottom: 12px; z-index: 2;
+  padding: 5px 12px;
+  font-size: 12px;
+  color: #fff;
+  border-radius: 999px;
+  background: rgba(10, 31, 77, .68);
+  opacity: 0;
+  transition: opacity .2s ease;
+  pointer-events: none;
+}
+.sc-stage:hover .sc-zoom-hint { opacity: 1; }
+@media (hover: none) { .sc-zoom-hint { opacity: .9; } } /* 触屏无悬停，常显提示可点放大 */
 
-/* 选项卡：编号 + 标题 + 说明，激活项底部为自动轮播进度条（main.js 驱动宽度） */
-.sc-tabs { display: flex; flex-direction: column; gap: 12px; }
+/* 全屏查看原图层：深色遮罩，点任意处 / Esc 关闭（见 main.js） */
+.sc-lightbox {
+  position: fixed;
+  left: 0; top: 0; right: 0; bottom: 0;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(4, 12, 30, .9);
+  cursor: zoom-out;
+}
+.sc-lightbox img { max-width: 94vw; max-height: 90vh; border-radius: 8px; background: #fff; box-shadow: 0 24px 80px rgba(0, 0, 0, .5); }
+
+/* 选项卡（图左侧竖排）：编号 + 标题同行、说明在下；激活项左侧橙色竖条 + 底部自动轮播进度条（main.js 驱动宽度） */
+.sc-tabs { display: flex; flex-direction: column; gap: 10px; }
 .sc-tab {
   position: relative;
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 3px 10px;
   align-items: baseline;
-  padding: 10px 16px 12px;
+  padding: 11px 14px 14px 17px;
   text-align: left;
   border: 1px solid var(--line);
   border-radius: var(--radius-m);
@@ -260,6 +293,16 @@
   overflow: hidden;
   transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
 }
+.sc-tab::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 10px; bottom: 10px;
+  width: 3px;
+  border-radius: 0 2px 2px 0;
+  background: transparent;
+  transition: background .2s ease;
+}
+.sc-tab.is-active::before { background: linear-gradient(180deg, var(--c-accent-2), var(--c-accent)); }
 .sc-tab:hover { border-color: rgba(30, 86, 168, .4); }
 .sc-tab:focus-visible { outline: 3px solid rgba(51, 187, 255, .55); outline-offset: 2px; }
 .sc-tab.is-active {
@@ -474,23 +517,32 @@
   border-radius: var(--radius-m);
   box-shadow: var(--shadow-card);
 }
+/* 奖品配图（2026-09-03 运营提供，热链 alicdn；contain 保证完整不裁切） */
 .prize-img {
-  height: 110px;
+  height: 120px;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  border: 1.5px dashed #C9D4E4;
   border-radius: 10px;
   background: #FAFCFE;
-  color: var(--ink-3);
 }
-.prize-img .icon { width: 26px; height: 26px; }
-.prize-img span { font-size: 11px; }
+.prize-img img { max-width: 100%; max-height: 100%; object-fit: contain; }
 .prize-name { margin-top: 10px; font-size: 13px; color: var(--ink-2); }
 
 .tiers { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 16px; align-items: stretch; }
+/* 奖品配图：白底芯片容器，深色一等奖卡上也成立 */
+.tier-img {
+  height: 130px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+.tier-img img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.tier--1 .tier-img { border-color: rgba(255, 255, 255, .25); }
 .tier {
   display: flex;
   flex-direction: column;
@@ -532,20 +584,9 @@
   border-radius: var(--radius-l);
   box-shadow: var(--shadow-card);
 }
-.cert-img {
-  height: 170px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  border: 1.5px dashed #C9D4E4;
-  border-radius: 12px;
-  background: #FAFCFE;
-  color: var(--ink-3);
-  font-size: 12px;
-}
-.cert-img .icon { width: 34px; height: 34px; color: var(--c-primary-3); opacity: .7; }
+/* 证书样式图（971×714，等比缩放） */
+.cert-img { padding: 12px; border: 1px solid var(--line); border-radius: 12px; background: #fff; }
+.cert-img img { width: 100%; height: auto; border-radius: 6px; }
 .cert-info h3 { font-size: 18px; color: var(--ink-1); }
 .cert-info p { margin-top: 8px; font-size: 14px; }
 .cert-name { display: inline-block; margin-top: 12px; padding: 6px 12px; border-radius: 8px; font-size: 13px; color: var(--c-primary-3); background: rgba(30, 86, 168, .07); }
@@ -651,20 +692,15 @@
 .s8-cta { margin-top: 32px; display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap; }
 
 .s8-contact { margin-top: 44px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+/* 报名咨询群二维码（白底卡片，深色 S8 区上醒目；610×630 近方形） */
 .qr-box {
-  width: 128px; height: 128px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  border: 1.5px dashed rgba(255, 255, 255, .35);
+  width: 150px;
+  padding: 10px;
   border-radius: var(--radius-m);
-  background: rgba(255, 255, 255, .05);
-  color: rgba(255, 255, 255, .55);
-  font-size: 11px;
+  background: #fff;
+  box-shadow: 0 6px 18px rgba(2, 10, 30, .35);
 }
-.qr-box .icon { width: 26px; height: 26px; }
+.qr-box img { width: 100%; height: auto; border-radius: 6px; }
 .s8-contact p { font-size: 14px; color: rgba(255, 255, 255, .75); }
 
 .footer { position: relative; border-top: 1px solid rgba(255, 255, 255, .12); padding: 22px 0; }
@@ -710,7 +746,7 @@
 /* ==================== 响应式 ==================== */
 @media (max-width: 1024px) {
   .tl-card h3 { min-height: 66px; }
-  .showcase { grid-template-columns: 1.35fr 1fr; gap: 20px; } /* 舞台占比微调，选项卡保持可读 */
+  .showcase { grid-template-columns: minmax(240px, 1fr) minmax(0, 1.7fr); gap: 18px; } /* 平板保持「选项卡左 + 图右」，图幅随容器自然收窄 */
 }
 
 @media (max-width: 767px) {
@@ -736,7 +772,8 @@
 
   /* S1 五维轮播：改纵向，说明仅激活项展开（类手风琴，节省纵向空间） */
   .s1-tagline { margin-top: -20px; font-size: 17px; }
-  .showcase { grid-template-columns: 1fr; gap: 16px; margin-top: 36px; }
+  .showcase { margin-top: 36px; grid-template-columns: 1fr; gap: 14px; }
+  .sc-stage, .sc-tabs { grid-column: 1; } /* 窄屏无并排空间，回退为图上、选项卡下（DOM 顺序） */
   .sc-tab-desc { display: none; }
   .sc-tab.is-active .sc-tab-desc { display: block; }
 
@@ -762,7 +799,6 @@
   .prizes { grid-template-columns: repeat(2, 1fr); }
   .tiers { grid-template-columns: 1fr; }
   .cert-card { grid-template-columns: 1fr; }
-  .cert-img { height: 150px; }
 
   /* S6 */
   .steps { grid-template-columns: 1fr; }

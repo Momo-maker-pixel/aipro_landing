@@ -80,8 +80,8 @@
 
         <!-- 关键信息条（日期由配置驱动，见 main.js renderDates） -->
         <ul class="hero-info">
-          <li><svg class="icon" aria-hidden="true"><use href="#i-calendar" xlink:href="#i-calendar"/></svg><span id="info-start">9 月 7 日（周一）开营</span></li>
-          <li><svg class="icon" aria-hidden="true"><use href="#i-clock" xlink:href="#i-clock"/></svg><span id="info-duration">5 天 · 9/7–9/11</span></li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-calendar" xlink:href="#i-calendar"/></svg><span id="info-start">9 月 10 日（周四）开营</span></li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-clock" xlink:href="#i-clock"/></svg><span id="info-duration">5 天 · 9/10–9/14</span></li>
           <li><svg class="icon" aria-hidden="true"><use href="#i-zap" xlink:href="#i-zap"/></svg><span id="info-daily">每天约 40 分钟</span></li>
           <li><svg class="icon" aria-hidden="true"><use href="#i-check" xlink:href="#i-check"/></svg><span data-i18n="hero.info.free">免费参加</span></li>
           <li class="hero-info--hot"><svg class="icon" aria-hidden="true"><use href="#i-target" xlink:href="#i-target"/></svg><span data-i18n="hero.info.quota">名额有限 · 报满即止</span></li>
@@ -105,7 +105,7 @@
         </div>
       </div>
 
-      <!-- 首屏主视觉（CSS 占位版，KV PNG 到位后整体替换为 <img>/<picture>） -->
+      <!-- 首屏主视觉（2026-09-03 定稿：沿用 CSS 示意视觉，本期不再等待 KV 素材；看板数字为虚构演示，对外展示已确认可接受；后续如有成套 KV 可整体替换本区块） -->
       <div class="hero-visual" aria-hidden="true">
         <div class="hero-glow hero-glow--cyan"></div>
         <div class="hero-glow hero-glow--orange"></div>
@@ -181,8 +181,8 @@
       <p class="s1-tagline" data-i18n="s1.tagline">AIPro 是 <em>AI-native</em> 的企业级智能分析产品，助力企业实现数据驱动业务增长</p>
       <p class="s1-sub" data-i18n="s1.sub">分析力、理解力、行动力、可信度、成长性五大维度能力，让数据真正成为增长引擎</p>
 
-      <!-- 五维能力轮播（2026-09-03 视觉优化：单排五卡图幅过小，改为「大图舞台 + 选项卡」轮播，图幅约为卡片版 3.5 倍；
-           配图为运营提供的 alicdn 素材，顺序与 s1.c1–c5 文案对应；自动轮播 5s/张，悬停/聚焦暂停，移动端支持左右滑动） -->
+      <!-- 五维能力轮播（2026-09-03 布局定稿：五个能力选项卡竖排左侧（先能力后配图的阅读顺序）+ 大图右侧约 820px，点击大图可全屏查看原图；
+           配图为运营提供的 alicdn 素材，顺序与 s1.c1–c5 文案对应；自动轮播 3.5s/张，悬停/聚焦/查看大图时暂停，移动端支持左右滑动） -->
       <div class="showcase" id="capShowcase">
         <div class="sc-stage">
           <figure class="sc-slide is-active"><img src="https://img.alicdn.com/imgextra/i4/O1CN01UTQZ9N1ubhjPoFHNm_!!6000000006056-2-tps-2880-1582.png" alt="分析力 UP" width="2880" height="1582"></figure>
@@ -190,6 +190,7 @@
           <figure class="sc-slide" aria-hidden="true"><img src="https://img.alicdn.com/imgextra/i3/O1CN01DhSZZO1IwAI5qXkM_!!6000000000068-2-tps-2880-1582.png" alt="行动力 UP" width="2880" height="1582" loading="lazy"></figure>
           <figure class="sc-slide" aria-hidden="true"><img src="https://img.alicdn.com/imgextra/i3/O1CN01BYN6Y0LsfbF5qXkM_!!6000000001619-2-tps-2880-1582.png" alt="可信度 UP" width="2880" height="1582" loading="lazy"></figure>
           <figure class="sc-slide" aria-hidden="true"><img src="https://img.alicdn.com/imgextra/i1/O1CN01k5jG6D1s9BqF1H7Ju_!!6000000005723-2-tps-2880-1582.png" alt="成长性 UP" width="2880" height="1582" loading="lazy"></figure>
+          <span class="sc-zoom-hint" data-i18n="s1.zoom">点击放大查看</span>
         </div>
         <div class="sc-tabs" role="tablist" aria-label="AIPro 五大能力">
           <button class="sc-tab is-active" type="button" role="tab" aria-selected="true">
@@ -260,15 +261,15 @@
       <div class="stats" id="statsStrip">
         <div class="stats-grid">
           <div class="stat">
-            <p class="stat-num"><span class="js-stat" data-stat="sessions">12</span><i data-i18n="s2.stats.u1">期</i></p>
+            <p class="stat-num"><span class="js-stat" data-stat="sessions">7</span><i data-i18n="s2.stats.u1">期</i></p>
             <p class="stat-label" data-i18n="s2.stats.l1">已连续举办</p>
           </div>
           <div class="stat">
-            <p class="stat-num"><span class="js-stat" data-stat="learners">3,000</span><i>+</i></p>
+            <p class="stat-num"><span class="js-stat" data-stat="learners">1,000</span><i>+</i></p>
             <p class="stat-label" data-i18n="s2.stats.l2">累计学员参与</p>
           </div>
           <div class="stat">
-            <p class="stat-num"><span class="js-stat" data-stat="certified">800</span><i>+</i></p>
+            <p class="stat-num"><span class="js-stat" data-stat="certified">267</span></p>
             <p class="stat-label" data-i18n="s2.stats.l3">获得官方认证</p>
           </div>
         </div>
@@ -348,7 +349,7 @@
         <div class="persona-card">
           <div class="persona-icon persona-icon--1"><svg class="icon" aria-hidden="true"><use href="#i-user" xlink:href="#i-user"/></svg></div>
           <h3 data-i18n="s4.p1.title">零基础新手</h3>
-          <p data-i18n="s4.p1.desc">第一次接触 BI / AIPro，想系统入门而不是碎片化看文档</p>
+          <p data-i18n="s4.p1.desc">第一次接触 AIPro，想系统入门而不是碎片化看文档</p>
         </div>
         <div class="persona-card">
           <div class="persona-icon persona-icon--2"><svg class="icon" aria-hidden="true"><use href="#i-users" xlink:href="#i-users"/></svg></div>
@@ -365,7 +366,7 @@
       <div class="gains">
         <h3 data-i18n="s4.gain.title">参加训练营，你将收获</h3>
         <ul class="gains-grid">
-          <li><span class="gain-check"><svg class="icon" aria-hidden="true"><use href="#i-check" xlink:href="#i-check"/></svg></span><span data-i18n="s4.gain.1">独立搭建数据仪表板的能力</span></li>
+          <li><span class="gain-check"><svg class="icon" aria-hidden="true"><use href="#i-check" xlink:href="#i-check"/></svg></span><span data-i18n="s4.gain.1">熟练使用 Quick BI AIPro</span></li>
           <li><span class="gain-check"><svg class="icon" aria-hidden="true"><use href="#i-check" xlink:href="#i-check"/></svg></span><span data-i18n="s4.gain.2">官方认证证书</span></li>
           <li><span class="gain-check"><svg class="icon" aria-hidden="true"><use href="#i-check" xlink:href="#i-check"/></svg></span><span data-i18n="s4.gain.3">奖品与课程奖励</span></li>
           <li><span class="gain-check"><svg class="icon" aria-hidden="true"><use href="#i-check" xlink:href="#i-check"/></svg></span><span data-i18n="s4.gain.4">专属学习社群与答疑资源</span></li>
@@ -386,19 +387,19 @@
         <div class="prize-block-head"><h3 data-i18n="s5.daily.label">每日打卡抽奖</h3><span data-i18n="s5.daily.note">完成当天打卡任务，即可获得次日抽奖资格，每天开奖</span></div>
         <div class="prizes">
           <div class="prize-card">
-            <div class="prize-img"><svg class="icon" aria-hidden="true"><use href="#i-gift" xlink:href="#i-gift"/></svg><span data-i18n="s5.imgNote">占位图 · 待提供</span></div>
+            <div class="prize-img"><img src="https://img.alicdn.com/imgextra/i3/O1CN01mQO7tBt5XoC6gfJe_!!6000000007367-2-tps-3294-3320.png" alt="第一行代码帆布包" width="3294" height="3320" loading="lazy"></div>
             <p class="prize-name" data-i18n="s5.daily.p1">第一行代码帆布包</p>
           </div>
           <div class="prize-card">
-            <div class="prize-img"><svg class="icon" aria-hidden="true"><use href="#i-gift" xlink:href="#i-gift"/></svg><span data-i18n="s5.imgNote">占位图 · 待提供</span></div>
+            <div class="prize-img"><img src="https://img.alicdn.com/imgextra/i2/O1CN01wNyehs6qHnE0qs3M_!!6000000003464-2-tps-420-420.png" alt="阿里云折叠雨伞" width="420" height="420" loading="lazy"></div>
             <p class="prize-name" data-i18n="s5.daily.p2">阿里云折叠雨伞</p>
           </div>
           <div class="prize-card">
-            <div class="prize-img"><svg class="icon" aria-hidden="true"><use href="#i-gift" xlink:href="#i-gift"/></svg><span data-i18n="s5.imgNote">占位图 · 待提供</span></div>
+            <div class="prize-img"><img src="https://img.alicdn.com/imgextra/i4/O1CN01LvenZu6RD2H0qs3M_!!6000000003800-2-tps-420-420.png" alt="云小宝公仔" width="420" height="420" loading="lazy"></div>
             <p class="prize-name" data-i18n="s5.daily.p3">云小宝公仔</p>
           </div>
           <div class="prize-card">
-            <div class="prize-img"><svg class="icon" aria-hidden="true"><use href="#i-gift" xlink:href="#i-gift"/></svg><span data-i18n="s5.imgNote">占位图 · 待提供</span></div>
+            <div class="prize-img"><img src="https://img.alicdn.com/imgextra/i1/O1CN012gaSfv1lTBK3FPpA_!!6000000000076-2-tps-1600-1600.png" alt="阿里云保温杯" width="1600" height="1600" loading="lazy"></div>
             <p class="prize-name" data-i18n="s5.daily.p4">阿里云保温杯</p>
           </div>
         </div>
@@ -408,16 +409,19 @@
         <div class="prize-block-head"><h3 data-i18n="s5.final.label">结营特别奖</h3><span data-i18n="s5.final.note">完成全部 5 天打卡任务，可参与结营特别抽奖</span></div>
         <div class="tiers">
           <div class="tier tier--1">
+            <div class="tier-img"><img src="https://img.alicdn.com/imgextra/i1/O1CN01kr4JJyEmRFI19FZE_!!6000000002848-2-tps-566-566.png" alt="阿里云拍拍灯" width="566" height="566" loading="lazy"></div>
             <span class="tier-rank" data-i18n="s5.final.t1.rank">一等奖 · 1 名</span>
-            <p class="tier-name" data-i18n="s5.final.t1.name">阿里云拍拍灯 + 数据分析师课程名额</p>
-            <span class="tier-value" data-i18n="s5.final.t1.value">价值 ¥2,400</span>
+            <p class="tier-name" data-i18n="s5.final.t1.name">阿里云拍拍灯 + Quick BI 课程名额</p>
+            <span class="tier-value" data-i18n="s5.final.t1.value">价值 ¥699</span>
           </div>
           <div class="tier">
+            <div class="tier-img"><img src="https://img.alicdn.com/imgextra/i4/O1CN0115aMvFc74IK1chua_!!6000000007419-2-tps-800-800.png" alt="云小宝大抱枕" width="800" height="800" loading="lazy"></div>
             <span class="tier-rank" data-i18n="s5.final.t2.rank">二等奖 · 3 名</span>
             <p class="tier-name" data-i18n="s5.final.t2.name">云小宝大抱枕 + Quick BI 课程名额</p>
             <span class="tier-value" data-i18n="s5.final.t2.value">价值 ¥699</span>
           </div>
           <div class="tier">
+            <div class="tier-img"><img src="https://img.alicdn.com/imgextra/i1/O1CN01WNu9HMiZjCB2LWGh_!!6000000001011-2-tps-1156-447.png" alt="Quick BI 课程名额" width="1156" height="447" loading="lazy"></div>
             <span class="tier-rank" data-i18n="s5.final.t3.rank">三等奖 · 5 名</span>
             <p class="tier-name" data-i18n="s5.final.t3.name">Quick BI 课程名额</p>
             <span class="tier-value" data-i18n="s5.final.t3.value">价值 ¥699</span>
@@ -427,16 +431,16 @@
 
       <div class="prize-block">
         <div class="cert-card">
-          <div class="cert-img"><svg class="icon" aria-hidden="true"><use href="#i-award" xlink:href="#i-award"/></svg><span data-i18n="s5.imgNote">证书样式 · 待提供</span></div>
+          <div class="cert-img"><img src="https://img.alicdn.com/imgextra/i1/O1CN01C70EH7DqwmE1yETt_!!6000000007317-2-tps-971-714.png" alt="Quick BI 高级开发者认证证书样式" width="971" height="714" loading="lazy"></div>
           <div class="cert-info">
             <h3 data-i18n="s5.cert.label">官方认证证书</h3>
             <p data-i18n="s5.cert.note">结营前完成全部打卡任务，可获得官方认证证书（结营后统一发放）</p>
-            <span class="cert-name" data-i18n="s5.cert.name">证书名称待定（往期：《Quick BI 初级开发者认证》）</span>
+            <span class="cert-name" data-i18n="s5.cert.name">Quick BI 高级开发者认证</span>
           </div>
         </div>
       </div>
 
-      <p class="s5-compliance" data-i18n="s5.compliance">* 奖品以当期实际发放为准；奖品与证书图片为占位，待运营提供</p>
+      <p class="s5-compliance" data-i18n="s5.compliance">* 奖品以当期实际发放为准</p>
     </div>
   </section>
 
@@ -544,7 +548,7 @@
   <section class="s8" id="enroll" data-module="S8-footer">
     <div class="container s8-inner">
       <h2 data-i18n="s8.title">名额有限，立即报名</h2>
-      <p class="s8-sub" id="s8Sub">9 月 7 日开营 · 免费 · 报满即止</p>
+      <p class="s8-sub" id="s8Sub">9 月 10 日开营 · 免费 · 报满即止</p>
       <div class="s8-cta">
         <a class="btn btn--primary btn--xl js-signup" href="#" target="_blank" rel="noopener" data-track="cta_click" data-track-loc="footer">
           <span data-i18n="cta.signup">立即报名</span>
@@ -562,15 +566,15 @@
       </div>
 
       <div class="s8-contact">
-        <div class="qr-box"><svg class="icon" aria-hidden="true"><use href="#i-users" xlink:href="#i-users"/></svg><span data-i18n="s8.contact.note">二维码 · 待提供</span></div>
+        <div class="qr-box"><img src="https://img.alicdn.com/imgextra/i1/O1CN01xqCACFp1UyG1EmzI_!!6000000002944-2-tps-610-630.png" alt="报名咨询群二维码" width="610" height="630"></div>
         <p><span data-i18n="s8.contact.label">报名咨询</span>：<span class="js-contact-name">班主任</span></p>
       </div>
     </div>
 
     <footer class="footer">
       <div class="container footer-inner">
-        <p><span data-i18n="footer.organizer">主办方</span>：<span class="js-organizer">主办方名称（待确认）</span></p>
-        <p class="footer-legal"><span id="footerCopyright">© 2026 主办方名称（待确认） 版权所有</span> · <span data-i18n="footer.icp">备案号待提供</span></p>
+        <p><span data-i18n="footer.organizer">主办方</span>：<span class="js-organizer">瓴羊 × Quick BI 团队</span></p>
+        <p class="footer-legal"><span id="footerCopyright">© 2026 瓴羊 × Quick BI 团队 版权所有</span> · <span data-i18n="footer.icp">备案号待提供</span></p>
       </div>
     </footer>
   </section>
