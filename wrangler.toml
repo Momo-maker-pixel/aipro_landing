@@ -1,0 +1,9 @@
+# Cloudflare Workers 静态资产部署配置（纯静态站，无 Worker 脚本、无构建步骤）
+# ⚠️ name 必须与 Dashboard 中的 Worker 名字完全一致（用户已创建：aipro-landing）
+name = "aipro-landing"
+compatibility_date = "2026-09-03"
+
+# 静态文件目录：index.html 位于仓库根目录，故指向 "./"
+# wrangler 上传资产时默认忽略隐藏目录（如 .git），实际发布内容仅 index.html / css / js
+[assets]
+directory = "./"
