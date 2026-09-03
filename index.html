@@ -3,6 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <!-- 平台对 /aipro-landing（无尾斜杠）不重定向，浏览器会把 css/、js/ 解析到站点根目录导致 404；
+       此处将无尾斜杠 URL 规范化为 /aipro-landing/，保证相对路径在任意入口下都正确 -->
+  <script>
+    (function () {
+      if (location.pathname === '/aipro-landing') {
+        location.replace(location.pathname + '/' + location.search + location.hash);
+      }
+    })();
+  </script>
   <title>AIPro 新手训练营第一期 · 免费报名中</title>
   <meta name="description" content="5 天从 0 到 1 玩转 AIPro，导师带教，打卡赢好礼，完成学习可得官方认证证书">
   <meta name="theme-color" content="#0A1F4D">
@@ -44,8 +53,8 @@
 <header class="topbar">
   <div class="container topbar-inner">
     <div class="brand">
-      <!-- Logo 源文件待运营提供（素材清单 #6），此处为占位 -->
-      <span class="brand-mark"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-spark" xlink:href="#i-spark"/></svg></span>
+      <!-- 瓴羊 Logo（素材清单 #6，2026-09-03 提供，热链 alicdn；深色顶栏上的显示效果需视觉验收） -->
+      <span class="brand-mark"><img src="https://img.alicdn.com/imgextra/i4/O1CN01uNZKMZ1YAkaVvf2G4_!!6000000003019-2-tps-500-310.png" alt="瓴羊" width="500" height="310"></span>
       <span class="brand-name">Quick BI · AIPro</span>
     </div>
     <div class="topbar-right">
@@ -170,31 +179,50 @@
         <h2 data-i18n="s1.title">先认识 AIPro</h2>
       </div>
       <p class="s1-tagline" data-i18n="s1.tagline">AIPro 是 <em>AI-native</em> 的企业级智能分析产品，助力企业实现数据驱动业务增长</p>
-      <p class="s1-sub" data-i18n="s1.sub">用自然语言向数据提问，不写 SQL、不等排期，快速完成数据分析</p>
+      <p class="s1-sub" data-i18n="s1.sub">分析力、理解力、行动力、可信度、成长性五大维度能力，让数据真正成为增长引擎</p>
 
-      <div class="s1-cards">
-        <div class="cap-card">
-          <div class="cap-icon cap-icon--1"><svg class="icon" aria-hidden="true"><use href="#i-chat" xlink:href="#i-chat"/></svg></div>
-          <h3 data-i18n="s1.c1.title">智能问答</h3>
-          <p data-i18n="s1.c1.desc">向数据提问，秒级生成图表答案</p>
+      <!-- 五维能力轮播（2026-09-03 视觉优化：单排五卡图幅过小，改为「大图舞台 + 选项卡」轮播，图幅约为卡片版 3.5 倍；
+           配图为运营提供的 alicdn 素材，顺序与 s1.c1–c5 文案对应；自动轮播 5s/张，悬停/聚焦暂停，移动端支持左右滑动） -->
+      <div class="showcase" id="capShowcase">
+        <div class="sc-stage">
+          <figure class="sc-slide is-active"><img src="https://img.alicdn.com/imgextra/i4/O1CN01UTQZ9N1ubhjPoFHNm_!!6000000006056-2-tps-2880-1582.png" alt="分析力 UP" width="2880" height="1582"></figure>
+          <figure class="sc-slide" aria-hidden="true"><img src="https://img.alicdn.com/imgextra/i1/O1CN01Xudoe31axQCFRJOSk_!!6000000003396-2-tps-2880-1582.png" alt="理解力 UP" width="2880" height="1582" loading="lazy"></figure>
+          <figure class="sc-slide" aria-hidden="true"><img src="https://img.alicdn.com/imgextra/i3/O1CN01DhSZZO1IwAI5qXkM_!!6000000000068-2-tps-2880-1582.png" alt="行动力 UP" width="2880" height="1582" loading="lazy"></figure>
+          <figure class="sc-slide" aria-hidden="true"><img src="https://img.alicdn.com/imgextra/i3/O1CN01BYN6Y0LsfbF5qXkM_!!6000000001619-2-tps-2880-1582.png" alt="可信度 UP" width="2880" height="1582" loading="lazy"></figure>
+          <figure class="sc-slide" aria-hidden="true"><img src="https://img.alicdn.com/imgextra/i1/O1CN01k5jG6D1s9BqF1H7Ju_!!6000000005723-2-tps-2880-1582.png" alt="成长性 UP" width="2880" height="1582" loading="lazy"></figure>
         </div>
-        <div class="cap-card">
-          <div class="cap-icon cap-icon--2"><svg class="icon" aria-hidden="true"><use href="#i-chart" xlink:href="#i-chart"/></svg></div>
-          <h3 data-i18n="s1.c2.title">AI 搭建报表</h3>
-          <p data-i18n="s1.c2.desc">描述需求，AI 辅助生成图表与仪表板</p>
+        <div class="sc-tabs" role="tablist" aria-label="AIPro 五大能力">
+          <button class="sc-tab is-active" type="button" role="tab" aria-selected="true">
+            <span class="sc-tab-num">01</span>
+            <span class="sc-tab-title" data-i18n="s1.c1.title">分析力 <em>UP</em></span>
+            <span class="sc-tab-desc" data-i18n="s1.c1.desc">决策高效：一个入口，多轮对话完成综合深度分析，有洞察更有行动建议</span>
+            <i class="sc-tab-bar" aria-hidden="true"></i>
+          </button>
+          <button class="sc-tab" type="button" role="tab" aria-selected="false">
+            <span class="sc-tab-num">02</span>
+            <span class="sc-tab-title" data-i18n="s1.c2.title">理解力 <em>UP</em></span>
+            <span class="sc-tab-desc" data-i18n="s1.c2.desc">洞察精准：懂业务语言与行业口径，沉淀记忆，越用越懂你</span>
+            <i class="sc-tab-bar" aria-hidden="true"></i>
+          </button>
+          <button class="sc-tab" type="button" role="tab" aria-selected="false">
+            <span class="sc-tab-num">03</span>
+            <span class="sc-tab-title" data-i18n="s1.c3.title">行动力 <em>UP</em></span>
+            <span class="sc-tab-desc" data-i18n="s1.c3.desc">执行闭环：主动巡检推送，对接业务系统 MCP，把分析嵌入业务流</span>
+            <i class="sc-tab-bar" aria-hidden="true"></i>
+          </button>
+          <button class="sc-tab" type="button" role="tab" aria-selected="false">
+            <span class="sc-tab-num">04</span>
+            <span class="sc-tab-title" data-i18n="s1.c4.title">可信度 <em>UP</em></span>
+            <span class="sc-tab-desc" data-i18n="s1.c4.desc">安全可信：全链路可解释可追溯，统一口径、数据溯源、权限、信创</span>
+            <i class="sc-tab-bar" aria-hidden="true"></i>
+          </button>
+          <button class="sc-tab" type="button" role="tab" aria-selected="false">
+            <span class="sc-tab-num">05</span>
+            <span class="sc-tab-title" data-i18n="s1.c5.title">成长性 <em>UP</em></span>
+            <span class="sc-tab-desc" data-i18n="s1.c5.desc">组织进化：从个人会分析提效到组织能协同进化，越用越进化</span>
+            <i class="sc-tab-bar" aria-hidden="true"></i>
+          </button>
         </div>
-        <div class="cap-card">
-          <div class="cap-icon cap-icon--3"><svg class="icon" aria-hidden="true"><use href="#i-activity" xlink:href="#i-activity"/></svg></div>
-          <h3 data-i18n="s1.c3.title">智能洞察</h3>
-          <p data-i18n="s1.c3.desc">自动发现数据波动与异常原因</p>
-        </div>
-      </div>
-
-      <!-- 产品截图占位（待运营提供 ≥1200px 脱敏截图） -->
-      <div class="shots">
-        <div class="shot"><span data-i18n="s1.shots.note">产品界面截图 · 待提供（≥1200px，内容脱敏）</span></div>
-        <div class="shot"><span data-i18n="s1.shots.note">产品界面截图 · 待提供（≥1200px，内容脱敏）</span></div>
-        <div class="shot"><span data-i18n="s1.shots.note">产品界面截图 · 待提供（≥1200px，内容脱敏）</span></div>
       </div>
     </div>
   </section>
@@ -488,7 +516,7 @@
         </div>
         <div class="faq-item">
           <h3 class="faq-q-wrap"><button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a4" id="faq-q4"><span data-i18n="s7.q4">没有产品账号怎么办？</span><svg class="icon faq-chev" aria-hidden="true"><use href="#i-chevron" xlink:href="#i-chevron"/></svg></button></h3>
-          <div class="faq-a" id="faq-a4" role="region" aria-labelledby="faq-q4"><div class="faq-a-inner"><p data-i18n="s7.a4">已购买产品的客户使用正式账号即可；暂无账号可点击申请免费试用。</p></div></div>
+          <div class="faq-a" id="faq-a4" role="region" aria-labelledby="faq-q4"><div class="faq-a-inner"><p id="faqA4" data-i18n="s7.a4">已购买产品的客户使用正式账号即可；暂无账号可点击申请免费试用。</p></div></div>
         </div>
         <div class="faq-item">
           <h3 class="faq-q-wrap"><button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a5" id="faq-q5"><span data-i18n="s7.q5">学习中遇到问题怎么办？</span><svg class="icon faq-chev" aria-hidden="true"><use href="#i-chevron" xlink:href="#i-chevron"/></svg></button></h3>

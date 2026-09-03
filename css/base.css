@@ -111,15 +111,9 @@ img, svg { display: block; max-width: 100%; }
 .topbar { position: absolute; inset: 0 0 auto 0; z-index: 10; padding-top: 8px; }
 .topbar-inner { display: flex; align-items: center; justify-content: space-between; height: var(--topbar-h); }
 .brand { display: flex; align-items: center; gap: 10px; color: #fff; font-weight: 700; font-size: 17px; letter-spacing: .5px; }
-.brand-mark {
-  width: 34px; height: 34px;
-  border-radius: 10px;
-  background: linear-gradient(135deg, var(--c-cyan), var(--c-primary-3));
-  display: grid; place-items: center;
-  color: #fff;
-  box-shadow: 0 4px 14px rgba(0, 200, 212, .4);
-}
-.brand-mark .icon { width: 18px; height: 18px; }
+/* 瓴羊 Logo（PNG 热链，高度对齐品牌字行；换白色版 / 矢量图时直接换 img 地址即可） */
+.brand-mark { height: 32px; display: flex; align-items: center; }
+.brand-mark img { height: 100%; width: auto; }
 .topbar-right { display: flex; align-items: center; gap: 16px; }
 
 /* FR-06 语言切换 */

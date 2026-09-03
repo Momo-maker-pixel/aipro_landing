@@ -57,7 +57,7 @@
     });
     renderDates();
     renderS8Sub();
-    renderPrep1();
+    renderTrialLinks();
     renderContact();
     renderFooter();
     renderExpiredState(); /* 切语言后保持"已截止"文案正确 */
@@ -100,16 +100,20 @@
     if (el) el.textContent = t('s8.sub', { date: fmtDate((CFG.camp || {}).startISO) });
   }
 
-  /* S6 账号准备：文案中嵌入免费试用链接（config.links.trial） */
-  function renderPrep1() {
-    var el = $('#prep1Desc');
-    if (!el) return;
+  /* 免费试用链接（config.links.trial）：注入 S6 账号准备与 FAQ Q4 文案 */
+  function renderTrialLinks() {
     var url = (CFG.links && CFG.links.trial) || '';
-    var link = '<a class="inline-link js-trial-link" href="' + (url || '#') + '" target="_blank" rel="noopener">' + t('s6.trial') + '</a>';
-    el.innerHTML = t('s6.prep1.desc', { link: link });
+    function linkHtml(key) {
+      return '<a class="inline-link js-trial-link" href="' + (url || '#') + '" target="_blank" rel="noopener">' + t(key) + '</a>';
+    }
+    var el = $('#prep1Desc');
+    if (el) el.innerHTML = t('s6.prep1.desc', { link: linkHtml('s6.trial') });
+    el = $('#faqA4');
+    if (el) el.innerHTML = t('s7.a4', { link: linkHtml('s7.trial') });
     if (!url) {
-      var a = $('.js-trial-link', el);
-      if (a) a.addEventListener('click', function (e) { e.preventDefault(); });
+      $$('.js-trial-link').forEach(function (a) {
+        a.addEventListener('click', function (e) { e.preventDefault(); });
+      });
     }
   }
 
@@ -260,6 +264,99 @@
     });
   }
 
+  /* ---------------- S1 五维能力轮播（大图 + 选项卡） ----------------
+   * 自动轮播 SC_DUR 毫秒/张；悬停 / 键盘聚焦 / 离开视口时暂停；移动端支持左右滑动切换；
+   * 系统偏好「减少动态效果」时不自动轮播，仅保留手动点选。 */
+  var SC_DUR = 5000;
+  var sc = { slides: [], tabs: [], bars: [], idx: 0, elapsed: 0, last: 0, running: false, visible: true };
+
+  function selectShowcase(i, manual) {
+    var n = sc.slides.length;
+    if (!n) return;
+    sc.idx = ((i % n) + n) % n;
+    sc.slides.forEach(function (s, k) {
+      var on = k === sc.idx;
+      s.classList.toggle('is-active', on);
+      s.setAttribute('aria-hidden', on ? 'false' : 'true');
+    });
+    sc.tabs.forEach(function (tb, k) {
+      var on = k === sc.idx;
+      tb.classList.toggle('is-active', on);
+      tb.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+    sc.bars.forEach(function (b) { b.style.width = '0%'; });
+    sc.elapsed = 0;
+    if (manual) track('showcase_switch', { idx: sc.idx + 1 });
+  }
+
+  /* rAF 驱动：暂停时计时冻结，恢复后无缝续走（进度条与切换时机始终同步） */
+  function showcaseFrame(ts) {
+    if (sc.running) {
+      if (!sc.last) sc.last = ts;
+      sc.elapsed += ts - sc.last;
+      sc.last = ts;
+      var bar = sc.bars[sc.idx];
+      if (bar) bar.style.width = Math.min(sc.elapsed / SC_DUR * 100, 100) + '%';
+      if (sc.elapsed >= SC_DUR) selectShowcase(sc.idx + 1, false);
+    } else {
+      sc.last = 0;
+    }
+    requestAnimationFrame(showcaseFrame);
+  }
+
+  function initShowcase() {
+    var root = $('#capShowcase');
+    if (!root) return;
+    sc.slides = $$('.sc-slide', root);
+    sc.tabs = $$('.sc-tab', root);
+    sc.bars = sc.tabs.map(function (tb) { return $('.sc-tab-bar', tb); });
+    if (!sc.slides.length || sc.slides.length !== sc.tabs.length) return;
+
+    var reduceMotion = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    if (reduceMotion) root.classList.add('no-autoplay');
+
+    sc.tabs.forEach(function (tb, i) {
+      tb.addEventListener('click', function () { selectShowcase(i, true); });
+    });
+
+    /* 触摸左右滑动切换（竖向滚动不拦截） */
+    var sx = 0, sy = 0;
+    root.addEventListener('touchstart', function (e) {
+      sx = e.touches[0].clientX; sy = e.touches[0].clientY;
+    }, { passive: true });
+    root.addEventListener('touchend', function (e) {
+      var dx = e.changedTouches[0].clientX - sx;
+      var dy = e.changedTouches[0].clientY - sy;
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+        selectShowcase(sc.idx + (dx < 0 ? 1 : -1), true);
+      }
+    }, { passive: true });
+
+    if (!reduceMotion) {
+      var play = function () { if (sc.visible) sc.running = true; };
+      var pause = function () { sc.running = false; };
+      /* 进入视口才自动播放，滚走即停（省电） */
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (en) {
+            sc.visible = en.isIntersecting;
+            if (en.isIntersecting) play(); else pause();
+          });
+        }, { threshold: 0.25 });
+        io.observe(root);
+      } else {
+        sc.visible = true;
+        play();
+      }
+      root.addEventListener('mouseenter', pause);
+      root.addEventListener('mouseleave', play);
+      root.addEventListener('focusin', pause);
+      root.addEventListener('focusout', play);
+      requestAnimationFrame(showcaseFrame);
+    }
+    selectShowcase(0, false); /* 同步初始 aria 状态（HTML 默认第一张激活） */
+  }
+
   /* ---------------- FR-04 埋点 ----------------
    * TODO：接入现有埋点体系后，将 track() 替换为正式上报；
    * 当前行为：console.debug + window.__trackLogs（调试可查）+ dataLayer 透传（若存在）。
@@ -321,6 +418,7 @@
     fillLinks();
     initFaq();
     initStats();
+    initShowcase();
     initTracking();
     initLangSwitch();
     tick();

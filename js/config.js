@@ -36,7 +36,7 @@ window.PAGE_CONFIG = {
   /* 外部链接 */
   links: {
     helpDoc: 'https://help.aliyun.com/zh/quick-bi/', // 官方帮助文档（往期地址，AIPro 专属地址待确认）
-    trial: '' // 免费试用申请链接（待运营提供）
+    trial: 'https://auth.lydaas.com/login?redirect_uri=https%3A%2F%2Fquickbi.lydaas.com%2Fapi%2Fv2%2Ftrial%2FinitProOrgInfo&product=QuickBI#/register' // 免费试用申请链接（2026-09-03 运营提供）
   },
 
   /* 班主任咨询入口（S8） */
