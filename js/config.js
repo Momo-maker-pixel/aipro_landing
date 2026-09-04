@@ -17,7 +17,7 @@ window.PAGE_CONFIG = {
 
   /* 报名入口（FR-01：链接每期更换，必须可配置） */
   signup: {
-    url: '', // 报名表单链接（宜搭，向陈如南获取）
+    url: 'https://ch6egz.aliwork.com/APP_XE4DTW5U4ZTVCKKRNET0/submission/FORM-D2273F0D2B684B83B5F6ABC53AC343AEAT6M?corpid=ding95de4446a62dc14524f2f5cc6abecb85', // 报名表单链接（宜搭，2026-09-04 陈如南提供先回填，正式链接如变更直接替换）
     // 报名截止 2026-09-10 09:00（北京时间，2026-09-03 确认；原 9/6 24:00 已废止）
     deadlineISO: '2026-09-10T09:00:00+08:00',
     expiredUrl: '' // 截止后 CTA 跳转（可配置为咨询入口或下一期预约），留空则按钮置灰不可点

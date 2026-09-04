@@ -20,8 +20,10 @@
   <meta property="og:title" content="AIPro 新手训练营开班！免费报名中">
   <meta property="og:description" content="5 天从 0 到 1 玩转 AIPro，导师带教，打卡赢好礼，完成学习可得官方认证证书">
   <!-- <meta property="og:image" content=""> -->
-  <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/sections.css">
+  <!-- 静态资源版本号：每次更新 css/js 内容后同步递增（日期即可），强制浏览器/CDN 拉新文件。
+       背景：静态托管无 Cache-Control 响应头，浏览器启发式缓存导致用户长期看到旧样式（2026-09-04 排查确认） -->
+  <link rel="stylesheet" href="css/base.css?v=20260909">
+  <link rel="stylesheet" href="css/sections.css?v=20260909">
 </head>
 <body>
 
@@ -46,6 +48,10 @@
   <symbol id="i-headset" viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></symbol>
   <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></symbol>
   <symbol id="i-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></symbol>
+  <symbol id="i-chev-l" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></symbol>
+  <symbol id="i-chev-r" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></symbol>
+  <symbol id="i-zoom" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></symbol>
   <symbol id="i-arrow" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></symbol>
 </svg>
 
@@ -181,48 +187,69 @@
       <p class="s1-tagline" data-i18n="s1.tagline">AIPro 是 <em>AI-native</em> 的企业级智能分析产品，助力企业实现数据驱动业务增长</p>
       <p class="s1-sub" data-i18n="s1.sub">分析力、理解力、行动力、可信度、成长性五大维度能力，让数据真正成为增长引擎</p>
 
-      <!-- 五维能力轮播（2026-09-03 布局定稿：五个能力选项卡竖排左侧（先能力后配图的阅读顺序）+ 大图右侧约 820px，点击大图可全屏查看原图；
-           配图为运营提供的 alicdn 素材，顺序与 s1.c1–c5 文案对应；自动轮播 3.5s/张，悬停/聚焦/查看大图时暂停，移动端支持左右滑动） -->
-      <div class="showcase" id="capShowcase">
-        <div class="sc-stage">
-          <figure class="sc-slide is-active"><img src="https://img.alicdn.com/imgextra/i4/O1CN01UTQZ9N1ubhjPoFHNm_!!6000000006056-2-tps-2880-1582.png" alt="分析力 UP" width="2880" height="1582"></figure>
-          <figure class="sc-slide" aria-hidden="true"><img src="https://img.alicdn.com/imgextra/i1/O1CN01Xudoe31axQCFRJOSk_!!6000000003396-2-tps-2880-1582.png" alt="理解力 UP" width="2880" height="1582" loading="lazy"></figure>
-          <figure class="sc-slide" aria-hidden="true"><img src="https://img.alicdn.com/imgextra/i3/O1CN01DhSZZO1IwAI5qXkM_!!6000000000068-2-tps-2880-1582.png" alt="行动力 UP" width="2880" height="1582" loading="lazy"></figure>
-          <figure class="sc-slide" aria-hidden="true"><img src="https://img.alicdn.com/imgextra/i3/O1CN01BYN6Y0LsfbF5qXkM_!!6000000001619-2-tps-2880-1582.png" alt="可信度 UP" width="2880" height="1582" loading="lazy"></figure>
-          <figure class="sc-slide" aria-hidden="true"><img src="https://img.alicdn.com/imgextra/i1/O1CN01k5jG6D1s9BqF1H7Ju_!!6000000005723-2-tps-2880-1582.png" alt="成长性 UP" width="2880" height="1582" loading="lazy"></figure>
-          <span class="sc-zoom-hint" data-i18n="s1.zoom">点击放大查看</span>
+      <!-- 五大能力（2026-09-06 定稿：静态五卡横排，每张卡常显「编号 + 标题 + 说明」；
+           桌面 5 列 / 平板 3 列 / 手机 2 列 / 极窄屏单列（见 sections.css）） -->
+      <div class="cap-grid">
+        <div class="cap-card">
+          <span class="cap-num">01</span>
+          <h3 class="cap-title" data-i18n="s1.c1.title">分析力 <em>UP</em></h3>
+          <p class="cap-desc" data-i18n="s1.c1.desc">决策高效：一个入口，多轮对话完成综合深度分析，有洞察更有行动建议</p>
         </div>
-        <div class="sc-tabs" role="tablist" aria-label="AIPro 五大能力">
-          <button class="sc-tab is-active" type="button" role="tab" aria-selected="true">
-            <span class="sc-tab-num">01</span>
-            <span class="sc-tab-title" data-i18n="s1.c1.title">分析力 <em>UP</em></span>
-            <span class="sc-tab-desc" data-i18n="s1.c1.desc">决策高效：一个入口，多轮对话完成综合深度分析，有洞察更有行动建议</span>
-            <i class="sc-tab-bar" aria-hidden="true"></i>
-          </button>
-          <button class="sc-tab" type="button" role="tab" aria-selected="false">
-            <span class="sc-tab-num">02</span>
-            <span class="sc-tab-title" data-i18n="s1.c2.title">理解力 <em>UP</em></span>
-            <span class="sc-tab-desc" data-i18n="s1.c2.desc">洞察精准：懂业务语言与行业口径，沉淀记忆，越用越懂你</span>
-            <i class="sc-tab-bar" aria-hidden="true"></i>
-          </button>
-          <button class="sc-tab" type="button" role="tab" aria-selected="false">
-            <span class="sc-tab-num">03</span>
-            <span class="sc-tab-title" data-i18n="s1.c3.title">行动力 <em>UP</em></span>
-            <span class="sc-tab-desc" data-i18n="s1.c3.desc">执行闭环：主动巡检推送，对接业务系统 MCP，把分析嵌入业务流</span>
-            <i class="sc-tab-bar" aria-hidden="true"></i>
-          </button>
-          <button class="sc-tab" type="button" role="tab" aria-selected="false">
-            <span class="sc-tab-num">04</span>
-            <span class="sc-tab-title" data-i18n="s1.c4.title">可信度 <em>UP</em></span>
-            <span class="sc-tab-desc" data-i18n="s1.c4.desc">安全可信：全链路可解释可追溯，统一口径、数据溯源、权限、信创</span>
-            <i class="sc-tab-bar" aria-hidden="true"></i>
-          </button>
-          <button class="sc-tab" type="button" role="tab" aria-selected="false">
-            <span class="sc-tab-num">05</span>
-            <span class="sc-tab-title" data-i18n="s1.c5.title">成长性 <em>UP</em></span>
-            <span class="sc-tab-desc" data-i18n="s1.c5.desc">组织进化：从个人会分析提效到组织能协同进化，越用越进化</span>
-            <i class="sc-tab-bar" aria-hidden="true"></i>
-          </button>
+        <div class="cap-card">
+          <span class="cap-num">02</span>
+          <h3 class="cap-title" data-i18n="s1.c2.title">理解力 <em>UP</em></h3>
+          <p class="cap-desc" data-i18n="s1.c2.desc">洞察精准：懂业务语言与行业口径，沉淀记忆，越用越懂你</p>
+        </div>
+        <div class="cap-card">
+          <span class="cap-num">03</span>
+          <h3 class="cap-title" data-i18n="s1.c3.title">行动力 <em>UP</em></h3>
+          <p class="cap-desc" data-i18n="s1.c3.desc">执行闭环：主动巡检推送，对接业务系统 MCP，把分析嵌入业务流</p>
+        </div>
+        <div class="cap-card">
+          <span class="cap-num">04</span>
+          <h3 class="cap-title" data-i18n="s1.c4.title">可信度 <em>UP</em></h3>
+          <p class="cap-desc" data-i18n="s1.c4.desc">安全可信：全链路可解释可追溯，统一口径、数据溯源、权限、信创</p>
+        </div>
+        <div class="cap-card">
+          <span class="cap-num">05</span>
+          <h3 class="cap-title" data-i18n="s1.c5.title">成长性 <em>UP</em></h3>
+          <p class="cap-desc" data-i18n="s1.c5.desc">组织进化：从个人会分析提效到组织能协同进化，越用越进化</p>
+        </div>
+      </div>
+
+      <!-- 能力配图轮播（2026-09-07 新增：新实现，不复用已删除的 sc-* 轮播——图区独占整行、
+           高度按图源 2880×1582 比例由 CSS 占位（.cap-show-stage::before），切换仅改 track 位移，
+           标题 / 圆点常驻图下固定行，图文无等高耦合；自动 3.5 秒/张、悬停暂停，
+           支持箭头 / 圆点点击与手机水平滑动；无 JS 时展示第一张） -->
+      <div class="cap-show" id="capShow">
+        <div class="cap-show-stage">
+          <div class="cap-show-track">
+            <div class="cap-show-slide"><img src="https://img.alicdn.com/imgextra/i4/O1CN01UTQZ9N1ubhjPoFHNm_!!6000000006056-2-tps-2880-1582.png" alt="" aria-hidden="true"></div>
+            <div class="cap-show-slide"><img src="https://img.alicdn.com/imgextra/i1/O1CN01Xudoe31axQCFRJOSk_!!6000000003396-2-tps-2880-1582.png" alt="" aria-hidden="true" loading="lazy"></div>
+            <div class="cap-show-slide"><img src="https://img.alicdn.com/imgextra/i3/O1CN01DhSZZO1IwAI5qXkM_!!6000000000068-2-tps-2880-1582.png" alt="" aria-hidden="true" loading="lazy"></div>
+            <div class="cap-show-slide"><img src="https://img.alicdn.com/imgextra/i3/O1CN01BYN6Y0LsfbF5qXkM_!!6000000001619-2-tps-2880-1582.png" alt="" aria-hidden="true" loading="lazy"></div>
+            <div class="cap-show-slide"><img src="https://img.alicdn.com/imgextra/i1/O1CN01k5jG6D1s9BqF1H7Ju_!!6000000005723-2-tps-2880-1582.png" alt="" aria-hidden="true" loading="lazy"></div>
+          </div>
+          <button class="cap-show-btn cap-show-btn--prev" type="button" data-cap-dir="-1"><svg class="icon" aria-hidden="true"><use href="#i-chev-l" xlink:href="#i-chev-l"/></svg><span class="sr-only" data-i18n="s1.show.prev">上一张</span></button>
+          <button class="cap-show-btn cap-show-btn--next" type="button" data-cap-dir="1"><svg class="icon" aria-hidden="true"><use href="#i-chev-r" xlink:href="#i-chev-r"/></svg><span class="sr-only" data-i18n="s1.show.next">下一张</span></button>
+          <span class="cap-show-count" aria-hidden="true">1 / 5</span>
+          <span class="cap-show-hint" aria-hidden="true"><svg class="icon" aria-hidden="true"><use href="#i-zoom" xlink:href="#i-zoom"/></svg><span data-i18n="s1.show.zoom">点击查看大图</span></span>
+        </div>
+        <div class="cap-show-bar">
+          <p class="cap-show-caps">
+            <span class="cap-show-cap is-active"><span class="cap-show-no">01</span><span data-i18n="s1.c1.title">分析力 <em>UP</em></span></span>
+            <span class="cap-show-cap"><span class="cap-show-no">02</span><span data-i18n="s1.c2.title">理解力 <em>UP</em></span></span>
+            <span class="cap-show-cap"><span class="cap-show-no">03</span><span data-i18n="s1.c3.title">行动力 <em>UP</em></span></span>
+            <span class="cap-show-cap"><span class="cap-show-no">04</span><span data-i18n="s1.c4.title">可信度 <em>UP</em></span></span>
+            <span class="cap-show-cap"><span class="cap-show-no">05</span><span data-i18n="s1.c5.title">成长性 <em>UP</em></span></span>
+          </p>
+          <div class="cap-show-dots">
+            <button class="cap-show-dot is-active" type="button" data-cap-i="0" aria-label="第 1 张"></button>
+            <button class="cap-show-dot" type="button" data-cap-i="1" aria-label="第 2 张"></button>
+            <button class="cap-show-dot" type="button" data-cap-i="2" aria-label="第 3 张"></button>
+            <button class="cap-show-dot" type="button" data-cap-i="3" aria-label="第 4 张"></button>
+            <button class="cap-show-dot" type="button" data-cap-i="4" aria-label="第 5 张"></button>
+          </div>
         </div>
       </div>
     </div>
@@ -292,40 +319,40 @@
         <div class="tl-item">
           <div class="tl-node">DAY1</div>
           <div class="tl-card">
-            <h3 data-i18n="s3.d1.theme">新手入门：认识 AIPro，搭建你的第一个仪表板</h3>
-            <p class="tl-out"><svg class="icon" aria-hidden="true"><use href="#i-check" xlink:href="#i-check"/></svg><span data-i18n="s3.d1.out">一个可分享的数据仪表板</span></p>
+            <h3 data-i18n="s3.d1.theme">新手入门：认识 AIPro，基于内置数据快速体验</h3>
+            <p class="tl-out"><svg class="icon" aria-hidden="true"><use href="#i-check" xlink:href="#i-check"/></svg><span data-i18n="s3.d1.out">知识测验与基础操作题</span></p>
             <span class="tl-dur" data-i18n="s3.duration">约 40 分钟</span>
           </div>
         </div>
         <div class="tl-item">
           <div class="tl-node">DAY2</div>
           <div class="tl-card">
-            <h3 data-i18n="s3.d2.theme">掌握常见的表格组件</h3>
-            <p class="tl-out"><svg class="icon" aria-hidden="true"><use href="#i-check" xlink:href="#i-check"/></svg><span data-i18n="s3.d2.out">明细表 / 交叉表报表</span></p>
+            <h3 data-i18n="s3.d2.theme">掌握数据上传、智能问数、报告生成与定时订阅</h3>
+            <p class="tl-out"><svg class="icon" aria-hidden="true"><use href="#i-check" xlink:href="#i-check"/></svg><span data-i18n="s3.d2.out">一份完整的分析报告或 HTML 页面</span></p>
             <span class="tl-dur" data-i18n="s3.duration">约 40 分钟</span>
           </div>
         </div>
         <div class="tl-item">
           <div class="tl-node">DAY3</div>
           <div class="tl-card">
-            <h3 data-i18n="s3.d3.theme">掌握常见的图表组件</h3>
-            <p class="tl-out"><svg class="icon" aria-hidden="true"><use href="#i-check" xlink:href="#i-check"/></svg><span data-i18n="s3.d3.out">多图表组合的分析看板</span></p>
+            <h3 data-i18n="s3.d3.theme">掌握 Dashboard 调整与可视化优化</h3>
+            <p class="tl-out"><svg class="icon" aria-hidden="true"><use href="#i-check" xlink:href="#i-check"/></svg><span data-i18n="s3.d3.out">一个符合业务展示需求的 Dashboard</span></p>
             <span class="tl-dur" data-i18n="s3.duration">约 40 分钟</span>
           </div>
         </div>
         <div class="tl-item">
           <div class="tl-node">DAY4</div>
           <div class="tl-card">
-            <h3 data-i18n="s3.d4.theme">掌握数据加工与基础函数使用</h3>
-            <p class="tl-out"><svg class="icon" aria-hidden="true"><use href="#i-check" xlink:href="#i-check"/></svg><span data-i18n="s3.d4.out">带计算字段的数据集</span></p>
+            <h3 data-i18n="s3.d4.theme">掌握洞察分析、归因分析与 Skill 沉淀</h3>
+            <p class="tl-out"><svg class="icon" aria-hidden="true"><use href="#i-check" xlink:href="#i-check"/></svg><span data-i18n="s3.d4.out">一份分析报告及一个可复用 Skill</span></p>
             <span class="tl-dur" data-i18n="s3.duration">约 40 分钟</span>
           </div>
         </div>
         <div class="tl-item">
           <div class="tl-node tl-node--final">DAY5</div>
           <div class="tl-card">
-            <h3 data-i18n="s3.d5.theme">通过一个综合案例融会贯通</h3>
-            <p class="tl-out"><svg class="icon" aria-hidden="true"><use href="#i-check" xlink:href="#i-check"/></svg><span data-i18n="s3.d5.out">一份完整的行业分析案例</span></p>
+            <h3 data-i18n="s3.d5.theme">通过自由探索或综合案例融会贯通</h3>
+            <p class="tl-out"><svg class="icon" aria-hidden="true"><use href="#i-check" xlink:href="#i-check"/></svg><span data-i18n="s3.d5.out">一份完整的综合分析报告或 HTML 页面</span></p>
             <span class="tl-dur" data-i18n="s3.duration">约 40 分钟</span>
           </div>
         </div>
@@ -595,8 +622,31 @@
   <a class="btn btn--primary js-signup" href="#" target="_blank" rel="noopener" data-track="cta_click" data-track-loc="sticky"><span data-i18n="cta.signup">立即报名</span></a>
 </div>
 
-<script src="js/config.js"></script>
-<script src="js/i18n.js"></script>
-<script src="js/main.js"></script>
+<!-- ==================== S1 能力配图 · 点击放大浮层（2026-09-08 新增：点配图打开，浮层内箭头 / 横滑同步切换主轮播；Esc / 点空白 / 关闭钮退出） ==================== -->
+<div class="cap-zoom" id="capZoom" role="dialog" aria-modal="true" aria-hidden="true">
+  <button class="cap-zoom-btn cap-zoom-btn--close" type="button" data-zoom-close>
+    <svg class="icon" aria-hidden="true"><use href="#i-x" xlink:href="#i-x"/></svg>
+    <span class="sr-only" data-i18n="s1.show.close">关闭</span>
+  </button>
+  <button class="cap-zoom-btn cap-zoom-btn--prev" type="button" data-zoom-dir="-1">
+    <svg class="icon" aria-hidden="true"><use href="#i-chev-l" xlink:href="#i-chev-l"/></svg>
+    <span class="sr-only" data-i18n="s1.show.prev">上一张</span>
+  </button>
+  <button class="cap-zoom-btn cap-zoom-btn--next" type="button" data-zoom-dir="1">
+    <svg class="icon" aria-hidden="true"><use href="#i-chev-r" xlink:href="#i-chev-r"/></svg>
+    <span class="sr-only" data-i18n="s1.show.next">下一张</span>
+  </button>
+  <figure class="cap-zoom-fig">
+    <img class="cap-zoom-img" alt="">
+    <figcaption class="cap-zoom-meta">
+      <span class="cap-zoom-caption"></span>
+      <span class="cap-zoom-count" aria-hidden="true"></span>
+    </figcaption>
+  </figure>
+</div>
+
+<script src="js/config.js?v=20260909"></script>
+<script src="js/i18n.js?v=20260909"></script>
+<script src="js/main.js?v=20260909"></script>
 </body>
 </html>

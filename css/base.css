@@ -74,6 +74,18 @@ img, svg { display: block; max-width: 100%; }
 }
 .icon--fill { fill: currentColor; stroke: none; }
 
+/* ---------- 屏幕阅读器专用文本（视觉隐藏，供读屏 / aria 使用） ---------- */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* ---------- 按钮（全页唯一"请点我"形态） ---------- */
 .btn {
   display: inline-flex;

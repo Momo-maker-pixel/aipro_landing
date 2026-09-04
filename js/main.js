@@ -62,6 +62,7 @@
     renderFooter();
     renderExpiredState(); /* 切语言后保持"已截止"文案正确 */
     refreshFaqHeights();
+    refreshCapLabels(); /* S1 配图轮播圆点标签随语言刷新 */
   }
 
   /* ---------------- 日期格式化（配置驱动 + 本地化模板） ---------------- */
@@ -264,133 +265,6 @@
     });
   }
 
-  /* ---------------- S1 五维能力轮播（全宽大图 + 横排选项卡） ----------------
-   * 自动轮播 SC_DUR 毫秒/张；悬停 / 键盘聚焦 / 全屏查看大图 / 离开视口时暂停；移动端支持左右滑动切换；
-   * 点击舞台大图可全屏查看原图（点遮罩任意处或按 Esc 关闭）；
-   * 系统偏好「减少动态效果」时不自动轮播，仅保留手动点选。 */
-  var SC_DUR = 3500; /* 2026-09-03 提速：原 5s/张偏慢，改为 3.5s/张 */
-  var sc = { slides: [], tabs: [], bars: [], idx: 0, elapsed: 0, last: 0, running: false, visible: true, hover: false, focus: false, zoomed: false };
-
-  function selectShowcase(i, manual) {
-    var n = sc.slides.length;
-    if (!n) return;
-    sc.idx = ((i % n) + n) % n;
-    sc.slides.forEach(function (s, k) {
-      var on = k === sc.idx;
-      s.classList.toggle('is-active', on);
-      s.setAttribute('aria-hidden', on ? 'false' : 'true');
-    });
-    sc.tabs.forEach(function (tb, k) {
-      var on = k === sc.idx;
-      tb.classList.toggle('is-active', on);
-      tb.setAttribute('aria-selected', on ? 'true' : 'false');
-    });
-    sc.bars.forEach(function (b) { b.style.width = '0%'; });
-    sc.elapsed = 0;
-    if (manual) track('showcase_switch', { idx: sc.idx + 1 });
-  }
-
-  /* rAF 驱动：暂停时计时冻结，恢复后无缝续走（进度条与切换时机始终同步） */
-  function showcaseFrame(ts) {
-    if (sc.running) {
-      if (!sc.last) sc.last = ts;
-      sc.elapsed += ts - sc.last;
-      sc.last = ts;
-      var bar = sc.bars[sc.idx];
-      if (bar) bar.style.width = Math.min(sc.elapsed / SC_DUR * 100, 100) + '%';
-      if (sc.elapsed >= SC_DUR) selectShowcase(sc.idx + 1, false);
-    } else {
-      sc.last = 0;
-    }
-    requestAnimationFrame(showcaseFrame);
-  }
-
-  function initShowcase() {
-    var root = $('#capShowcase');
-    if (!root) return;
-    sc.slides = $$('.sc-slide', root);
-    sc.tabs = $$('.sc-tab', root);
-    sc.bars = sc.tabs.map(function (tb) { return $('.sc-tab-bar', tb); });
-    if (!sc.slides.length || sc.slides.length !== sc.tabs.length) return;
-
-    var reduceMotion = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
-    if (reduceMotion) root.classList.add('no-autoplay');
-
-    sc.tabs.forEach(function (tb, i) {
-      tb.addEventListener('click', function () { selectShowcase(i, true); });
-    });
-
-    /* 触摸左右滑动切换（竖向滚动不拦截） */
-    var sx = 0, sy = 0;
-    root.addEventListener('touchstart', function (e) {
-      sx = e.touches[0].clientX; sy = e.touches[0].clientY;
-    }, { passive: true });
-    root.addEventListener('touchend', function (e) {
-      var dx = e.changedTouches[0].clientX - sx;
-      var dy = e.changedTouches[0].clientY - sy;
-      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
-        selectShowcase(sc.idx + (dx < 0 ? 1 : -1), true);
-      }
-    }, { passive: true });
-
-    /* 暂停原因统一管理：悬停 / 键盘聚焦 / 全屏查看大图 / 离开视口 / 系统减少动态效果，任一存在即暂停 */
-    function updateRun() {
-      sc.running = !reduceMotion && sc.visible && !sc.hover && !sc.focus && !sc.zoomed;
-    }
-
-    if (!reduceMotion) {
-      /* 进入视口才自动播放，滚走即停（省电） */
-      if ('IntersectionObserver' in window) {
-        var io = new IntersectionObserver(function (entries) {
-          entries.forEach(function (en) {
-            sc.visible = en.isIntersecting;
-            updateRun();
-          });
-        }, { threshold: 0.25 });
-        io.observe(root);
-      } else {
-        sc.visible = true;
-      }
-      root.addEventListener('mouseenter', function () { sc.hover = true; updateRun(); });
-      root.addEventListener('mouseleave', function () { sc.hover = false; updateRun(); });
-      root.addEventListener('focusin', function () { sc.focus = true; updateRun(); });
-      root.addEventListener('focusout', function () { sc.focus = false; updateRun(); });
-      updateRun();
-      requestAnimationFrame(showcaseFrame);
-    }
-
-    /* 点击舞台大图：全屏查看原图（图内细节较多，可放大细看；点遮罩任意处或按 Esc 关闭） */
-    var stage = $('.sc-stage', root);
-    if (stage) {
-      stage.addEventListener('click', function () {
-        var img = sc.slides[sc.idx] && $('img', sc.slides[sc.idx]);
-        if (!img) return;
-        sc.zoomed = true;
-        updateRun();
-        var ov = document.createElement('div');
-        ov.className = 'sc-lightbox';
-        ov.setAttribute('role', 'dialog');
-        ov.innerHTML = '<img src="' + img.getAttribute('src') + '" alt="' + (img.getAttribute('alt') || '') + '">';
-        document.body.appendChild(ov);
-        document.body.style.overflow = 'hidden'; /* 遮罩期间锁定背景滚动 */
-        function closeBox() {
-          ov.removeEventListener('click', closeBox);
-          document.removeEventListener('keydown', onKey);
-          if (ov.parentNode) ov.parentNode.removeChild(ov);
-          document.body.style.overflow = '';
-          sc.zoomed = false;
-          updateRun();
-        }
-        function onKey(e) {
-          if (e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27) closeBox();
-        }
-        ov.addEventListener('click', closeBox);
-        document.addEventListener('keydown', onKey);
-      });
-    }
-    selectShowcase(0, false); /* 同步初始 aria 状态（HTML 默认第一张激活） */
-  }
-
   /* ---------------- FR-04 埋点 ----------------
    * TODO：接入现有埋点体系后，将 track() 替换为正式上报；
    * 当前行为：console.debug + window.__trackLogs（调试可查）+ dataLayer 透传（若存在）。
@@ -446,15 +320,223 @@
     });
   }
 
+  /* ---------------- S1 能力配图轮播（2026-09-08 新增） ----------------
+   * 新实现，不复用已删除的 sc-* 轮播：图高由 CSS padding-top 等比占位，
+   * 切换仅位移 track（translateX(-n*100%)），标题 / 圆点独立于图区；
+   * 自动 3.5s/张（prefers-reduced-motion 时不自动），悬停 / 离屏暂停，
+   * 支持箭头 / 圆点点击与触屏横滑；无 JS 时静态展示第一张。 */
+  var capTrack = null;
+  var capCount = null;
+  var capTotal = 0;
+  var capIdx = 0;
+  var capTimer = null;
+  var capDots = [];
+  var capCaps = [];
+  var capHover = false;
+  var capMotionOff = false;
+  var capInited = false;
+  var capSlides = [];
+  var capZoom = null;
+  var capZoomImg = null;
+  var capZoomCap = null;
+  var capZoomCount = null;
+  var capFocusBack = null;
+  var capSwiped = false; /* 横滑翻页后抑制浏览器补发的 click，避免误开放大 */
+
+  function capRender() {
+    if (!capTrack || capTotal < 2) return;
+    capTrack.style.transform = 'translateX(-' + (capIdx * 100) + '%)';
+    capCaps.forEach(function (c, i) { c.classList.toggle('is-active', i === capIdx); });
+    capDots.forEach(function (d, i) {
+      d.classList.toggle('is-active', i === capIdx);
+      if (i === capIdx) { d.setAttribute('aria-current', 'true'); } else { d.removeAttribute('aria-current'); }
+    });
+    if (capCount) capCount.textContent = (capIdx + 1) + ' / ' + capTotal;
+  }
+
+  function capGo(i) { capIdx = (i + capTotal) % capTotal; capRender(); }
+
+  function capStop() { if (capTimer) { clearInterval(capTimer); capTimer = null; } }
+
+  function capPlay() {
+    if (capMotionOff) return; /* 系统减弱动效：不自动轮播 */
+    capStop();
+    capTimer = setInterval(function () { capGo(capIdx + 1); }, 3500);
+  }
+
+  function capRestart() {
+    if (capHover || document.hidden || (capZoom && capZoom.classList.contains('is-open'))) {
+      capStop(); /* 放大浮层打开期间不自动播 */
+    } else {
+      capPlay();
+    }
+  }
+
+  /* ---- 放大浮层：内容按当前轮播项刷新 ---- */
+  function capZoomFill() {
+    if (!capZoom || !capSlides.length) return;
+    var img = $('img', capSlides[capIdx]);
+    if (img && capZoomImg) capZoomImg.setAttribute('src', img.getAttribute('src'));
+    if (capZoomCap) {
+      var cap = capCaps[capIdx];
+      var title = cap ? $('[data-i18n]', cap) : null;
+      capZoomCap.textContent = pad(capIdx + 1) + ' · ' + (title ? title.textContent : '');
+    }
+    if (capZoomCount) capZoomCount.textContent = (capIdx + 1) + ' / ' + capTotal;
+    if (capZoomCap) capZoom.setAttribute('aria-label', capZoomCap.textContent);
+  }
+
+  function capOpenZoom() {
+    if (!capZoom || capTotal < 2) return;
+    capStop(); /* 放大期间暂停自动轮播 */
+    capFocusBack = document.activeElement;
+    capZoomFill();
+    capZoom.classList.add('is-open');
+    capZoom.setAttribute('aria-hidden', 'false');
+    document.documentElement.classList.add('is-zoom-open'); /* 锁定背景滚动 */
+    var cb = $('[data-zoom-close]', capZoom);
+    if (cb) cb.focus();
+  }
+
+  function capCloseZoom() {
+    if (!capZoom || !capZoom.classList.contains('is-open')) return;
+    capZoom.classList.remove('is-open');
+    capZoom.setAttribute('aria-hidden', 'true');
+    document.documentElement.classList.remove('is-zoom-open');
+    if (capFocusBack && document.contains(capFocusBack)) capFocusBack.focus(); /* 焦点还给触发元素 */
+    capRestart();
+  }
+
+  function refreshCapLabels() {
+    if (!capInited) return;
+    capDots.forEach(function (d, i) { d.setAttribute('aria-label', t('s1.show.dot', { n: i + 1 })); });
+  }
+
+  function initCapShow() {
+    var root = $('#capShow');
+    if (!root) return;
+    var stage = $('.cap-show-stage', root);
+    capTrack = $('.cap-show-track', root);
+    if (!stage || !capTrack) return;
+    var slides = $$('.cap-show-slide', root);
+    if (slides.length < 2) return; /* 少于两张：保持静态展示第一张 */
+    capSlides = slides;
+    capCaps = $$('.cap-show-cap', root);
+    capDots = $$('.cap-show-dot', root);
+    capCount = $('.cap-show-count', root);
+    capTotal = slides.length;
+    capMotionOff = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    capInited = true;
+    root.classList.add('is-init'); /* 箭头 / 圆点由 CSS 默认隐藏，初始化后显示 */
+    refreshCapLabels();
+    capRender();
+
+    /* 箭头 / 圆点点击（事件委托，兼容点到图标内 <use> 的情况） */
+    root.addEventListener('click', function (e) {
+      var t = e.target;
+      if (!t || !t.closest) return;
+      var dir = t.closest('[data-cap-dir]');
+      if (dir) { capGo(capIdx + Number(dir.getAttribute('data-cap-dir'))); capRestart(); return; }
+      var dot = t.closest('[data-cap-i]');
+      if (dot) { capGo(Number(dot.getAttribute('data-cap-i'))); capRestart(); return; }
+      if (capSwiped) { capSwiped = false; return; } /* 横滑翻页后补发的 click：忽略 */
+      if (t.closest('.cap-show-slide')) capOpenZoom(); /* 点击配图放大查看 */
+    });
+
+    /* 悬停暂停（仅真悬停设备绑定，避免触屏模拟 mouseenter 卡住自动播放） */
+    if (window.matchMedia && window.matchMedia('(hover: hover)').matches) {
+      root.addEventListener('mouseenter', function () { capHover = true; capStop(); });
+      root.addEventListener('mouseleave', function () { capHover = false; capRestart(); });
+    }
+
+    /* 触屏横滑（位移 ≥48px 且横向为主才翻页） */
+    var sx = 0, sy = 0, moved = false;
+    stage.addEventListener('touchstart', function (e) {
+      var p = e.touches && e.touches[0];
+      if (!p) return;
+      sx = p.clientX; sy = p.clientY; moved = false; capSwiped = false;
+      capStop();
+    }, { passive: true });
+    stage.addEventListener('touchmove', function (e) {
+      var p = e.touches && e.touches[0];
+      if (!p) return;
+      if (Math.abs(p.clientX - sx) > 8 || Math.abs(p.clientY - sy) > 8) moved = true;
+    }, { passive: true });
+    stage.addEventListener('touchend', function (e) {
+      var p = e.changedTouches && e.changedTouches[0];
+      if (p && moved) {
+        var dx = p.clientX - sx, dy = p.clientY - sy;
+        if (Math.abs(dx) > 48 && Math.abs(dx) > Math.abs(dy)) {
+          capSwiped = true; /* 翻页后抑制补发的 click，避免误开放大 */
+          capGo(capIdx + (dx < 0 ? 1 : -1)); /* 左滑看下一张 */
+        }
+      }
+      capRestart();
+    });
+
+    /* 切后台停表、回前台续播 */
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) { capStop(); } else { capRestart(); }
+    });
+
+    /* ---- 点击配图放大查看：浮层内箭头 / 横滑与主轮播同步 ---- */
+    capZoom = $('#capZoom');
+    if (capZoom) {
+      capZoomImg = $('.cap-zoom-img', capZoom);
+      capZoomCap = $('.cap-zoom-caption', capZoom);
+      capZoomCount = $('.cap-zoom-count', capZoom);
+
+      capZoom.addEventListener('click', function (e) {
+        var t = e.target;
+        if (!t || !t.closest) return;
+        if (t.closest('[data-zoom-close]')) { capCloseZoom(); return; }
+        var zdir = t.closest('[data-zoom-dir]');
+        if (zdir) { capGo(capIdx + Number(zdir.getAttribute('data-zoom-dir'))); capZoomFill(); return; }
+        if (!t.closest('img, figcaption, button')) capCloseZoom(); /* 点空白处关闭 */
+      });
+
+      /* 浮层内左右滑动换图 */
+      var zx = 0, zy = 0, zmoved = false;
+      capZoom.addEventListener('touchstart', function (e) {
+        var p = e.touches && e.touches[0];
+        if (!p) return;
+        zx = p.clientX; zy = p.clientY; zmoved = false;
+      }, { passive: true });
+      capZoom.addEventListener('touchmove', function (e) {
+        var p = e.touches && e.touches[0];
+        if (!p) return;
+        if (Math.abs(p.clientX - zx) > 8 || Math.abs(p.clientY - zy) > 8) zmoved = true;
+      }, { passive: true });
+      capZoom.addEventListener('touchend', function (e) {
+        var p = e.changedTouches && e.changedTouches[0];
+        if (p && zmoved) {
+          var dx = p.clientX - zx, dy = p.clientY - zy;
+          if (Math.abs(dx) > 48 && Math.abs(dx) > Math.abs(dy)) {
+            capGo(capIdx + (dx < 0 ? 1 : -1));
+            capZoomFill();
+          }
+        }
+      });
+
+      /* Esc 关闭 */
+      document.addEventListener('keydown', function (e) {
+        var k = e.key || '';
+        if (capZoom.classList.contains('is-open') && (k === 'Escape' || e.keyCode === 27)) capCloseZoom();
+      });
+    }
+
+    capPlay();
+  }
+
   /* ---------------- 启动 ---------------- */
   function init() {
     applyLang();
     fillLinks();
     initFaq();
     initStats();
-    initShowcase();
     initTracking();
     initLangSwitch();
+    initCapShow();
     tick();
     setInterval(tick, 1000); /* 每秒刷新倒计时（PRD：实时刷新） */
   }
