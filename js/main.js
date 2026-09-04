@@ -58,6 +58,7 @@
     renderDates();
     renderS8Sub();
     renderTrialLinks();
+    renderStep1Cta();
     renderContact();
     renderFooter();
     renderExpiredState(); /* 切语言后保持"已截止"文案正确 */
@@ -114,6 +115,14 @@
         a.addEventListener('click', function (e) { e.preventDefault(); });
       });
     }
+  }
+
+  /* 报名表单链接（config.signup.url）：S6 第一步说明句中的「立即报名」行内链接 */
+  function renderStep1Cta() {
+    var el = $('#step1Desc');
+    if (!el) return;
+    var link = '<a class="inline-link js-signup" href="#" target="_blank" rel="noopener" data-track="cta_click" data-track-loc="s6-step1">' + t('cta.signup') + '</a>';
+    el.innerHTML = t('s6.s1.desc', { link: link });
   }
 
   function renderContact() {

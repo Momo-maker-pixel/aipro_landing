@@ -681,6 +681,8 @@ html.is-zoom-open body { overflow: hidden; } /* 浮层期间锁定背景滚动 *
 .step p { font-size: 13px; }
 
 .inline-link { color: var(--c-primary-3); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+/* S6 第一步行内报名链：截止态与主按钮一致禁用（main.js 切 .is-expired） */
+a.inline-link.is-expired { pointer-events: none; }
 
 /* ==================== S7 常见问题 ==================== */
 .faq { max-width: 820px; margin: 0 auto; display: grid; gap: 12px; }
