@@ -100,11 +100,6 @@ window.I18N = {
     's4.p2.desc': '自学容易放弃，需要社群氛围和班主任督促',
     's4.p3.title': '客户方新员工',
     's4.p3.desc': '公司已采购产品，新接手报表工作，想快速上手',
-    's4.gain.title': '参加训练营，你将收获',
-    's4.gain.1': '熟练使用 Quick BI AIPro',
-    's4.gain.2': '官方认证证书',
-    's4.gain.3': '奖品与课程奖励',
-    's4.gain.4': '专属学习社群与答疑资源',
 
     /* S5 激励与认证 */
     's5.eyebrow': '激励与认证',
@@ -129,7 +124,6 @@ window.I18N = {
     's5.cert.label': '官方认证证书',
     's5.cert.note': '结营前完成全部打卡任务，可获得官方认证证书（结营后统一发放）',
     's5.cert.name': 'Quick BI 高级开发者认证',
-    's5.compliance': '* 奖品以当期实际发放为准',
 
     /* S6 参与流程 */
     's6.eyebrow': '参与流程',
@@ -142,14 +136,6 @@ window.I18N = {
     's6.s3.desc': '每天约 40 分钟：看课程 + 做习题 + 提交打卡（时间不强制，含补卡期）',
     's6.s4.title': '结营领奖',
     's6.s4.desc': '完成全部任务，获得官方认证证书并参与结营特别抽奖',
-    's6.prep.title': '开始前的准备',
-    's6.prep1.title': '账号准备',
-    's6.prep1.desc': '已购买产品的客户使用正式账号；暂无账号可 {link} 即可开始学习',
-    's6.trial': '申请免费试用',
-    's6.prep2.title': '答疑支持',
-    's6.prep2.desc': '学习群内班主任 + 技术专家答疑；产品内「帮助与反馈 → AI 助理」7×24 快速响应',
-    's6.prep3.title': '数据准备',
-    's6.prep3.desc': '无需连接自己的数据库，下载官方数据源文件即可开始学习',
 
     /* S7 常见问题 */
     's7.eyebrow': '常见问题',
@@ -278,11 +264,6 @@ window.I18N = {
     's4.p2.desc': 'Self-study never sticks? You need a community and mentors to keep you going',
     's4.p3.title': 'New Team Members',
     's4.p3.desc': 'Your company already uses the product and you just took over reporting — get up to speed fast',
-    's4.gain.title': 'What You Will Walk Away With',
-    's4.gain.1': 'Proficiency in Quick BI AIPro',
-    's4.gain.2': 'An official certificate',
-    's4.gain.3': 'Prizes and course rewards',
-    's4.gain.4': 'A dedicated learning community and Q&A resources',
 
     /* S5 Rewards */
     's5.eyebrow': 'REWARDS',
@@ -307,7 +288,6 @@ window.I18N = {
     's5.cert.label': 'Official Certificate',
     's5.cert.note': 'Complete all tasks before closing to earn the official certificate (issued after the camp)',
     's5.cert.name': 'Quick BI Advanced Developer Certification',
-    's5.compliance': '* Prizes subject to actual availability',
 
     /* S6 Process */
     's6.eyebrow': 'HOW TO JOIN',
@@ -320,14 +300,6 @@ window.I18N = {
     's6.s3.desc': 'About 40 minutes a day: lessons + exercises + submission (flexible timing, make-up window included)',
     's6.s4.title': 'Graduate & Win',
     's6.s4.desc': 'Complete all tasks, earn your certificate and enter the closing draw',
-    's6.prep.title': 'Before You Start',
-    's6.prep1.title': 'Account',
-    's6.prep1.desc': 'Existing customers can use their official accounts; no account yet? {link} to get started',
-    's6.trial': 'Apply for a free trial',
-    's6.prep2.title': 'Support',
-    's6.prep2.desc': 'Mentors and technical experts in the group; in-product AI Assistant 24/7 via "Help & Feedback"',
-    's6.prep3.title': 'Data',
-    's6.prep3.desc': 'No need to connect your own database — download the official sample data to start',
 
     /* S7 FAQ */
     's7.eyebrow': 'FAQ',

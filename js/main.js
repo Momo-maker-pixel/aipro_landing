@@ -101,15 +101,13 @@
     if (el) el.textContent = t('s8.sub', { date: fmtDate((CFG.camp || {}).startISO) });
   }
 
-  /* 免费试用链接（config.links.trial）：注入 S6 账号准备与 FAQ Q4 文案 */
+  /* 免费试用链接（config.links.trial）：注入 FAQ Q4 文案（原 S6「账号准备」位已随「开始前的准备」模块移除） */
   function renderTrialLinks() {
     var url = (CFG.links && CFG.links.trial) || '';
     function linkHtml(key) {
       return '<a class="inline-link js-trial-link" href="' + (url || '#') + '" target="_blank" rel="noopener">' + t(key) + '</a>';
     }
-    var el = $('#prep1Desc');
-    if (el) el.innerHTML = t('s6.prep1.desc', { link: linkHtml('s6.trial') });
-    el = $('#faqA4');
+    var el = $('#faqA4');
     if (el) el.innerHTML = t('s7.a4', { link: linkHtml('s7.trial') });
     if (!url) {
       $$('.js-trial-link').forEach(function (a) {
