@@ -1,11 +1,10 @@
 /* ============================================================
  * Quick BI 领航学堂 · 训练营汇总页交互
  * 1) 区块进场动效（.reveal → .is-visible，带错峰延迟）
- * 2) 报名进度条入场填充（.bar-fill[data-w]，进视口后动画到目标宽度）
- * 3) 页内锚点导航滚动高亮（scrollspy）
- * 4) 日程安排三营大纲页签切换（.sched-tab / .sched-pane）
- * 5) 常见问题折叠（.faq-q 点击切换 .faq-item.is-open）
- * 说明：页面无 JS 时内容照常展示（进度条保持空态，日程默认展示 AIPro 营大纲）
+ * 2) 页内锚点导航滚动高亮（scrollspy）
+ * 3) 日程安排三营大纲页签切换（.sched-tab / .sched-pane）
+ * 4) 常见问题折叠（.faq-q 点击切换 .faq-item.is-open）
+ * 说明：页面无 JS 时内容照常展示（日程默认展示新手营大纲）
  * ============================================================ */
 (function () {
   'use strict';
@@ -36,21 +35,7 @@
     revealEls.forEach(function (el) { revealIO.observe(el); });
   }
 
-  /* ---------- 2) 进度条填充 ---------- */
-  var bars = document.querySelectorAll('.bar-fill[data-w]');
-  if (bars.length && !reduceMotion) {
-    var barIO = onceVisible(function (bar) {
-      var width = bar.getAttribute('data-w');
-      // 触发一次重排后再设宽，保证 transition 生效
-      void bar.offsetWidth;
-      bar.style.width = width;
-    });
-    bars.forEach(function (bar) { barIO.observe(bar); });
-  } else {
-    bars.forEach(function (bar) { bar.style.width = bar.getAttribute('data-w'); });
-  }
-
-  /* ---------- 3) 锚点导航 scrollspy ---------- */
+  /* ---------- 2) 锚点导航 scrollspy ---------- */
   var tabs = document.querySelectorAll('.anchor-tabs a');
   if (tabs.length) {
     var ids = Array.prototype.map.call(tabs, function (a) {
@@ -74,7 +59,7 @@
     }
   }
 
-  /* ---------- 4) 日程页签切换（同步维护 is-active 与 hidden，保证无 JS / 无 CSS 均可退化） ---------- */
+  /* ---------- 3) 日程页签切换（同步维护 is-active 与 hidden，保证无 JS / 无 CSS 均可退化） ---------- */
   var schedBtns = document.querySelectorAll('.sched-tab');
   var schedPanes = document.querySelectorAll('.sched-pane');
   if (schedBtns.length && schedPanes.length) {
@@ -97,7 +82,7 @@
     });
   }
 
-  /* ---------- 5) 常见问题折叠（允许多条同时展开） ---------- */
+  /* ---------- 4) 常见问题折叠（允许多条同时展开） ---------- */
   var faqBtns = document.querySelectorAll('.faq-q');
   if (faqBtns.length) {
     faqBtns.forEach(function (btn) {
