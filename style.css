@@ -338,40 +338,43 @@ a:focus-visible, button:focus-visible { outline: 3px solid rgba(47, 128, 237, .4
  * ============================================================ */
 .hl { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
 .hl-card {
-  position: relative; overflow: hidden;
+  position: relative; overflow: hidden; isolation: isolate;
   background: var(--bg-card); border: 1px solid var(--line); border-radius: var(--radius-l);
   padding: 24px; box-shadow: var(--shadow-card);
   transition: transform .22s ease, box-shadow .22s ease;
 }
-/* 悬停时亮出顶部品牌渐变线 */
+/* 无图标排版：大号渐变序号 + 短渐变装饰线，色彩随卡片主题（蓝 / 紫 / 金） */
+.hl-card { --g1: #4C97F5; --g2: #2F80ED; --soft: #EAF2FE; }
+.hl-card:nth-child(2) { --g1: #8B5CF6; --g2: #6C3FE8; --soft: #F3EEFF; }
+.hl-card:nth-child(3) { --g1: #F7B733; --g2: #EC8B0C; --soft: #FFF4E6; }
+/* 悬停时亮出顶部渐变线 */
 .hl-card::before {
   content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: var(--grad-brand); opacity: 0; transition: opacity .25s ease;
+  background: linear-gradient(90deg, var(--g1), var(--g2)); opacity: 0; transition: opacity .25s ease;
 }
 .hl-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-card-hover); }
 .hl-card:hover::before { opacity: 1; }
+/* 右上角柔光晕染（撑起留白，不需要图标） */
+.hl-card::after {
+  content: ""; position: absolute; top: -58px; right: -58px;
+  width: 190px; height: 190px; border-radius: 50%;
+  background: radial-gradient(closest-side, var(--soft), transparent);
+  z-index: -1; pointer-events: none;
+}
 .hl-num {
-  position: absolute; top: 14px; right: 18px;
-  font-family: var(--font-num); font-size: 42px; font-weight: 900;
-  color: #E8EEF8; line-height: 1;
+  display: block;
+  font-family: var(--font-num); font-size: 38px; font-weight: 900; line-height: 1;
+  letter-spacing: 2px;
+  background: linear-gradient(135deg, var(--g1), var(--g2));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
 }
-@supports (-webkit-text-stroke: 1px #000) {
-  .hl-num { color: transparent; -webkit-text-stroke: 1.4px #D5E0F0; }
+.hl-card h4 { margin-top: 16px; font-size: 17px; font-weight: 700; color: var(--ink-1); line-height: 1.5; }
+.hl-card h4::after {
+  content: ""; display: block; width: 30px; height: 3px;
+  margin-top: 10px; border-radius: 2px;
+  background: linear-gradient(90deg, var(--g1), var(--g2));
 }
-.hl-icon {
-  width: 56px; height: 56px; border-radius: 15px; overflow: hidden;
-  background: #fff; border: 1px solid #E4EBF5;
-  box-shadow: 0 8px 18px -8px rgba(23, 35, 61, .14);
-  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
-}
-.hl-icon img { display: block; width: 100%; height: 100%; object-fit: cover; }
-.hl-card:hover .hl-icon {
-  transform: translateY(-3px) scale(1.04);
-  border-color: rgba(47, 128, 237, .35);
-  box-shadow: 0 14px 26px -10px rgba(47, 128, 237, .45);
-}
-.hl-card h4 { margin-top: 15px; font-size: 17px; font-weight: 700; color: var(--ink-1); }
-.hl-card p { margin-top: 7px; font-size: 13px; line-height: 1.8; color: var(--ink-2); }
+.hl-card p { margin-top: 12px; font-size: 13px; line-height: 1.85; color: var(--ink-2); }
 
 /* ============================================================
  * S1 小节 · 选营指引（卡片色随对应训练营主题）
@@ -379,37 +382,37 @@ a:focus-visible, button:focus-visible { outline: 3px solid rgba(47, 128, 237, .4
 .guide { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
 .guide-card {
   --acc: #F97316; --soft: #FFF3E8;
+  position: relative; overflow: hidden; isolation: isolate;
   background: var(--bg-card); border: 1px solid var(--line); border-radius: var(--radius-l);
-  padding: 20px 22px; box-shadow: var(--shadow-card);
+  padding: 22px 24px 18px 26px; box-shadow: var(--shadow-card);
   display: flex; flex-direction: column;
   transition: transform .22s ease, box-shadow .22s ease;
 }
 .guide-card:nth-child(2) { --acc: #2F80ED; --soft: #EAF2FE; }
 .guide-card:nth-child(3) { --acc: #8B5CF6; --soft: #F3EEFF; }
 .guide-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-card-hover); }
-.guide-who { display: flex; align-items: flex-start; gap: 15px; }
-.guide-icon {
-  width: 52px; height: 52px; border-radius: 14px; flex: none; overflow: hidden;
-  background: #fff; border: 1px solid rgba(16, 24, 40, .07);
-  box-shadow: 0 6px 14px -6px rgba(16, 24, 40, .12);
-  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+/* 左侧主题色轨道，对应推荐训练营的主题色 */
+.guide-card::before {
+  content: ""; position: absolute; top: 0; bottom: 0; left: 0; width: 3px;
+  background: linear-gradient(180deg, var(--acc), transparent);
 }
-.guide-icon img { display: block; width: 100%; height: 100%; object-fit: cover; }
-.guide-card:hover .guide-icon {
-  transform: scale(1.06);
-  border-color: rgba(16, 24, 40, .16);
-  box-shadow: 0 12px 22px -8px rgba(16, 24, 40, .24);
+/* 右上角柔光晕染 */
+.guide-card::after {
+  content: ""; position: absolute; top: -48px; right: -48px;
+  width: 170px; height: 170px; border-radius: 50%;
+  background: radial-gradient(closest-side, var(--soft), transparent);
+  z-index: -1; pointer-events: none;
 }
-.guide-who h4 { font-size: 15px; font-weight: 700; color: var(--ink-1); }
-.guide-who p { margin-top: 4px; font-size: 12.5px; color: var(--ink-3); line-height: 1.65; }
+.guide-card h4 { font-size: 16.5px; font-weight: 700; color: var(--ink-1); line-height: 1.55; }
+.guide-card h4 b { color: var(--acc); }
+.guide-card p:not(.guide-to) { margin-top: 9px; font-size: 13px; line-height: 1.75; color: var(--ink-2); }
 .guide-to {
-  margin-top: auto; padding-top: 14px;
-  display: flex; align-items: center; gap: 7px; flex-wrap: wrap;
+  margin-top: auto; padding-top: 13px;
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
   border-top: 1px dashed var(--line);
-  font-size: 13px; color: var(--ink-2);
+  font-size: 13px; color: var(--ink-3);
 }
-.guide-to .icon { width: 15px; height: 15px; color: var(--acc); }
-.guide-to b { color: var(--acc); }
+.guide-to b { color: var(--acc); font-size: 14px; font-weight: 700; }
 .guide-to .tag { margin-left: auto; }
 .guide-to a.tag { transition: box-shadow .15s ease, transform .15s ease; }
 .guide-to a.tag:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(23, 35, 61, .22); }
