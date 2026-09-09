@@ -135,20 +135,19 @@ a:focus-visible, button:focus-visible { outline: 3px solid rgba(47, 128, 237, .4
   padding: 26px 28px 10px;
 }
 
-/* ---------- 大首图 KV（分层背景：文字保护渐变 → 产品视觉 → 光晕 → 深空底色） ---------- */
+/* ---------- 大首图 KV（整幅原图直出，不加深色遮罩） ----------
+   图 KV训练营.png（1920×650）为蓝→青绿渐变横幅，右侧为大字 QBI 水印，左侧约 55% 为纯深蓝渐变区，白字叠放天然可读；
+   卡片高度与图片同比例（aspect-ratio 1920/650），宽高一致时整图完整可见、不裁不压；
+   图右缘锚定：内容高度超出等比时 cover 只裁左侧纯色区，保留 QBI 字样与文字底色 */
 .hero-kv {
-  --kv-size: 58%;
   position: relative; overflow: hidden;
-  min-height: 400px; padding: 52px 48px 48px;
+  aspect-ratio: 1920 / 650;
+  padding: 52px 56px;
   border-radius: var(--radius-xl);
   display: flex; flex-direction: column; justify-content: center;
   color: #fff;
-  background:
-    linear-gradient(90deg, rgba(4, 13, 42, .95) 0%, rgba(4, 13, 42, .78) 34%, rgba(5, 16, 52, .28) 62%, rgba(5, 16, 52, 0) 88%),
-    url('hero-kv.png') no-repeat right center / var(--kv-size),
-    radial-gradient(720px 420px at 84% 12%, rgba(76, 151, 245, .32), transparent 62%),
-    radial-gradient(560px 400px at 8% 100%, rgba(99, 102, 241, .30), transparent 60%),
-    linear-gradient(112deg, #040D2A 0%, #081A4E 55%, #0C2570 100%);
+  /* 深蓝底色仅作图片加载前的占位（取图左缘主色），不参与覆盖 */
+  background: #044BF4 url('kv-banner.png') no-repeat right center / cover;
 }
 .hero-kv-copy { position: relative; max-width: 580px; }
 .hero-eyebrow {
@@ -174,26 +173,20 @@ a:focus-visible, button:focus-visible { outline: 3px solid rgba(47, 128, 237, .4
   background: linear-gradient(92deg, #7EB5FF 0%, #A9C8FF 45%, #E3ECFF 100%);
   -webkit-background-clip: text; background-clip: text; color: transparent;
 }
-.hero-sub { margin-top: 12px; font-size: 15px; line-height: 1.85; color: rgba(255, 255, 255, .82); max-width: 540px; }
+.hero-sub { margin-top: 14px; font-size: 15px; line-height: 1.85; color: rgba(255, 255, 255, .88); max-width: 540px; }
 
-/* 首图关键数据条 */
-.hero-stats {
-  margin-top: 28px; display: flex; align-items: stretch;
-  border-radius: 16px; overflow: hidden;
-  background: rgba(255, 255, 255, .07);
-  border: 1px solid rgba(255, 255, 255, .16);
-  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
-  max-width: 540px;
+/* 首图关键信息胶囊（轻量玻璃小签，替代原深色数据条，保证整图高度内放得下） */
+.hero-chips { margin-top: 20px; display: flex; flex-wrap: wrap; gap: 10px; }
+.hero-chip {
+  display: inline-flex; align-items: center; height: 32px; padding: 0 15px;
+  border-radius: 999px; font-size: 13px; font-weight: 600; letter-spacing: .3px;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, .38);
+  background: rgba(255, 255, 255, .14);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
 }
-.hero-stat { flex: 1; padding: 13px 20px; text-align: center; }
-.hero-stat + .hero-stat { border-left: 1px solid rgba(255, 255, 255, .14); }
-.hero-stat b {
-  display: block; font-family: var(--font-num);
-  font-size: 22px; font-weight: 800; color: #fff; line-height: 1.2; letter-spacing: .5px;
-}
-.hero-stat span { display: block; margin-top: 3px; font-size: 12px; letter-spacing: .5px; color: rgba(255, 255, 255, .66); }
 /* 首图行动按钮 */
-.hero-actions { margin-top: 28px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.hero-actions { margin-top: 24px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
 
 /* ---------- 页内锚点导航（居中玻璃胶囊） ---------- */
 .anchor-tabs {
@@ -217,18 +210,16 @@ a:focus-visible, button:focus-visible { outline: 3px solid rgba(47, 128, 237, .4
   box-shadow: 0 6px 16px -4px rgba(47, 128, 237, .50);
 }
 
-/* ---------- 内容模块通用（居中式章节头：渐变图标徽章 + 大标题 + 渐变短线） ---------- */
+/* ---------- 内容模块通用（章节头横排：渐变图标徽章 + 右侧标题/副标） ---------- */
 .block { margin: 48px 0 8px; scroll-margin-top: 100px; }
-/* 章节图标徽章 / 标题下短线统一使用品牌蓝渐变（与「训练营汇总」一致） */
+/* 章节图标徽章统一使用品牌蓝渐变（与「训练营汇总」一致） */
 .block { --bi-grad: var(--grad-brand); --bi-shadow: rgba(47, 128, 237, .50); }
+/* 章节头（横排紧凑式）：左置图标徽章 + 右侧标题/副标两行，对齐内容区而非页面居中 */
 .block-head {
-  display: flex; flex-direction: column; align-items: center; text-align: center;
-  margin-bottom: 30px;
+  display: flex; align-items: center; gap: 18px;
+  margin-bottom: 26px; text-align: left;
 }
-.block-head::after {
-  content: ""; margin-top: 18px; width: 52px; height: 4px; border-radius: 99px;
-  background: var(--bi-grad);
-}
+.block-head-text { min-width: 0; flex: 1; }
 .block-icon {
   width: 54px; height: 54px; border-radius: 17px; flex: none;
   display: grid; place-items: center;
@@ -236,8 +227,8 @@ a:focus-visible, button:focus-visible { outline: 3px solid rgba(47, 128, 237, .4
   box-shadow: 0 14px 30px -10px var(--bi-shadow), inset 0 1px 0 rgba(255, 255, 255, .35);
 }
 .block-icon .icon { width: 26px; height: 26px; }
-.block-title { margin-top: 16px; font-size: 30px; font-weight: 800; color: var(--ink-1); letter-spacing: .5px; }
-.block-sub { margin-top: 8px; font-size: 14px; color: var(--ink-3); max-width: 640px; }
+.block-title { font-size: 30px; font-weight: 800; color: var(--ink-1); letter-spacing: .5px; line-height: 1.3; }
+.block-sub { margin-top: 5px; font-size: 14px; color: var(--ink-3); max-width: 640px; }
 
 /* ============================================================
  * S1 训练营汇总卡片
@@ -536,7 +527,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid rgba(47, 128, 237, .4
 .tl-note--link a:hover { text-decoration: underline; }
 
 /* ---------- 三营大纲页签（main.js 切换 .sched-pane，无 JS 时仅展示默认营） ---------- */
-.sched-tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 18px; }
+.sched-tabs { display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 10px; margin-bottom: 18px; }
 .sched-tab {
   padding: 9px 22px; border-radius: 999px;
   border: 1px solid var(--line); background: rgba(255, 255, 255, .85);
@@ -552,11 +543,11 @@ a:focus-visible, button:focus-visible { outline: 3px solid rgba(47, 128, 237, .4
 }
 .sched-pane { display: none; }
 .sched-pane.is-active { display: block; }
-/* 期次信息：居中软色胶囊 */
+/* 期次信息：靠左软色胶囊 */
 .sched-meta {
-  width: fit-content; max-width: 100%; margin: 0 auto 16px; padding: 6px 18px;
+  width: fit-content; max-width: 100%; margin: 0 0 16px; padding: 6px 18px;
   border-radius: 999px; background: #EDF2FA; border: 1px solid #E0E8F4;
-  font-size: 13px; color: #5B6B85; text-align: center; line-height: 1.7;
+  font-size: 13px; color: #5B6B85; text-align: left; line-height: 1.7;
 }
 .sched-pane .tl { margin-top: 2px; }
 .sched-pane .tl-note { margin-top: 14px; width: fit-content; max-width: 100%; }
@@ -735,9 +726,9 @@ a:focus-visible, button:focus-visible { outline: 3px solid rgba(47, 128, 237, .4
 .cert-points .icon { width: 14px; height: 14px; flex: none; color: var(--green); }
 
 /* ============================================================
- * S5 常见问题（折叠交互见 main.js；窄栏居中提升长文可读性）
+ * S5 常见问题（折叠交互见 main.js；左对齐全宽，与章节头一致）
  * ============================================================ */
-.faq { display: flex; flex-direction: column; gap: 12px; max-width: 880px; margin: 0 auto; }
+.faq { display: flex; flex-direction: column; gap: 12px; max-width: none; margin: 0; }
 .faq-item {
   background: var(--bg-card); border: 1px solid var(--line); border-radius: 14px;
   overflow: hidden; transition: border-color .2s ease, box-shadow .2s ease;
@@ -763,7 +754,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid rgba(47, 128, 237, .4
 .faq-a { display: none; margin: 0 18px; border-top: 1px dashed var(--line); }
 .faq-item.is-open .faq-a { display: block; }
 .faq-a p { padding: 12px 0 15px; font-size: 13px; line-height: 1.85; color: var(--ink-2); }
-.faq-more { margin-top: 16px; text-align: center; font-size: 13px; color: var(--ink-3); }
+.faq-more { margin-top: 16px; text-align: left; font-size: 13px; color: var(--ink-3); }
 .faq-more a { color: var(--brand); font-weight: 600; }
 .faq-more a:hover { text-decoration: underline; }
 
@@ -840,8 +831,11 @@ a:focus-visible, button:focus-visible { outline: 3px solid rgba(47, 128, 237, .4
   .anchor-tabs::-webkit-scrollbar { display: none; }
   .camps, .tutors { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .reward-duo { grid-template-columns: 1fr; }
-  .hero-kv { --kv-size: 50%; padding: 44px 40px 42px; }
+  .hero-kv { padding: 38px 44px; }
   .hero-title { font-size: 40px; }
+  .hero-chips { margin-top: 16px; gap: 8px; }
+  .hero-chip { height: 30px; padding: 0 13px; font-size: 12.5px; }
+  .hero-actions { margin-top: 18px; }
   .block-title { font-size: 26px; }
 }
 @media (max-width: 900px) {
@@ -851,31 +845,31 @@ a:focus-visible, button:focus-visible { outline: 3px solid rgba(47, 128, 237, .4
   .cta-strip { flex-direction: column; text-align: center; }
   .cta-strip-copy { display: flex; flex-direction: column; align-items: center; }
   .cta-strip-qr { display: none; }
-  .hero-kv { min-height: 0; }
-  .hero-title { font-size: 36px; }
+  .hero-kv { aspect-ratio: 1920 / 650; padding: 34px 32px; }
+  .hero-title { font-size: 34px; }
+  .hero-sub { margin-top: 10px; font-size: 14px; }
+  .hero-chips { margin-top: 14px; }
+  .hero-chip { height: 28px; padding: 0 12px; font-size: 12px; }
+  .hero-actions { margin-top: 16px; gap: 12px; }
   .block-title { font-size: 24px; }
   .sched-pane .tl-note { width: 100%; }
 }
 @media (max-width: 640px) {
   .main { padding: 18px 16px 8px; }
-  /* 首图：窄屏去掉产品视觉图，保留光晕 + 深空渐变保证文案可读性 */
+  /* 首图：窄屏不放图片（高度比 2.95:1 时放不下文案），改用同 KV 图色系的深蓝渐变打底 */
   .hero-kv {
-    padding: 32px 22px;
+    aspect-ratio: auto;
+    padding: 34px 22px;
     background:
-      radial-gradient(420px 260px at 85% -40px, rgba(76, 151, 245, .35), transparent 62%),
-      radial-gradient(380px 260px at 0% 110%, rgba(99, 102, 241, .32), transparent 62%),
-      linear-gradient(112deg, #040D2A 0%, #081A4E 58%, #0C2570 100%);
+      radial-gradient(430px 280px at 92% -50px, rgba(53, 209, 235, .30), transparent 62%),
+      radial-gradient(400px 260px at -40px 108%, rgba(123, 178, 255, .26), transparent 60%),
+      linear-gradient(118deg, #0330CE 0%, #044BF4 50%, #0663E6 100%);
   }
   .hero-title { font-size: 30px; }
   .hero-sub { font-size: 14px; }
-  /* 数据条改 2×2 网格 */
-  .hero-stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .hero-stat { padding: 12px 8px; }
-  .hero-stat + .hero-stat { border-left: 0; }
-  .hero-stat:nth-child(even) { border-left: 1px solid rgba(255, 255, 255, .14); }
-  .hero-stat:nth-child(n+3) { border-top: 1px solid rgba(255, 255, 255, .14); }
-  .hero-stat b { font-size: 18px; }
-  .hero-actions { flex-direction: column; align-items: stretch; }
+  .hero-chips { margin-top: 14px; gap: 8px; }
+  .hero-chip { height: 28px; padding: 0 12px; font-size: 12px; }
+  .hero-actions { margin-top: 16px; gap: 10px; flex-direction: column; align-items: stretch; }
   .anchor-tabs { width: auto; margin: 16px 0 6px; justify-content: flex-start; }
   .camps, .tutors { grid-template-columns: 1fr; }
   .hl, .guide, .steps, .certs { grid-template-columns: 1fr; }
