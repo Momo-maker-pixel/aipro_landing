@@ -136,9 +136,11 @@ a:focus-visible, button:focus-visible { outline: 3px solid rgba(47, 128, 237, .4
 }
 
 /* ---------- 大首图 KV（整幅原图直出，不加深色遮罩） ----------
-   图 KV训练营.png（1920×650）为蓝→青绿渐变横幅，右侧为大字 QBI 水印，左侧约 55% 为纯深蓝渐变区，白字叠放天然可读；
+   源图 kv-banner.webp（1920×650，由原 PNG 压制约 77 KB）为蓝→青绿渐变横幅，右侧为大字 QBI 水印，左侧约 55% 为纯深蓝渐变区，白字叠放天然可读；
+   WebP 已被 2020 年后浏览器原生支持，故不再携带 PNG 回退文件；极端旧浏览器加载失败时仅见深蓝实底（与窄屏观感一致，无破图图标）；
    卡片高度与图片同比例（aspect-ratio 1920/650），宽高一致时整图完整可见、不裁不压；
-   图右缘锚定：内容高度超出等比时 cover 只裁左侧纯色区，保留 QBI 字样与文字底色 */
+   图右缘锚定（background-position: right center）：内容高度超出等比时 cover 只裁左侧纯色区，保留 QBI 字样与文字底色；
+   加载时机由 index.html <head> 的 preload（media ≥641px、fetchpriority=high）保障；窄屏 ≤640px 渐变覆盖此背景，不发请求 */
 .hero-kv {
   position: relative; overflow: hidden;
   aspect-ratio: 1920 / 650;
@@ -146,8 +148,8 @@ a:focus-visible, button:focus-visible { outline: 3px solid rgba(47, 128, 237, .4
   border-radius: var(--radius-xl);
   display: flex; flex-direction: column; justify-content: center;
   color: #fff;
-  /* 深蓝底色仅作图片加载前的占位（取图左缘主色），不参与覆盖 */
-  background: #044BF4 url('kv-banner.png') no-repeat right center / cover;
+  /* 深蓝实底仅作图片加载前的占位（取图左缘主色），不参与覆盖 */
+  background: #044BF4 url('kv-banner.webp') no-repeat right center / cover;
 }
 .hero-kv-copy { position: relative; max-width: 580px; }
 .hero-eyebrow {
@@ -765,10 +767,9 @@ a:focus-visible, button:focus-visible { outline: 3px solid rgba(47, 128, 237, .4
   position: relative; overflow: hidden;
   margin: 52px 0 14px; padding: 40px 44px;
   border-radius: var(--radius-xl);
-  background:
-    radial-gradient(560px 300px at 88% -60px, rgba(76, 151, 245, .38), transparent 62%),
-    radial-gradient(500px 340px at -6% 120%, rgba(99, 102, 241, .34), transparent 60%),
-    linear-gradient(118deg, #060F33 0%, #0B2258 52%, #17348F 100%);
+  /* 底图换为运营提供的阿里云 CDN 横幅（1920×650 蓝→青渐变，纯背景无内嵌文案）；
+     深蓝底色仅作图片加载前占位（取图左缘主色），cover 铺满，横幅为平滑纵向渐变、裁切无痕 */
+  background: #044BF4 url('https://img.alicdn.com/imgextra/i4/O1CN01f401q5MxR9L3th3i_!!6000000000898-0-tps-1920-650.jpg') no-repeat center / cover;
   color: #fff;
   display: flex; align-items: center; justify-content: space-between; gap: 32px;
 }

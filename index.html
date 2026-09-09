@@ -5,9 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>训练营 · Quick BI 领航学堂 — 新手 / AIPro / 大师训练营汇总</title>
   <meta name="description" content="Quick BI 领航学堂训练营总览：新手训练营、AIPro 训练营、大师训练营滚动开班，本期 AIPro 训练营报名进行中">
+  <!-- 社交分享卡片（微信/钉钉/企微等抓取 og:* 作为链接预览图与文案） -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Quick BI 领航学堂">
+  <meta property="og:title" content="训练营 · Quick BI 领航学堂 — 新手 / AIPro / 大师训练营汇总">
+  <meta property="og:description" content="三营滚动开班 · 5 天系统打卡 · 全程免费 · 官方认证证书，零基础也能跟着学，本期 AIPro 训练营报名进行中">
+  <meta property="og:image" content="https://img.alicdn.com/imgextra/i3/O1CN01phdBhavO2zG24uCu_!!6000000005944-2-tps-1024-1024.png">
+  <meta property="og:image:width" content="1024">
+  <meta property="og:image:height" content="1024">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="theme-color" content="#2F80ED">
   <!-- 静态资源版本号：内容更新后递增，避免浏览器缓存旧文件（与主站约定一致） -->
-  <link rel="stylesheet" href="style.css?v=20260947">
+  <link rel="stylesheet" href="style.css?v=20260949">
+  <!-- 首图 WebP 预加载：KV 图经 style.css 的 background-image 使用（浏览器发现晚、优先级低），此处抢在 CSS 解析前以高优先级发起传输；窄屏用 gradient 不打图，故 media 限定 ≥641px -->
+  <link rel="preload" href="kv-banner.webp" as="image" type="image/webp" media="(min-width: 641px)" fetchpriority="high">
 </head>
 <body>
 
@@ -33,7 +44,7 @@
 
   <main class="main">
 
-    <!-- 大首图 KV：完整使用 KV训练营.png 原图（1920×650 横幅，不加深色遮罩），窄屏回落同色系渐变背景（见 style.css） -->
+    <!-- 大首图 KV：图片由 style.css 的 background-image 加载 kv-banner.webp（约 77 KB，原 PNG 的 1/22），加载时机由 <head> 中 preload 高优先级保障；窄屏回落同色系渐变背景、零图片请求（见 style.css） -->
     <section class="hero-kv reveal" aria-label="页面主视觉">
       <div class="hero-kv-copy">
         <p class="hero-eyebrow">瓴羊 × Quick BI 官方出品</p>
