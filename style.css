@@ -120,6 +120,17 @@ a:focus-visible, button:focus-visible { outline: 3px solid rgba(47, 128, 237, .4
   border-radius: 999px; font-size: 12px; font-weight: 600; line-height: 1;
 }
 .tag--done { background: rgba(255, 255, 255, .92); border: 1px solid rgba(255, 255, 255, .55); color: #57606C; }
+/* 下期未开营「待开始」：磨砂半透明白胶囊（backdrop blur），压在橙/紫/蓝彩色卡头上均轻盈协调；
+   原品牌蓝渐变底与卡头渐变色相撞（橙/紫卡头压蓝色块突兀），2026-09-09 改用此方案。
+   白字需叠加深色柔晕（text-shadow）保证在浅色磨砂底（卡头白色光晕叠加区）上仍可读 */
+.tag--soon {
+  background: rgba(255, 255, 255, .18);
+  border: 1px solid rgba(255, 255, 255, .85);
+  color: #fff;
+  text-shadow: 0 0 6px rgba(23, 35, 61, .65), 0 1px 3px rgba(23, 35, 61, .45);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  box-shadow: 0 4px 14px -2px rgba(23, 35, 61, .30);
+}
 .tag--live {
   background: linear-gradient(135deg, #2EC77E, #16A34A); color: #fff;
   box-shadow: 0 4px 12px -2px rgba(22, 163, 74, .45);
@@ -212,16 +223,21 @@ a:focus-visible, button:focus-visible { outline: 3px solid rgba(47, 128, 237, .4
   box-shadow: 0 6px 16px -4px rgba(47, 128, 237, .50);
 }
 
-/* ---------- 内容模块通用（章节头横排：渐变图标徽章 + 右侧标题/副标） ---------- */
+/* ---------- 内容模块通用（章节头居中：渐变图标徽章 + 标题/副标成列 + 短渐变分隔线） ---------- */
 .block { margin: 48px 0 8px; scroll-margin-top: 100px; }
 /* 章节图标徽章统一使用品牌蓝渐变（与「训练营汇总」一致） */
 .block { --bi-grad: var(--grad-brand); --bi-shadow: rgba(47, 128, 237, .50); }
-/* 章节头（横排紧凑式）：左置图标徽章 + 右侧标题/副标两行，对齐内容区而非页面居中 */
+/* 章节头（居中成列）：图标徽章居上，一级标题与其副标题整体居中（2026-09-09 由横排左置改回居中） */
 .block-head {
-  display: flex; align-items: center; gap: 18px;
-  margin-bottom: 26px; text-align: left;
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  margin-bottom: 30px;
 }
-.block-head-text { min-width: 0; flex: 1; }
+/* 标题下方短渐变分隔线 */
+.block-head::after {
+  content: ""; margin-top: 18px; width: 52px; height: 4px;
+  border-radius: 99px; background: var(--bi-grad);
+}
+.block-head-text { margin-top: 16px; }
 .block-icon {
   width: 54px; height: 54px; border-radius: 17px; flex: none;
   display: grid; place-items: center;
@@ -230,7 +246,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid rgba(47, 128, 237, .4
 }
 .block-icon .icon { width: 26px; height: 26px; }
 .block-title { font-size: 30px; font-weight: 800; color: var(--ink-1); letter-spacing: .5px; line-height: 1.3; }
-.block-sub { margin-top: 5px; font-size: 14px; color: var(--ink-3); max-width: 640px; }
+.block-sub { margin-top: 8px; font-size: 14px; color: var(--ink-3); max-width: 640px; }
 
 /* ============================================================
  * S1 训练营汇总卡片
@@ -462,11 +478,6 @@ a:focus-visible, button:focus-visible { outline: 3px solid rgba(47, 128, 237, .4
   transition: border-color .15s ease, background .15s ease, color .15s ease, box-shadow .15s ease;
 }
 .tl-item:hover .tl-node { border-color: var(--brand); background: #fff; }
-.tl-node--final {
-  border-color: transparent;
-  background: var(--grad-brand); color: #fff;
-  box-shadow: 0 8px 18px -6px rgba(47, 128, 237, .60);
-}
 /* 日程卡：四栏网格（日期块 | 学习主题 | 产出 | 时长），左右对称填满卡宽 */
 .tl-card {
   flex: 1; min-width: 0; margin-bottom: 18px;
@@ -573,16 +584,16 @@ a:focus-visible, button:focus-visible { outline: 3px solid rgba(47, 128, 237, .4
   background: radial-gradient(circle, rgba(47, 128, 237, .12), transparent 68%);
 }
 .tutor:hover { transform: translateY(-5px); box-shadow: var(--shadow-card-hover); }
-/* 头像：品牌渐变描边环（竖版照片按偏上位置裁切，保证人脸入镜） */
+/* 头像：品牌渐变描边环（竖版照片按偏上位置裁切，保证人脸入镜）；2026-09-09 由 88px 放大至 116px */
 .tutor-avatar {
-  width: 88px; height: 88px; flex: none; padding: 3px;
+  width: 116px; height: 116px; flex: none; padding: 4px;
   border-radius: 50%;
   background: var(--grad-brand);
-  box-shadow: 0 12px 26px -8px rgba(47, 128, 237, .45);
+  box-shadow: 0 14px 30px -8px rgba(47, 128, 237, .45);
 }
 .tutor-avatar img {
   width: 100%; height: 100%; object-fit: cover; object-position: center 34%;
-  display: block; border-radius: 50%; border: 3px solid #fff;
+  display: block; border-radius: 50%; border: 4px solid #fff;
 }
 .tutor-name {
   margin-top: 16px;
@@ -756,7 +767,8 @@ a:focus-visible, button:focus-visible { outline: 3px solid rgba(47, 128, 237, .4
 .faq-a { display: none; margin: 0 18px; border-top: 1px dashed var(--line); }
 .faq-item.is-open .faq-a { display: block; }
 .faq-a p { padding: 12px 0 15px; font-size: 13px; line-height: 1.85; color: var(--ink-2); }
-.faq-more { margin-top: 16px; text-align: left; font-size: 13px; color: var(--ink-3); }
+/* 帮助文档提示行：随上方“常见问题”章节头一起居中 */
+.faq-more { margin-top: 16px; text-align: center; font-size: 13px; color: var(--ink-3); }
 .faq-more a { color: var(--brand); font-weight: 600; }
 .faq-more a:hover { text-decoration: underline; }
 
@@ -906,4 +918,55 @@ a:focus-visible, button:focus-visible { outline: 3px solid rgba(47, 128, 237, .4
   .sticky-bar { display: flex; }
   .footer-inner { padding: 22px 16px; }
   body { padding-bottom: 64px; }
+}
+
+/* ============================================================
+ * Lightbox 图片放大预览（讲师头像 / 奖品 / 证书，交互见 main.js 第 6 节）
+ * ============================================================ */
+/* 可点图片：光标提示 + 所在相框悬停描边提示（讲师头像用加深阴影提示） */
+img[data-lightbox] { cursor: zoom-in; }
+.prize-img:hover, .tier-img:hover, .cert-img:hover {
+  border-color: var(--brand);
+  box-shadow: 0 8px 18px -8px rgba(47, 128, 237, .45);
+}
+.tutor-avatar { transition: box-shadow .2s ease; }
+.tutor-avatar:hover { box-shadow: 0 16px 34px -8px rgba(47, 128, 237, .65); }
+
+/* 遮罩层：JS 动态创建（默认 hidden），点遮罩空白处 / 关闭钮 / Esc 均可退出 */
+.lightbox {
+  position: fixed; inset: 0; z-index: 2000;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 14px; padding: 30px;
+  background: rgba(13, 20, 36, .88);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  animation: lb-fade .18s ease both;
+}
+.lightbox[hidden] { display: none; }
+.lightbox img {
+  width: auto; height: auto;
+  max-width: min(90vw, 1400px); max-height: 80vh;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 24px 70px -20px rgba(0, 0, 0, .65);
+  animation: lb-zoom .22s cubic-bezier(.22, .8, .32, 1) both;
+}
+.lightbox figcaption {
+  margin: 0; text-align: center;
+  font-size: 13px; letter-spacing: .3px; color: rgba(255, 255, 255, .85);
+  max-width: 80vw;
+}
+.lightbox-close {
+  position: absolute; top: 18px; right: 20px;
+  width: 42px; height: 42px; border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, .28);
+  background: rgba(255, 255, 255, .12); color: #fff;
+  font-size: 26px; line-height: 1;
+  display: grid; place-items: center; cursor: pointer;
+  transition: background .18s ease, transform .18s ease;
+}
+.lightbox-close:hover { background: rgba(255, 255, 255, .28); transform: rotate(90deg); }
+@keyframes lb-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes lb-zoom { from { opacity: 0; transform: scale(.92); } to { opacity: 1; transform: scale(1); } }
+@media (prefers-reduced-motion: reduce) {
+  .lightbox, .lightbox img { animation: none; }
 }

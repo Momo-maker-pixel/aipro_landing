@@ -16,7 +16,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="theme-color" content="#2F80ED">
   <!-- 静态资源版本号：内容更新后递增，避免浏览器缓存旧文件（与主站约定一致） -->
-  <link rel="stylesheet" href="style.css?v=20260949">
+  <link rel="stylesheet" href="style.css?v=20260951">
   <!-- 首图 WebP 预加载：KV 图经 style.css 的 background-image 使用（浏览器发现晚、优先级低），此处抢在 CSS 解析前以高优先级发起传输；窄屏用 gradient 不打图，故 media 限定 ≥641px -->
   <link rel="preload" href="kv-banner.webp" as="image" type="image/webp" media="(min-width: 641px)" fetchpriority="high">
 </head>
@@ -47,7 +47,7 @@
     <!-- 大首图 KV：图片由 style.css 的 background-image 加载 kv-banner.webp（约 77 KB，原 PNG 的 1/22），加载时机由 <head> 中 preload 高优先级保障；窄屏回落同色系渐变背景、零图片请求（见 style.css） -->
     <section class="hero-kv reveal" aria-label="页面主视觉">
       <div class="hero-kv-copy">
-        <p class="hero-eyebrow">瓴羊 × Quick BI 官方出品</p>
+        <p class="hero-eyebrow">阿里云智能集团 × 瓴羊 官方出品</p>
         <h1 class="hero-title">Quick BI <em>训练营</em></h1>
         <p class="hero-sub">新手入门 · AIPro 进阶 · 大师精进 ——<br>多期训练营滚动开班，零基础也能跟着学</p>
         <div class="hero-chips" aria-label="训练营关键信息">
@@ -84,9 +84,9 @@
 
       <div class="camps">
         <!-- 卡 1：新手训练营（海报式长卡：活动介绍 + 课程速览 + 亮点 + 奖品） -->
-        <article class="camp camp--pc pc-c--newbie reveal" data-reveal-delay="0">
+        <article class="camp camp--pc pc-c--newbie">
           <div class="pc-hero pc-hero--newbie">
-            <span class="tag tag--done pc-hero-tag">已结束</span>
+            <span class="tag tag--soon pc-hero-tag">待开始</span>
             <div class="pc-brands"><span>阿里云智能集团 × 瓴羊</span></div>
             <h3 class="pc-title">新手训练营</h3>
             <div class="pc-pillrow">
@@ -97,7 +97,7 @@
             <section class="pc-sec">
               <h4 class="pc-label">活动介绍</h4>
               <p class="pc-intro">零基础友好：教学视频 + 配套习题，由简入深搭建仪表板；产品运营带教 + 技术专家答疑，全流程陪伴学习，完成全部任务可获得官方认证证书。</p>
-              <p class="pc-chips"><b>5 天</b><b>8 月 11 日 – 8 月 15 日</b><b>每天约 30–50 分钟</b></p>
+              <p class="pc-chips"><b>5 天</b><b>10 月 12 日 – 10 月 16 日</b><b>每天约 30–50 分钟</b></p>
             </section>
             <section class="pc-sec">
               <h4 class="pc-label">课程速览<span>五个主题 · 由浅入深</span></h4>
@@ -119,25 +119,25 @@
             </section>
           </div>
           <div class="pc-foot">
-            <span class="btn btn--disabled btn--sm" aria-disabled="true">本期已结束，下期敬请期待</span>
+            <span class="btn btn--disabled btn--sm" aria-disabled="true">即将开始，敬请期待</span>
           </div>
         </article>
 
         <!-- 卡 2：AIPro 训练营（进行中，海报暂用小Q营物料替代） -->
-        <article class="camp camp--pc pc-c--aipro reveal" data-reveal-delay="1">
+        <article class="camp camp--pc pc-c--aipro">
           <div class="pc-hero pc-hero--aipro">
             <a class="tag tag--live pc-hero-tag" href="https://ch6egz.aliwork.com/o/AIPro0914-Baoming" target="_blank" rel="noopener">报名中</a>
             <div class="pc-brands"><span>阿里云智能集团 × 瓴羊</span></div>
             <h3 class="pc-title">AIPro 训练营</h3>
             <div class="pc-pillrow">
-              <span class="pc-pill">AI 专项进阶训练营 · 掌握智能问数、洞察归因与报告生成</span>
+              <span class="pc-pill">AI-Native 分析训练营 · 解锁多种分析产物</span>
             </div>
           </div>
           <div class="pc-body">
             <section class="pc-sec">
               <h4 class="pc-label">活动介绍</h4>
               <p class="pc-intro">AI 专项进阶训练营：5 天系统掌握智能问数、洞察归因与报告生成，并动手沉淀可复用的分析报告。掌握用AI提效的关键秘诀，把时间留给业务判断。</p>
-              <p class="pc-chips"><b>5 天</b><b>9 月 10 日 – 9 月 14 日</b><b>每天约 40 分钟</b></p>
+              <p class="pc-chips"><b>5 天</b><b>9 月 14 日 – 9 月 18 日</b><b>每天约 40 分钟</b></p>
             </section>
             <section class="pc-sec">
               <h4 class="pc-label">课程速览<span>五个主题 · 由浅入深</span></h4>
@@ -165,9 +165,9 @@
         </article>
 
         <!-- 卡 3：大师训练营（海报式长卡） -->
-        <article class="camp camp--pc pc-c--master reveal" data-reveal-delay="2">
+        <article class="camp camp--pc pc-c--master">
           <div class="pc-hero pc-hero--master">
-            <span class="tag tag--done pc-hero-tag">已结束</span>
+            <span class="tag tag--soon pc-hero-tag">待开始</span>
             <div class="pc-brands"><span>阿里云智能集团 × 瓴羊</span></div>
             <h3 class="pc-title">大师训练营</h3>
             <div class="pc-pillrow">
@@ -178,7 +178,7 @@
             <section class="pc-sec">
               <h4 class="pc-label">活动介绍</h4>
               <p class="pc-intro">进阶提升型训练营：解锁 Quick BI 新功能，聚焦电子表格、函数体系与占位符三大专题，由浅入深攻克高阶用法，掌握高效配置秘籍。</p>
-              <p class="pc-chips"><b>5 天</b><b>8 月 19 日 – 8 月 23 日</b><b>每天 1 节课</b></p>
+              <p class="pc-chips"><b>5 天</b><b>10 月 26 日 – 10 月 30 日</b><b>每天 1 节课</b></p>
             </section>
             <section class="pc-sec">
               <h4 class="pc-label">课程速览<span>五个主题 · 由浅入深</span></h4>
@@ -193,14 +193,14 @@
             <section class="pc-sec">
               <h4 class="pc-label">全新亮点</h4>
               <ul class="pc-hl">
-                <li><span class="pc-hl-ic"><svg class="icon"><use href="#i-target" xlink:href="#i-target"/></svg></span><p><b>专题深耕</b>三大专题精讲：电子表格、函数体系与占位符，助你从熟练到精通</p></li>
+                <li><span class="pc-hl-ic"><svg class="icon"><use href="#i-target" xlink:href="#i-target"/></svg></span><p><b>专题深耕</b>三大专题精讲：电子表格、函数体系与占位符，助您从熟练到精通</p></li>
                 <li><span class="pc-hl-ic"><svg class="icon"><use href="#i-check" xlink:href="#i-check"/></svg></span><p><b>实战导向</b>每个专题均配有实际案例与作业，学完即用，直接复用到工作场景</p></li>
                 <li><span class="pc-hl-ic"><svg class="icon"><use href="#i-crown" xlink:href="#i-crown"/></svg></span><p><b>高阶进阶</b>掌握 LOD 函数与动态占位符，成为团队里的 Quick BI 专家</p></li>
               </ul>
             </section>
           </div>
           <div class="pc-foot">
-            <span class="btn btn--disabled btn--sm" aria-disabled="true">本期已结束，下期敬请期待</span>
+            <span class="btn btn--disabled btn--sm" aria-disabled="true">即将开始，敬请期待</span>
           </div>
         </article>
       </div>
@@ -208,8 +208,8 @@
       <!-- 小节 1：训练营亮点（与三营卡片同属「训练营汇总」章节） -->
       <div class="sub-block">
         <div class="sub-head reveal">
-          <h3 class="sub-title">训练营特色</h3>
-          <p class="sub-desc">为什么参加训练营，而不是自己啃文档</p>
+          <h3 class="sub-title">参营特色</h3>
+          <p class="sub-desc">为什么参加训练营，而不是自己学文档</p>
         </div>
 
         <div class="hl">
@@ -221,7 +221,7 @@
           <article class="hl-card reveal" data-reveal-delay="1">
             <span class="hl-num">02</span>
             <h4>双导师伴学</h4>
-            <p>专属学习社群，产品运营带教 + 技术专家答疑，全流程陪伴你的学习</p>
+            <p>专属学习社群，产品运营带教 + 技术专家答疑，全流程陪伴您的学习</p>
           </article>
           <article class="hl-card reveal" data-reveal-delay="2">
             <span class="hl-num">03</span>
@@ -235,7 +235,7 @@
       <div class="sub-block">
         <div class="sub-head reveal">
           <h3 class="sub-title">选营指引</h3>
-          <p class="sub-desc">不确定参加哪个营？按你的基础对号入座</p>
+          <p class="sub-desc">不确定参加哪个营？按您的基础对号入座</p>
         </div>
 
         <div class="guide">
@@ -256,7 +256,7 @@
           </article>
         </div>
 
-        <p class="guide-note reveal"><svg class="icon"><use href="#i-users" xlink:href="#i-users"/></svg>不论选择哪个营：专属学习群 + 班主任督学 + 技术专家答疑，全程陪伴你的学习</p>
+        <p class="guide-note reveal"><svg class="icon"><use href="#i-users" xlink:href="#i-users"/></svg>不论选择哪个营：专属学习群 + 班主任督学 + 技术专家答疑，全程陪伴您的学习</p>
       </div>
 
       <!-- 小节 3：参与流程（原独立区块降级为小节） -->
@@ -275,7 +275,7 @@
           <li class="step reveal" data-reveal-delay="1">
             <span class="step-num">2</span>
             <h4>加入社群</h4>
-            <p>按表单引导加入专属学习群，领取学习资料</p>
+            <p>按表单引导加入专属学习群，进群领取学习资料和详细课程安排</p>
           </li>
           <li class="step reveal" data-reveal-delay="2">
             <span class="step-num">3</span>
@@ -310,19 +310,19 @@
 
       <!-- 新手营大纲（依据新手营宣发物料整理；每日详细任务待运营补充） -->
       <div class="sched-pane is-active" id="sched-newbie" role="tabpanel" aria-label="新手训练营">
-        <p class="sched-meta">已结束 · 8 月 11 日 – 8 月 15 日 · 每天学习 30–50 分钟 · 免费参加</p>
+        <p class="sched-meta">待开始 · 10 月 12 日 – 10 月 16 日 · 每天学习 30–50 分钟 · 免费参加</p>
         <ol class="tl">
           <li class="tl-item">
             <span class="tl-node">1</span>
             <article class="tl-card">
               <div class="tl-head">
                 <span class="tl-pill">DAY1</span>
-                <span class="tl-date">8 月 11 日 · 周二</span>
+                <span class="tl-date">10 月 12 日 · 周一</span>
               </div>
               <div class="tl-theme">
                 <span class="tl-label">学习主题</span>
                 <ul class="tl-rows">
-                  <li>新手入门：认识 AIPro，搭建你的第一个仪表板</li>
+                  <li>新手入门：认识 AIPro，搭建您的第一个仪表板</li>
                 </ul>
               </div>
               <div class="tl-output">
@@ -339,7 +339,7 @@
             <article class="tl-card">
               <div class="tl-head">
                 <span class="tl-pill">DAY2</span>
-                <span class="tl-date">8 月 12 日 · 周三</span>
+                <span class="tl-date">10 月 13 日 · 周二</span>
               </div>
               <div class="tl-theme">
                 <span class="tl-label">学习主题</span>
@@ -361,7 +361,7 @@
             <article class="tl-card">
               <div class="tl-head">
                 <span class="tl-pill">DAY3</span>
-                <span class="tl-date">8 月 13 日 · 周四</span>
+                <span class="tl-date">10 月 14 日 · 周三</span>
               </div>
               <div class="tl-theme">
                 <span class="tl-label">学习主题</span>
@@ -383,7 +383,7 @@
             <article class="tl-card">
               <div class="tl-head">
                 <span class="tl-pill">DAY4</span>
-                <span class="tl-date">8 月 14 日 · 周五</span>
+                <span class="tl-date">10 月 15 日 · 周四</span>
               </div>
               <div class="tl-theme">
                 <span class="tl-label">学习主题</span>
@@ -401,11 +401,11 @@
             </article>
           </li>
           <li class="tl-item">
-            <span class="tl-node tl-node--final">5</span>
+            <span class="tl-node">5</span>
             <article class="tl-card">
               <div class="tl-head">
                 <span class="tl-pill">DAY5</span>
-                <span class="tl-date">8 月 15 日 · 周六</span>
+                <span class="tl-date">10 月 16 日 · 周五</span>
               </div>
               <div class="tl-theme">
                 <span class="tl-label">学习主题</span>
@@ -427,14 +427,14 @@
       </div>
 
       <div class="sched-pane" id="sched-aipro" role="tabpanel" aria-label="AIPro 训练营" hidden>
-        <p class="sched-meta">报名进行中 · 9 月 10 日 – 9 月 14 日 · 每天约 40 分钟 · 免费参加</p>
+        <p class="sched-meta">报名进行中 · 9 月 14 日 – 9 月 18 日 · 每天约 40 分钟 · 免费参加</p>
         <ol class="tl">
           <li class="tl-item">
             <span class="tl-node">1</span>
             <article class="tl-card">
               <div class="tl-head">
                 <span class="tl-pill">DAY1</span>
-                <span class="tl-date">9 月 10 日 · 周四</span>
+                <span class="tl-date">9 月 14 日 · 周一</span>
               </div>
               <div class="tl-theme">
                 <span class="tl-label">学习主题</span>
@@ -456,7 +456,7 @@
             <article class="tl-card">
               <div class="tl-head">
                 <span class="tl-pill">DAY2</span>
-                <span class="tl-date">9 月 11 日 · 周五</span>
+                <span class="tl-date">9 月 15 日 · 周二</span>
               </div>
               <div class="tl-theme">
                 <span class="tl-label">学习主题</span>
@@ -478,7 +478,7 @@
             <article class="tl-card">
               <div class="tl-head">
                 <span class="tl-pill">DAY3</span>
-                <span class="tl-date">9 月 12 日 · 周六</span>
+                <span class="tl-date">9 月 16 日 · 周三</span>
               </div>
               <div class="tl-theme">
                 <span class="tl-label">学习主题</span>
@@ -500,7 +500,7 @@
             <article class="tl-card">
               <div class="tl-head">
                 <span class="tl-pill">DAY4</span>
-                <span class="tl-date">9 月 13 日 · 周日</span>
+                <span class="tl-date">9 月 17 日 · 周四</span>
               </div>
               <div class="tl-theme">
                 <span class="tl-label">学习主题</span>
@@ -518,11 +518,11 @@
             </article>
           </li>
           <li class="tl-item">
-            <span class="tl-node tl-node--final">5</span>
+            <span class="tl-node">5</span>
             <article class="tl-card">
               <div class="tl-head">
                 <span class="tl-pill">DAY5</span>
-                <span class="tl-date">9 月 14 日 · 周一</span>
+                <span class="tl-date">9 月 18 日 · 周五</span>
               </div>
               <div class="tl-theme">
                 <span class="tl-label">学习主题</span>
@@ -541,19 +541,18 @@
           </li>
         </ol>
         <p class="tl-note">打卡时间不强制，可按自己的节奏学习，结营前完成全部任务即可（含补卡期）</p>
-        <p class="tl-note tl-note--link">想先了解 AIPro 产品能力？<a href="https://help.aliyun.com/zh/quick-bi/user-guide/quick-bi-aipro-overview" target="_blank" rel="noopener">查看 AIPro 官方帮助文档</a></p>
       </div>
 
       <!-- 大师营大纲（依据大师营宣发物料整理） -->
       <div class="sched-pane" id="sched-master" role="tabpanel" aria-label="大师训练营" hidden>
-        <p class="sched-meta">已结束 · 8 月 19 日 – 8 月 23 日 · 每天 1 节课 · 免费参加</p>
+        <p class="sched-meta">待开始 · 10 月 26 日 – 10 月 30 日 · 每天 1 节课 · 免费参加</p>
         <ol class="tl">
           <li class="tl-item">
             <span class="tl-node">1</span>
             <article class="tl-card">
               <div class="tl-head">
                 <span class="tl-pill">DAY1</span>
-                <span class="tl-date">8 月 19 日 · 周三</span>
+                <span class="tl-date">10 月 26 日 · 周一</span>
               </div>
               <div class="tl-theme">
                 <span class="tl-label">学习主题</span>
@@ -575,7 +574,7 @@
             <article class="tl-card">
               <div class="tl-head">
                 <span class="tl-pill">DAY2</span>
-                <span class="tl-date">8 月 20 日 · 周四</span>
+                <span class="tl-date">10 月 27 日 · 周二</span>
               </div>
               <div class="tl-theme">
                 <span class="tl-label">学习主题</span>
@@ -597,7 +596,7 @@
             <article class="tl-card">
               <div class="tl-head">
                 <span class="tl-pill">DAY3</span>
-                <span class="tl-date">8 月 21 日 · 周五</span>
+                <span class="tl-date">10 月 28 日 · 周三</span>
               </div>
               <div class="tl-theme">
                 <span class="tl-label">学习主题</span>
@@ -619,7 +618,7 @@
             <article class="tl-card">
               <div class="tl-head">
                 <span class="tl-pill">DAY4</span>
-                <span class="tl-date">8 月 22 日 · 周六</span>
+                <span class="tl-date">10 月 29 日 · 周四</span>
               </div>
               <div class="tl-theme">
                 <span class="tl-label">学习主题</span>
@@ -637,11 +636,11 @@
             </article>
           </li>
           <li class="tl-item">
-            <span class="tl-node tl-node--final">5</span>
+            <span class="tl-node">5</span>
             <article class="tl-card">
               <div class="tl-head">
                 <span class="tl-pill">DAY5</span>
-                <span class="tl-date">8 月 23 日 · 周日</span>
+                <span class="tl-date">10 月 30 日 · 周五</span>
               </div>
               <div class="tl-theme">
                 <span class="tl-label">学习主题</span>
@@ -669,14 +668,14 @@
         <span class="block-icon"><svg class="icon"><use href="#i-grad" xlink:href="#i-grad"/></svg></span>
         <div class="block-head-text">
           <h2 class="block-title">讲师介绍</h2>
-          <p class="block-sub">新手 / AIPro / 大师训练营同一套带教阵容</p>
+          <p class="block-sub">新手 / AIPro / 大师训练营 带教阵容</p>
         </div>
       </header>
 
       <div class="tutors">
         <!-- 讲师卡：头像为真人照片（素材由运营提供） -->
         <article class="tutor reveal" data-reveal-delay="0">
-          <div class="tutor-avatar"><img src="https://img.alicdn.com/imgextra/i4/O1CN01OgzaFJKxG3F1MqUJ_!!6000000000660-2-tps-674-645.png" alt="陈汝男" loading="lazy"></div>
+          <div class="tutor-avatar"><img src="https://img.alicdn.com/imgextra/i4/O1CN01OgzaFJKxG3F1MqUJ_!!6000000000660-2-tps-674-645.png" alt="陈汝男" loading="lazy" data-lightbox></div>
           <h3 class="tutor-name">陈汝男</h3>
           <span class="tutor-role">Quick BI 产品运营</span>
           <p class="tutor-bio">深耕 BI 与 AI 对话式分析场景，负责 Quick BI AI Pro 的场景打磨与客户落地，把产品能力翻译成客户听得懂、用得上的业务动作，现场答疑节奏快、思路清晰。</p>
@@ -686,7 +685,7 @@
         </article>
 
         <article class="tutor reveal" data-reveal-delay="1">
-          <div class="tutor-avatar"><img src="https://img.alicdn.com/imgextra/i4/O1CN01SZ36GQf9OjB0Rwgb_!!6000000002820-2-tps-222-227.png" alt="初霁" loading="lazy"></div>
+          <div class="tutor-avatar"><img src="https://img.alicdn.com/imgextra/i4/O1CN01rGRGxO9kt3B7EmR1_!!6000000001665-0-tps-3565-3566.jpg" alt="初霁" loading="lazy" data-lightbox></div>
           <h3 class="tutor-name">初霁</h3>
           <span class="tutor-role">Quick BI 产品运营</span>
           <p class="tutor-bio">专注 Quick BI 案例沉淀与最佳实践传播，主导客户故事挖掘、Demo 搭建与培训内容输出，擅长把复杂功能拆成一看就懂的案例，让新客户少走弯路。</p>
@@ -696,7 +695,7 @@
         </article>
 
         <article class="tutor reveal" data-reveal-delay="2">
-          <div class="tutor-avatar"><img src="https://img.alicdn.com/imgextra/i2/O1CN01yI1ekZwy7vI2BxIO_!!6000000004905-0-tps-1080-1136.jpg" alt="李天根" loading="lazy"></div>
+          <div class="tutor-avatar"><img src="https://img.alicdn.com/imgextra/i2/O1CN01yI1ekZwy7vI2BxIO_!!6000000004905-0-tps-1080-1136.jpg" alt="李天根" loading="lazy" data-lightbox></div>
           <h3 class="tutor-name">李天根</h3>
           <span class="tutor-role">Quick BI 产品运营</span>
           <p class="tutor-bio">长期深耕 Quick BI 产品应用与客户落地实践，负责功能实操指导与场景调优支持，能够将产品背后的技术原理转化为清晰易懂的讲解，为客户现场问题提供可靠的技术支撑。</p>
@@ -720,31 +719,31 @@
       <!-- 每日打卡抽奖 + 结营特别奖：左右双轮播（≤1120px 上下堆叠；轮播逻辑见 main.js） -->
       <div class="reward-duo reveal">
         <div class="reward-block">
-          <div class="reward-block-head"><h3>每日打卡抽奖</h3><span>完成当天打卡任务，即可获得次日抽奖资格，每天开奖</span></div>
+          <div class="reward-block-head"><h3>每日抽奖</h3><span>完成当天打卡任务，即可获得次日抽奖资格，每天开奖</span></div>
           <div class="carousel" data-carousel>
             <div class="carousel-viewport">
               <div class="carousel-track">
                 <div class="carousel-slide">
                   <div class="prize-card">
-                    <div class="prize-img"><img src="https://img.alicdn.com/imgextra/i3/O1CN01mQO7tBt5XoC6gfJe_!!6000000007367-2-tps-3294-3320.png" alt="第一行代码帆布包"></div>
+                    <div class="prize-img"><img src="https://img.alicdn.com/imgextra/i3/O1CN01mQO7tBt5XoC6gfJe_!!6000000007367-2-tps-3294-3320.png" alt="第一行代码帆布包" data-lightbox></div>
                     <p>第一行代码帆布包</p>
                   </div>
                 </div>
                 <div class="carousel-slide">
                   <div class="prize-card">
-                    <div class="prize-img"><img src="https://img.alicdn.com/imgextra/i2/O1CN01wNyehs6qHnE0qs3M_!!6000000003464-2-tps-420-420.png" alt="阿里云折叠雨伞"></div>
+                    <div class="prize-img"><img src="https://img.alicdn.com/imgextra/i2/O1CN01wNyehs6qHnE0qs3M_!!6000000003464-2-tps-420-420.png" alt="阿里云折叠雨伞" data-lightbox></div>
                     <p>阿里云折叠雨伞</p>
                   </div>
                 </div>
                 <div class="carousel-slide">
                   <div class="prize-card">
-                    <div class="prize-img"><img src="https://img.alicdn.com/imgextra/i4/O1CN01LvenZu6RD2H0qs3M_!!6000000003800-2-tps-420-420.png" alt="云小宝公仔"></div>
+                    <div class="prize-img"><img src="https://img.alicdn.com/imgextra/i4/O1CN01LvenZu6RD2H0qs3M_!!6000000003800-2-tps-420-420.png" alt="云小宝公仔" data-lightbox></div>
                     <p>云小宝公仔</p>
                   </div>
                 </div>
                 <div class="carousel-slide">
                   <div class="prize-card">
-                    <div class="prize-img"><img src="https://img.alicdn.com/imgextra/i1/O1CN012gaSfv1lTBK3FPpA_!!6000000000076-2-tps-1600-1600.png" alt="阿里云保温杯"></div>
+                    <div class="prize-img"><img src="https://img.alicdn.com/imgextra/i1/O1CN012gaSfv1lTBK3FPpA_!!6000000000076-2-tps-1600-1600.png" alt="阿里云保温杯" data-lightbox></div>
                     <p>阿里云保温杯</p>
                   </div>
                 </div>
@@ -757,25 +756,25 @@
         </div>
 
         <div class="reward-block">
-          <div class="reward-block-head"><h3>结营特别奖</h3><span>完成全部 5 天打卡任务，可参与结营特别抽奖</span></div>
+          <div class="reward-block-head"><h3>结营有奖</h3><span>完成全部 5 天打卡任务，可参与结营特别抽奖</span></div>
           <div class="carousel carousel--tier" data-carousel>
             <div class="carousel-viewport">
               <div class="carousel-track">
                 <div class="carousel-slide">
                   <div class="tier tier--1">
-                    <div class="tier-img"><img src="https://img.alicdn.com/imgextra/i1/O1CN01kr4JJyEmRFI19FZE_!!6000000002848-2-tps-566-566.png" alt="阿里云拍拍灯"></div>
+                    <div class="tier-img"><img src="https://img.alicdn.com/imgextra/i1/O1CN01kr4JJyEmRFI19FZE_!!6000000002848-2-tps-566-566.png" alt="阿里云拍拍灯" data-lightbox></div>
                     <p class="tier-name">阿里云拍拍灯 + Quick BI 课程名额</p>
                   </div>
                 </div>
                 <div class="carousel-slide">
                   <div class="tier tier--2">
-                    <div class="tier-img"><img src="https://img.alicdn.com/imgextra/i4/O1CN0115aMvFc74IK1chua_!!6000000007419-2-tps-800-800.png" alt="云小宝大抱枕"></div>
+                    <div class="tier-img"><img src="https://img.alicdn.com/imgextra/i4/O1CN0115aMvFc74IK1chua_!!6000000007419-2-tps-800-800.png" alt="云小宝大抱枕" data-lightbox></div>
                     <p class="tier-name">云小宝大抱枕 + Quick BI 课程名额</p>
                   </div>
                 </div>
                 <div class="carousel-slide">
                   <div class="tier tier--3">
-                    <div class="tier-img"><img src="https://img.alicdn.com/imgextra/i1/O1CN01WNu9HMiZjCB2LWGh_!!6000000001011-2-tps-1156-447.png" alt="Quick BI 课程名额"></div>
+                    <div class="tier-img"><img src="https://img.alicdn.com/imgextra/i1/O1CN01WNu9HMiZjCB2LWGh_!!6000000001011-2-tps-1156-447.png" alt="Quick BI 课程名额" data-lightbox></div>
                     <p class="tier-name">Quick BI 课程名额</p>
                   </div>
                 </div>
@@ -792,7 +791,7 @@
         <div class="reward-block-head"><h3>认证证书</h3><span>完成打卡任务，获得官方认证</span></div>
         <div class="certs">
           <div class="cert-card">
-            <div class="cert-img"><img src="https://img.alicdn.com/imgextra/i2/O1CN01GFyuCEFbVXH1gzDp_!!6000000001670-2-tps-834-619.png" alt="Quick BI 初级开发者认证证书样式" loading="lazy"></div>
+            <div class="cert-img"><img src="https://img.alicdn.com/imgextra/i2/O1CN01GFyuCEFbVXH1gzDp_!!6000000001670-2-tps-834-619.png" alt="Quick BI 初级开发者认证证书样式" loading="lazy" data-lightbox></div>
             <div class="cert-info">
               <h3>官方认证证书</h3>
               <p>完成新手训练营全部打卡任务，即可获得</p>
@@ -804,7 +803,7 @@
             </div>
           </div>
           <div class="cert-card">
-            <div class="cert-img"><img src="https://img.alicdn.com/imgextra/i1/O1CN01C70EH7DqwmE1yETt_!!6000000007317-2-tps-971-714.png" alt="Quick BI 大师认证证书样式" loading="lazy"></div>
+            <div class="cert-img"><img src="https://img.alicdn.com/imgextra/i1/O1CN01C70EH7DqwmE1yETt_!!6000000007317-2-tps-971-714.png" alt="Quick BI 大师认证证书样式" loading="lazy" data-lightbox></div>
             <div class="cert-info">
               <h3>官方认证证书</h3>
               <p>完成大师训练营全部打卡任务，即可获得</p>
@@ -825,7 +824,7 @@
         <span class="block-icon"><svg class="icon"><use href="#i-chat" xlink:href="#i-chat"/></svg></span>
         <div class="block-head-text">
           <h2 class="block-title">常见问题</h2>
-          <p class="block-sub">报名前你可能想问</p>
+          <p class="block-sub">报名前您可能想问</p>
         </div>
       </header>
 
@@ -867,7 +866,7 @@
     <section class="cta-strip reveal" id="join">
       <div class="cta-strip-copy">
         <h2>名额有限，立即报名 <em>AIPro 训练营</em></h2>
-        <p>9 月 10 日开营 · 免费参加 · 报满即止 · 完成学习获官方认证证书</p>
+        <p>9 月 14 日开营 · 免费参加 · 报满即止 · 完成学习获官方认证证书</p>
         <a class="btn btn--white btn--lg" href="https://ch6egz.aliwork.com/o/AIPro0914-Baoming" target="_blank" rel="noopener">立即报名<svg class="icon"><use href="#i-arrow" xlink:href="#i-arrow"/></svg></a>
       </div>
       <div class="cta-strip-qr">
@@ -881,8 +880,8 @@
 <!-- ==================== 页脚 ==================== -->
 <footer class="footer">
   <div class="footer-inner">
-    <p>主办方：瓴羊 × Quick BI 团队</p>
-    <p>© <span id="year">2026</span> 瓴羊 × Quick BI 团队 版权所有 · 备案号待提供</p>
+    <p>主办方：阿里云智能集团 × 瓴羊 团队</p>
+    <p>© <span id="year">2026</span> 阿里云智能集团 × 瓴羊 团队 版权所有 · 备案号待提供</p>
   </div>
 </footer>
 
@@ -892,6 +891,6 @@
   <a class="btn btn--brand btn--sm" href="https://ch6egz.aliwork.com/o/AIPro0914-Baoming" target="_blank" rel="noopener">立即报名</a>
 </div>
 
-<script src="main.js?v=20260915"></script>
+<script src="main.js?v=20260950"></script>
 </body>
 </html>

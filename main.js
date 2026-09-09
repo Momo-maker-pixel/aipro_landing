@@ -5,6 +5,7 @@
  * 3) 日程安排三营大纲页签切换（.sched-tab / .sched-pane）
  * 4) 常见问题折叠（.faq-q 点击切换 .faq-item.is-open）
  * 5) 奖品轮播（[data-carousel]：每日打卡抽奖 / 结营特别奖）
+ * 6) 图片点击放大（img[data-lightbox]：讲师头像 / 奖品 / 证书）
  * 说明：页面无 JS 时内容照常展示（日程默认展示新手营大纲）
  * ============================================================ */
 (function () {
@@ -284,6 +285,65 @@
     update(false);
     start();
   });
+
+  /* ---------- 6) 图片点击放大（lightbox） ---------- */
+  var zoomImgs = document.querySelectorAll('img[data-lightbox]');
+  if (zoomImgs.length) {
+    var overlay = document.createElement('div');
+    overlay.className = 'lightbox';
+    overlay.setAttribute('role', 'dialog');
+    overlay.setAttribute('aria-modal', 'true');
+    overlay.setAttribute('aria-label', '图片预览');
+    overlay.hidden = true;
+    overlay.innerHTML =
+      '<button type="button" class="lightbox-close" aria-label="关闭预览">&times;</button>' +
+      '<figure><img alt=""><figcaption></figcaption></figure>';
+
+    var lbImg = overlay.querySelector('img');
+    var lbCap = overlay.querySelector('figcaption');
+    var lbClose = overlay.querySelector('.lightbox-close');
+    var lastTrigger = null;
+    var downX = 0;
+    var downY = 0;
+
+    function onKey(ev) {
+      if (ev.key === 'Escape' || ev.key === 'Esc') close();
+    }
+    function close() {
+      overlay.hidden = true;
+      document.body.style.overflow = '';
+      document.removeEventListener('keydown', onKey);
+      if (lastTrigger) lastTrigger.focus();
+    }
+    function open(img) {
+      lastTrigger = img;
+      lbImg.src = img.currentSrc || img.src;
+      lbImg.alt = img.alt || '';
+      lbCap.textContent = img.alt || '';
+      document.body.style.overflow = 'hidden';
+      overlay.hidden = false;
+      document.addEventListener('keydown', onKey);
+      lbClose.focus();
+    }
+
+    /* 轮播滑动与点击共用指针：拖拽超过阈值不当作放大触发（桌面鼠标拖图 / 移动端滑屏） */
+    document.addEventListener('pointerdown', function (ev) {
+      downX = ev.clientX;
+      downY = ev.clientY;
+    }, true);
+    document.addEventListener('click', function (ev) {
+      var img = ev.target.closest ? ev.target.closest('img[data-lightbox]') : null;
+      if (!img) return;
+      if (Math.abs(ev.clientX - downX) > 8 || Math.abs(ev.clientY - downY) > 8) return;
+      ev.preventDefault();
+      open(img);
+    });
+    lbClose.addEventListener('click', close);
+    overlay.addEventListener('click', function (ev) {
+      if (ev.target === overlay) close();
+    });
+    document.body.appendChild(overlay);
+  }
 
   /* ---------- 页脚年份 ---------- */
   var yearEl = document.getElementById('year');
