@@ -147,20 +147,20 @@ a:focus-visible, button:focus-visible { outline: 3px solid rgba(47, 128, 237, .4
 }
 
 /* ---------- 大首图 KV（整幅原图直出，不加深色遮罩） ----------
-   源图 kv-banner.webp（1920×650，由原 PNG 压制约 77 KB）为蓝→青绿渐变横幅，右侧为大字 QBI 水印，左侧约 55% 为纯深蓝渐变区，白字叠放天然可读；
-   WebP 已被 2020 年后浏览器原生支持，故不再携带 PNG 回退文件；极端旧浏览器加载失败时仅见深蓝实底（与窄屏观感一致，无破图图标）；
-   卡片高度与图片同比例（aspect-ratio 1920/650），宽高一致时整图完整可见、不裁不压；
+   源图：hero-banner.webp（2026-09-10 运营提供，1920×820）——蓝→青绿渐变横幅，左侧约 55% 为纯蓝留白（白字叠放天然可读），右侧大字 QBI 水印 + 装饰性几何方块；
+   卡片高度与图片同比例（aspect-ratio 1920/820），宽高一致时整图完整可见、不裁不压；
    图右缘锚定（background-position: right center）：内容高度超出等比时 cover 只裁左侧纯色区，保留 QBI 字样与文字底色；
-   加载时机由 index.html <head> 的 preload（media ≥641px、fetchpriority=high）保障；窄屏 ≤640px 渐变覆盖此背景，不发请求 */
+   加载时机由 index.html <head> 的 preload（media ≥641px、fetchpriority=high）保障；窄屏 ≤640px 渐变覆盖此背景，不发请求；
+   图片加载失败时仅见深蓝实底（与窄屏观感一致，无破图图标） */
 .hero-kv {
   position: relative; overflow: hidden;
-  aspect-ratio: 1920 / 650;
-  padding: 52px 56px;
+  aspect-ratio: 1920 / 820;
+  padding: 56px 60px;
   border-radius: var(--radius-xl);
   display: flex; flex-direction: column; justify-content: center;
   color: #fff;
   /* 深蓝实底仅作图片加载前的占位（取图左缘主色），不参与覆盖 */
-  background: #044BF4 url('kv-banner.webp') no-repeat right center / cover;
+  background: #044BF4 url('hero-banner.webp') no-repeat right center / cover;
 }
 .hero-kv-copy { position: relative; max-width: 580px; }
 .hero-eyebrow {
@@ -180,16 +180,16 @@ a:focus-visible, button:focus-visible { outline: 3px solid rgba(47, 128, 237, .4
   0%, 100% { box-shadow: 0 0 0 0 rgba(84, 214, 168, .55); }
   50% { box-shadow: 0 0 0 6px rgba(84, 214, 168, 0); }
 }
-.hero-title { margin-top: 18px; font-size: 46px; font-weight: 800; color: #fff; line-height: 1.18; letter-spacing: .5px; }
+.hero-title { margin-top: 22px; font-size: 46px; font-weight: 800; color: #fff; line-height: 1.18; letter-spacing: .5px; }
 .hero-title em {
   font-style: normal;
   background: linear-gradient(92deg, #7EB5FF 0%, #A9C8FF 45%, #E3ECFF 100%);
   -webkit-background-clip: text; background-clip: text; color: transparent;
 }
-.hero-sub { margin-top: 14px; font-size: 15px; line-height: 1.85; color: rgba(255, 255, 255, .88); max-width: 540px; }
+.hero-sub { margin-top: 16px; font-size: 15px; line-height: 1.85; color: rgba(255, 255, 255, .88); max-width: 540px; }
 
 /* 首图关键信息胶囊（轻量玻璃小签，替代原深色数据条，保证整图高度内放得下） */
-.hero-chips { margin-top: 20px; display: flex; flex-wrap: wrap; gap: 10px; }
+.hero-chips { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 10px; }
 .hero-chip {
   display: inline-flex; align-items: center; height: 32px; padding: 0 15px;
   border-radius: 999px; font-size: 13px; font-weight: 600; letter-spacing: .3px;
@@ -199,7 +199,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid rgba(47, 128, 237, .4
   -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
 }
 /* 首图行动按钮 */
-.hero-actions { margin-top: 24px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.hero-actions { margin-top: 30px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
 
 /* ---------- 页内锚点导航（居中玻璃胶囊） ---------- */
 .anchor-tabs {
@@ -844,11 +844,11 @@ a:focus-visible, button:focus-visible { outline: 3px solid rgba(47, 128, 237, .4
   .anchor-tabs::-webkit-scrollbar { display: none; }
   .camps, .tutors { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .reward-duo { grid-template-columns: 1fr; }
-  .hero-kv { padding: 38px 44px; }
+  .hero-kv { padding: 42px 46px; }
   .hero-title { font-size: 40px; }
-  .hero-chips { margin-top: 16px; gap: 8px; }
+  .hero-chips { margin-top: 18px; gap: 8px; }
   .hero-chip { height: 30px; padding: 0 13px; font-size: 12.5px; }
-  .hero-actions { margin-top: 18px; }
+  .hero-actions { margin-top: 22px; }
   .block-title { font-size: 26px; }
 }
 @media (max-width: 900px) {
@@ -858,18 +858,18 @@ a:focus-visible, button:focus-visible { outline: 3px solid rgba(47, 128, 237, .4
   .cta-strip { flex-direction: column; text-align: center; }
   .cta-strip-copy { display: flex; flex-direction: column; align-items: center; }
   .cta-strip-qr { display: none; }
-  .hero-kv { aspect-ratio: 1920 / 650; padding: 34px 32px; }
+  .hero-kv { aspect-ratio: 1920 / 820; padding: 34px 36px; }
   .hero-title { font-size: 34px; }
-  .hero-sub { margin-top: 10px; font-size: 14px; }
-  .hero-chips { margin-top: 14px; }
+  .hero-sub { margin-top: 12px; font-size: 14px; }
+  .hero-chips { margin-top: 16px; }
   .hero-chip { height: 28px; padding: 0 12px; font-size: 12px; }
-  .hero-actions { margin-top: 16px; gap: 12px; }
+  .hero-actions { margin-top: 20px; gap: 12px; }
   .block-title { font-size: 24px; }
   .sched-pane .tl-note { width: 100%; }
 }
 @media (max-width: 640px) {
   .main { padding: 18px 16px 8px; }
-  /* 首图：窄屏不放图片（高度比 2.95:1 时放不下文案），改用同 KV 图色系的深蓝渐变打底 */
+  /* 首图：窄屏不放图片（横幅比例 2.26:1 时放不下完整文案与按钮），改用同 KV 图色系的深蓝渐变打底 */
   .hero-kv {
     aspect-ratio: auto;
     padding: 34px 22px;

@@ -16,9 +16,9 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="theme-color" content="#2F80ED">
   <!-- 静态资源版本号：内容更新后递增，避免浏览器缓存旧文件（与主站约定一致） -->
-  <link rel="stylesheet" href="style.css?v=20260951">
-  <!-- 首图 WebP 预加载：KV 图经 style.css 的 background-image 使用（浏览器发现晚、优先级低），此处抢在 CSS 解析前以高优先级发起传输；窄屏用 gradient 不打图，故 media 限定 ≥641px -->
-  <link rel="preload" href="kv-banner.webp" as="image" type="image/webp" media="(min-width: 641px)" fetchpriority="high">
+  <link rel="stylesheet" href="style.css?v=20260953">
+  <!-- 首图预加载：KV 为本地 hero-banner.webp（1920×820，约 117 KB），经 style.css 的 background-image 使用（浏览器发现晚、优先级低），此处抢在 CSS 解析前以高优先级发起传输；窄屏用 gradient 不打图，故 media 限定 ≥641px -->
+  <link rel="preload" href="hero-banner.webp" as="image" type="image/webp" media="(min-width: 641px)" fetchpriority="high">
 </head>
 <body>
 
@@ -44,7 +44,7 @@
 
   <main class="main">
 
-    <!-- 大首图 KV：图片由 style.css 的 background-image 加载 kv-banner.webp（约 77 KB，原 PNG 的 1/22），加载时机由 <head> 中 preload 高优先级保障；窄屏回落同色系渐变背景、零图片请求（见 style.css） -->
+    <!-- 大首图 KV：本地 hero-banner.webp（1920×820 蓝→青绿渐变横幅，左侧约 55% 为纯蓝留白、右侧大字 QBI 水印 + 几何装饰方块），由 style.css 的 background-image 加载，<head> preload 高优先级保障；窄屏回落同色系渐变背景、零图片请求（见 style.css） -->
     <section class="hero-kv reveal" aria-label="页面主视觉">
       <div class="hero-kv-copy">
         <p class="hero-eyebrow">阿里云智能集团 × 瓴羊 官方出品</p>
@@ -96,7 +96,7 @@
           <div class="pc-body">
             <section class="pc-sec">
               <h4 class="pc-label">活动介绍</h4>
-              <p class="pc-intro">零基础友好：教学视频 + 配套习题，由简入深搭建仪表板；产品运营带教 + 技术专家答疑，全流程陪伴学习，完成全部任务可获得官方认证证书。</p>
+              <p class="pc-intro">面向零基础用户和新手用户的官方学习活动，提供教学视频与习题，由简入深搭建仪表板，更有技术专家全程答疑，抽奖证书应有尽有。</p>
               <p class="pc-chips"><b>5 天</b><b>10 月 12 日 – 10 月 16 日</b><b>每天约 30–50 分钟</b></p>
             </section>
             <section class="pc-sec">
@@ -136,7 +136,7 @@
           <div class="pc-body">
             <section class="pc-sec">
               <h4 class="pc-label">活动介绍</h4>
-              <p class="pc-intro">AI 专项进阶训练营：5 天系统掌握智能问数、洞察归因与报告生成，并动手沉淀可复用的分析报告。掌握用AI提效的关键秘诀，把时间留给业务判断。</p>
+              <p class="pc-intro">全场景能力开放试用，有教学有案例更有实战演练。速通全新AI-native产品，解锁多种分析产物。深入AI数据项目，掌握如何高效配置快速落地。</p>
               <p class="pc-chips"><b>5 天</b><b>9 月 14 日 – 9 月 18 日</b><b>每天约 40 分钟</b></p>
             </section>
             <section class="pc-sec">
@@ -177,7 +177,7 @@
           <div class="pc-body">
             <section class="pc-sec">
               <h4 class="pc-label">活动介绍</h4>
-              <p class="pc-intro">进阶提升型训练营：解锁 Quick BI 新功能，聚焦电子表格、函数体系与占位符三大专题，由浅入深攻克高阶用法，掌握高效配置秘籍。</p>
+              <p class="pc-intro">面向非新手用户的官方进阶提升课程。解锁新功能、聚焦表格、函数及占位符，掌握高效配置秘籍，助力业务快速落地。</p>
               <p class="pc-chips"><b>5 天</b><b>10 月 26 日 – 10 月 30 日</b><b>每天 1 节课</b></p>
             </section>
             <section class="pc-sec">
@@ -423,7 +423,7 @@
             </article>
           </li>
         </ol>
-        <p class="tl-note">面向零基础用户和新手用户的官方学习活动：提供教学视频与习题，由简入深搭建仪表板，更有技术专家全程答疑，抽奖证书应有尽有</p>
+        <p class="tl-note">面向零基础用户和新手用户的官方学习活动。提供教学视频与习题，由简入深搭建仪表板，更有技术专家全程答疑，抽奖证书应有尽有</p>
       </div>
 
       <div class="sched-pane" id="sched-aipro" role="tabpanel" aria-label="AIPro 训练营" hidden>
@@ -658,7 +658,7 @@
             </article>
           </li>
         </ol>
-        <p class="tl-note">面向非新手用户的官方进阶提升课程：解锁新功能、聚焦表格、函数及占位符，掌握高效配置秘籍，助力业务快速落地</p>
+        <p class="tl-note">面向非新手用户的官方进阶提升课程：解锁新功能、聚焦表格、函数及占位符，掌握高效配置秘籍，助力业务快速落地。</p>
       </div>
     </section>
 
