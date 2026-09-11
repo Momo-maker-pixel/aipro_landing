@@ -16,9 +16,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="theme-color" content="#2F80ED">
   <!-- 静态资源版本号：内容更新后递增，避免浏览器缓存旧文件（与主站约定一致） -->
-  <link rel="stylesheet" href="style.css?v=20260953">
-  <!-- 首图预加载：KV 为本地 hero-banner.webp（1920×820，约 117 KB），经 style.css 的 background-image 使用（浏览器发现晚、优先级低），此处抢在 CSS 解析前以高优先级发起传输；窄屏用 gradient 不打图，故 media 限定 ≥641px -->
-  <link rel="preload" href="hero-banner.webp" as="image" type="image/webp" media="(min-width: 641px)" fetchpriority="high">
+  <link rel="stylesheet" href="style.css?v=20260961">
 </head>
 <body>
 
@@ -42,10 +40,11 @@
   <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/></symbol>
 </svg>
 
-  <main class="main">
-
-    <!-- 大首图 KV：本地 hero-banner.webp（1920×820 蓝→青绿渐变横幅，左侧约 55% 为纯蓝留白、右侧大字 QBI 水印 + 几何装饰方块），由 style.css 的 background-image 加载，<head> preload 高优先级保障；窄屏回落同色系渐变背景、零图片请求（见 style.css） -->
-    <section class="hero-kv reveal" aria-label="页面主视觉">
+  <!-- 大首图 KV（2026-09-11 v4：浅蓝渐变底 + 左文案 + 右 AiPro 视觉图）：撤下深蓝渐变 banner（不再遮挡/干扰），
+       浅蓝渐变底全宽铺满、两侧无留白；右侧为运营提供的透明底 AiPro 产品视觉（hero-aipro.webp，1228×720），直接浮于浅蓝底上；
+       内容框收窄居中（较 .main 内容列两侧各内收约 64px），图文间隔舒展；≤900px 上下堆叠（文案在上、图在下居中）。样式见 style.css .hero-kv* -->
+  <section class="hero-kv reveal" aria-label="页面主视觉">
+    <div class="hero-kv-inner">
       <div class="hero-kv-copy">
         <p class="hero-eyebrow">阿里云智能集团 × 瓴羊 官方出品</p>
         <h1 class="hero-title">Quick BI <em>训练营</em></h1>
@@ -57,11 +56,16 @@
           <span class="hero-chip">官方认证证书</span>
         </div>
         <div class="hero-actions">
-          <a class="btn btn--white btn--lg" href="https://ch6egz.aliwork.com/o/AIPro0914-Baoming" target="_blank" rel="noopener">立即报名最新训练营<svg class="icon"><use href="#i-arrow" xlink:href="#i-arrow"/></svg></a>
-          <a class="btn btn--ghost btn--lg" href="#schedule">查看课程大纲</a>
+          <a class="btn btn--brand btn--lg" href="https://ch6egz.aliwork.com/o/AIPro0914-Baoming" target="_blank" rel="noopener">立即报名最新训练营<svg class="icon"><use href="#i-arrow" xlink:href="#i-arrow"/></svg></a>
+          <a class="btn btn--line btn--lg" href="#schedule">查看课程大纲</a>
         </div>
       </div>
-    </section>
+      <img class="hero-kv-img" src="hero-aipro.webp" width="1228" height="720" fetchpriority="high"
+           alt="Quick BI AiPro 产品视觉：能力成长弧线、分析力 / 理解力 / 行动力 / 可信度 / 成长性 UP 标签与对话式分析输入台">
+    </div>
+  </section>
+
+  <main class="main">
 
     <!-- 页内锚点导航（滚动跟随高亮，见 main.js） -->
     <nav class="anchor-tabs" id="anchorTabs" aria-label="页内导航">
@@ -83,8 +87,9 @@
       </header>
 
       <div class="camps">
-        <!-- 卡 1：新手训练营（海报式长卡：活动介绍 + 课程速览 + 亮点 + 奖品） -->
+        <!-- 卡 1：新手训练营（海报式长卡：活动介绍 + 课程速览 + 亮点 + 奖品；卡顶淡橙「下期预告」条，与 AIPro 深色报名条同构、弱化处理，样式见 style.css .camp-flag--muted） -->
         <article class="camp camp--pc pc-c--newbie">
+          <p class="camp-flag camp-flag--muted camp-flag--newbie"><b>下期预告</b><span class="camp-flag-date">10 月 12 日开营</span></p>
           <div class="pc-hero pc-hero--newbie">
             <span class="tag tag--soon pc-hero-tag">待开始</span>
             <div class="pc-brands"><span>阿里云智能集团 × 瓴羊</span></div>
@@ -123,8 +128,9 @@
           </div>
         </article>
 
-        <!-- 卡 2：AIPro 训练营（进行中，海报暂用小Q营物料替代） -->
+        <!-- 卡 2：AIPro 训练营（本期报名中：亮品牌蓝报名横幅 + 品牌色柔光突出显示，样式见 style.css .camp-flag / .pc-c--aipro） -->
         <article class="camp camp--pc pc-c--aipro">
+          <p class="camp-flag"><b>🔥本期报名中🔥</b><span class="camp-flag-date">9 月 14 日开营</span></p>
           <div class="pc-hero pc-hero--aipro">
             <a class="tag tag--live pc-hero-tag" href="https://ch6egz.aliwork.com/o/AIPro0914-Baoming" target="_blank" rel="noopener">报名中</a>
             <div class="pc-brands"><span>阿里云智能集团 × 瓴羊</span></div>
@@ -164,8 +170,9 @@
           </div>
         </article>
 
-        <!-- 卡 3：大师训练营（海报式长卡） -->
+        <!-- 卡 3：大师训练营（海报式长卡；卡顶淡紫「下期预告」条，同新手卡弱化处理） -->
         <article class="camp camp--pc pc-c--master">
+          <p class="camp-flag camp-flag--muted camp-flag--master"><b>下期预告</b><span class="camp-flag-date">10 月 26 日开营</span></p>
           <div class="pc-hero pc-hero--master">
             <span class="tag tag--soon pc-hero-tag">待开始</span>
             <div class="pc-brands"><span>阿里云智能集团 × 瓴羊</span></div>
@@ -675,7 +682,7 @@
       <div class="tutors">
         <!-- 讲师卡：头像为真人照片（素材由运营提供） -->
         <article class="tutor reveal" data-reveal-delay="0">
-          <div class="tutor-avatar"><img src="https://img.alicdn.com/imgextra/i4/O1CN01OgzaFJKxG3F1MqUJ_!!6000000000660-2-tps-674-645.png" alt="陈汝男" loading="lazy" data-lightbox></div>
+          <div class="tutor-avatar"><img src="https://img.alicdn.com/imgextra/i3/O1CN010MCaoErvyWE19d0N_!!6000000004057-2-tps-569-658.png" alt="陈汝男" loading="lazy" data-lightbox></div>
           <h3 class="tutor-name">陈汝男</h3>
           <span class="tutor-role">Quick BI 产品运营</span>
           <p class="tutor-bio">深耕 BI 与 AI 对话式分析场景，负责 Quick BI AI Pro 的场景打磨与客户落地，把产品能力翻译成客户听得懂、用得上的业务动作，现场答疑节奏快、思路清晰。</p>
@@ -685,7 +692,7 @@
         </article>
 
         <article class="tutor reveal" data-reveal-delay="1">
-          <div class="tutor-avatar"><img src="https://img.alicdn.com/imgextra/i4/O1CN01rGRGxO9kt3B7EmR1_!!6000000001665-0-tps-3565-3566.jpg" alt="初霁" loading="lazy" data-lightbox></div>
+          <div class="tutor-avatar"><img src="https://img.alicdn.com/imgextra/i4/O1CN01pfGDcWqqIuK12ZwG_!!6000000001570-2-tps-513-631.png" alt="初霁" loading="lazy" data-lightbox></div>
           <h3 class="tutor-name">初霁</h3>
           <span class="tutor-role">Quick BI 产品运营</span>
           <p class="tutor-bio">专注 Quick BI 案例沉淀与最佳实践传播，主导客户故事挖掘、Demo 搭建与培训内容输出，擅长把复杂功能拆成一看就懂的案例，让新客户少走弯路。</p>
@@ -695,7 +702,7 @@
         </article>
 
         <article class="tutor reveal" data-reveal-delay="2">
-          <div class="tutor-avatar"><img src="https://img.alicdn.com/imgextra/i2/O1CN01yI1ekZwy7vI2BxIO_!!6000000004905-0-tps-1080-1136.jpg" alt="李天根" loading="lazy" data-lightbox></div>
+          <div class="tutor-avatar"><img src="https://img.alicdn.com/imgextra/i2/O1CN016a4igjc6AeH3daWO_!!6000000005783-2-tps-1792-2400.png" alt="李天根" loading="lazy" data-lightbox></div>
           <h3 class="tutor-name">李天根</h3>
           <span class="tutor-role">Quick BI 产品运营</span>
           <p class="tutor-bio">长期深耕 Quick BI 产品应用与客户落地实践，负责功能实操指导与场景调优支持，能够将产品背后的技术原理转化为清晰易懂的讲解，为客户现场问题提供可靠的技术支撑。</p>
