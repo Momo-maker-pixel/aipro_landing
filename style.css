@@ -165,16 +165,16 @@ a:focus-visible, button:focus-visible { outline: 3px solid rgba(47, 128, 237, .4
   padding: 26px 28px 10px;
 }
 
-/* ---------- 大首图 KV（2026-09-11 v4：浅蓝底 + 左文案 + 右 AiPro 视觉图） ----------
+/* ---------- 大首图 KV（2026-09-11 v4：左文案 + 右 AiPro 视觉图） ----------
    版式由来：v3 曾将运营 banner 整图通栏置底，但 banner 自带深蓝渐变底色；v4 撤下深蓝 banner——
-   浅蓝渐变底全宽铺满（两侧无留白），左文案 + 右侧透明底 AiPro 产品视觉（hero-aipro.webp，1228×720，直接浮于底色上、无白边接缝）；
+   左文案 + 右侧透明底 AiPro 产品视觉（hero-aipro.webp，1228×720，直接浮于底色上、无白边接缝）；
+   2026-09-13：撤下首图专属浅蓝渐变底，首图直接透出页面统一底色（body 底色 + 极光层），与下方正文完全同底、无分割；
+   （原浅蓝渐变与正文极光底色在交界处存在细微色差，观感像一条分界线）
    两列等宽网格 + 64px 间隔；内容框收窄至 1056（较 .main 内容列两侧各内收约 64px）：文案自然右移、右图随之缩小，图文间留白更舒展；
    文案区不叠压图片，图内文字任意宽度下完整可见；≤900px 上下堆叠（文案在上、图在下居中，图限宽 480px）；
    <img> 位于首屏 HTML（fetchpriority=high），浏览器预加载扫描器直接发现，无需 <head> preload */
 .hero-kv {
   position: relative;
-  /* 浅蓝底：顶部浅蓝 → 底部过渡到页面底色，与下方内容无缝衔接 */
-  background: linear-gradient(180deg, #E8F1FE 0%, #F2F8FF 55%, #F4F7FC 100%);
 }
 .hero-kv-inner {
   display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
