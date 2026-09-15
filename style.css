@@ -284,28 +284,30 @@ a:focus-visible, button:focus-visible { outline: 3px solid rgba(47, 128, 237, .4
 
 /* ---------- 营卡片 · 海报式长卡（S1 汇总区，内容完整版） ---------- */
 .camp--pc { display: flex; flex-direction: column; height: 100%; overflow: hidden; background: #fff; }
-.camp--pc { --acc: #D65D08; --soft: #FFF1DE; }
-.camp--pc.pc-c--aipro { --acc: #0A6FE0; --soft: #E8F3FF; }
+/* 三营主题色（2026-09-15 新手营与 AIPro 营配色对调：新手=品牌蓝、AIPro=暖橙、大师=紫） */
+.camp--pc { --acc: #0A6FE0; --soft: #E8F3FF; }
+.camp--pc.pc-c--aipro { --acc: #D65D08; --soft: #FFF1DE; }
 .camp--pc.pc-c--master { --acc: #6B21C8; --soft: #F5EEFF; }
-/* 进行中的营：品牌色细描边 + 极轻柔的品牌色光晕缓慢呼吸（2026-09-11 重设计：去掉硬边脉冲光环，
-   改为「静态细描边 + 低幅柔晕」的高级质感，配合藏青报名横幅锁定报名中的班期） */
+/* 进行中的营：主题色细描边 + 极轻柔的主题色光晕缓慢呼吸（2026-09-11 重设计：去掉硬边脉冲光环，
+   改为「静态细描边 + 低幅柔晕」的高级质感，配合顶部报名横幅锁定报名中的班期；2026-09-15 随卡片配色对调为暖橙） */
 .pc-c--aipro {
-  border-color: rgba(47, 128, 237, .40);
+  border-color: rgba(250, 123, 21, .40);
   animation: camp-live-aura 4.8s ease-in-out infinite;
 }
 /* 悬停仅加深描边与抬升（box-shadow 由光晕动画接管，与全局 .camp:hover 的阴影提升互不叠加） */
-.pc-c--aipro:hover { border-color: rgba(47, 128, 237, .65); }
+.pc-c--aipro:hover { border-color: rgba(250, 123, 21, .65); }
 @keyframes camp-live-aura {
-  0%, 100% { box-shadow: 0 0 0 1px rgba(47, 128, 237, .14), 0 16px 40px -16px rgba(47, 128, 237, .30); }
-  50% { box-shadow: 0 0 0 1px rgba(47, 128, 237, .20), 0 20px 50px -16px rgba(47, 128, 237, .44); }
+  0%, 100% { box-shadow: 0 0 0 1px rgba(250, 123, 21, .14), 0 16px 40px -16px rgba(250, 123, 21, .30); }
+  50% { box-shadow: 0 0 0 1px rgba(250, 123, 21, .20), 0 20px 50px -16px rgba(250, 123, 21, .44); }
 }
-/* 报名横幅：AIPro 卡顶亮品牌蓝渐变细条（--grad-brand 的横向版，与品牌按钮/锚点高亮同一渐变语言；2026-09-11 由深藏青调亮——藏青偏深偏闷）
+/* 报名横幅：AIPro 卡顶亮橙渐变细条（与卡头橙系同族、横向走向以区分层次；2026-09-11 由深藏青调亮为品牌蓝，
+   2026-09-15 随卡片配色对调改橙——蓝条压橙卡头会撞色）
    + 品牌绿呼吸点（与首图眉标同色）+ 缓慢流光扫过（呼应按钮 hover 流光语言，低频自动触发） */
 .camp-flag {
   position: relative; overflow: hidden; isolation: isolate;
   display: flex; align-items: center; justify-content: center; gap: 10px;
   padding: 7px 12px;
-  background: linear-gradient(90deg, #4C97F5 0%, #2F80ED 48%, #5B5BF6 100%);
+  background: linear-gradient(90deg, #FCA53C 0%, #F97E15 48%, #F26B0C 100%);
   color: #fff; font-size: 12.5px; letter-spacing: 1.5px;
 }
 .camp-flag b { font-weight: 700; }
@@ -334,15 +336,15 @@ a:focus-visible, button:focus-visible { outline: 3px solid rgba(47, 128, 237, .4
   0%, 58% { transform: translateX(-180%) skewX(-20deg); }
   100% { transform: translateX(420%) skewX(-20deg); }
 }
-/* 下期预告条（新手/大师）：AIPro 深色报名条的淡化同构版——取卡片自身 --soft 浅底 + 灰化主题色文字，
-   静态圆点、无流光；三卡顶条结构一致，AIPro 深色条保持第一视觉层级 */
+/* 下期预告条（新手/大师）：AIPro 鲜色报名条的淡化同构版——取卡片自身 --soft 浅底 + 灰化主题色文字，
+   静态圆点、无流光；三卡顶条结构一致，AIPro 鲜色条保持第一视觉层级（2026-09-15 新手卡顶条随配色对调为灰蓝） */
 .camp-flag--muted { background: var(--soft); }
 .camp-flag--muted .camp-flag-date { color: inherit; opacity: .75; }
 .camp-flag--muted::before { animation: none; }
 .camp-flag--muted::after { display: none; }
-.camp-flag--newbie { color: #96703E; }
-.camp-flag--newbie .camp-flag-date { border-left-color: rgba(150, 112, 62, .30); }
-.camp-flag--newbie::before { background: #CFA375; }
+.camp-flag--newbie { color: #5B7AA6; }
+.camp-flag--newbie .camp-flag-date { border-left-color: rgba(91, 122, 166, .30); }
+.camp-flag--newbie::before { background: #9CB8DC; }
 .camp-flag--master { color: #8363A9; }
 .camp-flag--master .camp-flag-date { border-left-color: rgba(131, 99, 169, .30); }
 .camp-flag--master::before { background: #B79FD4; }
@@ -354,8 +356,8 @@ a:focus-visible, button:focus-visible { outline: 3px solid rgba(47, 128, 237, .4
 .pc-hero::before { width: 170px; height: 170px; right: -55px; top: -70px; background: radial-gradient(circle, rgba(255, 255, 255, .18), transparent 68%); }
 .pc-hero::after { width: 130px; height: 130px; left: -45px; bottom: -60px; background: radial-gradient(circle, rgba(255, 255, 255, .12), transparent 70%); }
 .pc-hero-tag { position: absolute; top: 12px; right: 12px; z-index: 2; }
-.pc-hero--newbie { background: linear-gradient(180deg, #FDBC47 0%, #FA7B15 58%, #F96B0D 100%); }
-.pc-hero--aipro { background: linear-gradient(180deg, #0B6DE8 0%, #0A80DD 52%, #0C93CF 100%); }
+.pc-hero--newbie { background: linear-gradient(180deg, #0B6DE8 0%, #0A80DD 52%, #0C93CF 100%); }
+.pc-hero--aipro { background: linear-gradient(180deg, #FDBC47 0%, #FA7B15 58%, #F96B0D 100%); }
 .pc-hero--master { background: linear-gradient(180deg, #8C27D6 0%, #A532E8 46%, #BC48F1 78%, #C963FA 100%); }
 .pc-brands { display: flex; align-items: center; gap: 8px; font-size: 11px; letter-spacing: .6px; color: rgba(255, 255, 255, .92); text-align: left; }
 .pc-title { margin-top: 12px; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 22px; font-weight: 800; letter-spacing: 1px; text-shadow: 0 1px 10px rgba(0, 0, 0, .18); }
@@ -462,15 +464,16 @@ a:focus-visible, button:focus-visible { outline: 3px solid rgba(47, 128, 237, .4
  * S1 小节 · 选营指引（卡片色随对应训练营主题）
  * ============================================================ */
 .guide { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+/* 三卡主题色随对应训练营（新手=蓝、AIPro=橙、大师=紫；2026-09-15 随汇总卡配色对调） */
 .guide-card {
-  --acc: #F97316; --soft: #FFF3E8;
+  --acc: #2F80ED; --soft: #EAF2FE;
   position: relative; overflow: hidden; isolation: isolate;
   background: var(--bg-card); border: 1px solid var(--line); border-radius: var(--radius-l);
   padding: 22px 24px 18px 26px; box-shadow: var(--shadow-card);
   display: flex; flex-direction: column;
   transition: transform .22s ease, box-shadow .22s ease;
 }
-.guide-card:nth-child(2) { --acc: #2F80ED; --soft: #EAF2FE; }
+.guide-card:nth-child(2) { --acc: #F97316; --soft: #FFF3E8; }
 .guide-card:nth-child(3) { --acc: #8B5CF6; --soft: #F3EEFF; }
 .guide-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-card-hover); }
 /* 左侧主题色轨道，对应推荐训练营的主题色 */
@@ -910,8 +913,8 @@ a:focus-visible, button:focus-visible { outline: 3px solid rgba(47, 128, 237, .4
   .carousel-track { transition: none; }
   .hero-eyebrow::before { animation: none; }
   .btn--brand::after { display: none; }
-  /* 报名中的营：动画关闭时回落静态品牌色描边与柔晕，流光与呼吸点一并停用 */
-  .pc-c--aipro { animation: none; box-shadow: 0 0 0 1px rgba(47, 128, 237, .16), 0 14px 34px -14px rgba(47, 128, 237, .32); }
+  /* 报名中的营：动画关闭时回落静态主题色描边与柔晕，流光与呼吸点一并停用 */
+  .pc-c--aipro { animation: none; box-shadow: 0 0 0 1px rgba(250, 123, 21, .16), 0 14px 34px -14px rgba(250, 123, 21, .32); }
   .camp-flag::before { animation: none; }
   .camp-flag::after { display: none; }
   .pc-hero-tag.tag--live::before { animation: none; }
