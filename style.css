@@ -400,6 +400,13 @@ a:focus-visible, button:focus-visible { outline: 3px solid rgba(47, 128, 237, .4
 .pc-pnote b { color: var(--acc); }
 .pc-foot { padding: 12px 16px 16px; }
 .pc-foot .btn { width: 100%; }
+/* AIPro 卡「立即报名」按钮：随卡片主题用暖橙渐变（与卡顶报名横幅同色系；2026-09-15 配色对调后，品牌蓝按钮在橙卡上突兀；
+   仅卡片作用域覆盖，首图/吸底栏等全局品牌蓝按钮不受影响） */
+.pc-c--aipro .btn--brand {
+  background: linear-gradient(135deg, #FCA53C 0%, #F97E15 48%, #F26B0C 100%);
+  box-shadow: 0 8px 20px -6px rgba(250, 123, 21, .45);
+}
+.pc-c--aipro .btn--brand:hover { box-shadow: 0 12px 28px -6px rgba(250, 123, 21, .55); }
 .link-more { font-size: 13px; transition: color .15s ease; }
 .link-more.is-muted { color: var(--ink-3); }
 .link-more.is-muted:hover { color: var(--ink-1); }
@@ -427,10 +434,10 @@ a:focus-visible, button:focus-visible { outline: 3px solid rgba(47, 128, 237, .4
   padding: 24px; box-shadow: var(--shadow-card);
   transition: transform .22s ease, box-shadow .22s ease;
 }
-/* 无图标排版：大号渐变序号 + 短渐变装饰线，色彩随卡片主题（蓝 / 紫 / 金） */
+/* 无图标排版：大号渐变序号 + 短渐变装饰线，色彩随卡片主题（蓝 / 金 / 紫；2026-09-15 第 2、3 张对调） */
 .hl-card { --g1: #4C97F5; --g2: #2F80ED; --soft: #EAF2FE; }
-.hl-card:nth-child(2) { --g1: #8B5CF6; --g2: #6C3FE8; --soft: #F3EEFF; }
-.hl-card:nth-child(3) { --g1: #F7B733; --g2: #EC8B0C; --soft: #FFF4E6; }
+.hl-card:nth-child(2) { --g1: #F7B733; --g2: #EC8B0C; --soft: #FFF4E6; }
+.hl-card:nth-child(3) { --g1: #8B5CF6; --g2: #6C3FE8; --soft: #F3EEFF; }
 /* 悬停时亮出顶部渐变线 */
 .hl-card::before {
   content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px;
