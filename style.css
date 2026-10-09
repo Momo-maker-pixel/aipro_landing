@@ -288,28 +288,42 @@ a:focus-visible, button:focus-visible { outline: 3px solid rgba(47, 128, 237, .4
 .camp--pc { --acc: #0A6FE0; --soft: #E8F3FF; }
 .camp--pc.pc-c--aipro { --acc: #D65D08; --soft: #FFF1DE; }
 .camp--pc.pc-c--master { --acc: #6B21C8; --soft: #F5EEFF; }
-/* 进行中的营：主题色细描边 + 极轻柔的主题色光晕缓慢呼吸（2026-09-11 重设计：去掉硬边脉冲光环，
-   改为「静态细描边 + 低幅柔晕」的高级质感，配合顶部报名横幅锁定报名中的班期；2026-09-15 随卡片配色对调为暖橙） */
-.pc-c--aipro {
+/* 报名中的营卡（HTML 在 <article> 上标 .is-live）：主题色细描边 + 极轻柔的主题色光晕缓慢呼吸
+   （2026-09-11 重设计：去掉硬边脉冲光环，改为「静态细描边 + 低幅柔晕」的高级质感，配合顶部报名横幅锁定报名中的班期）。
+   新手蓝 / AIPro 橙两套规则成对备好，报名班期轮换时只改 HTML 类名、无需再动样式（2026-10-09 本期轮换至新手营）；
+   描边/光晕取各卡卡头渐变的中段主色（新手 #0A80DD、AIPro #FA7B15），与卡头同族 */
+.pc-c--newbie.is-live {
+  border-color: rgba(10, 128, 221, .40);
+  animation: camp-live-aura--blue 4.8s ease-in-out infinite;
+}
+.pc-c--aipro.is-live {
   border-color: rgba(250, 123, 21, .40);
-  animation: camp-live-aura 4.8s ease-in-out infinite;
+  animation: camp-live-aura--orange 4.8s ease-in-out infinite;
 }
 /* 悬停仅加深描边与抬升（box-shadow 由光晕动画接管，与全局 .camp:hover 的阴影提升互不叠加） */
-.pc-c--aipro:hover { border-color: rgba(250, 123, 21, .65); }
-@keyframes camp-live-aura {
+.pc-c--newbie.is-live:hover { border-color: rgba(10, 128, 221, .65); }
+.pc-c--aipro.is-live:hover { border-color: rgba(250, 123, 21, .65); }
+@keyframes camp-live-aura--blue {
+  0%, 100% { box-shadow: 0 0 0 1px rgba(10, 128, 221, .14), 0 16px 40px -16px rgba(10, 128, 221, .30); }
+  50% { box-shadow: 0 0 0 1px rgba(10, 128, 221, .20), 0 20px 50px -16px rgba(10, 128, 221, .44); }
+}
+@keyframes camp-live-aura--orange {
   0%, 100% { box-shadow: 0 0 0 1px rgba(250, 123, 21, .14), 0 16px 40px -16px rgba(250, 123, 21, .30); }
   50% { box-shadow: 0 0 0 1px rgba(250, 123, 21, .20), 0 20px 50px -16px rgba(250, 123, 21, .44); }
 }
-/* 报名横幅：AIPro 卡顶亮橙渐变细条（与卡头橙系同族、横向走向以区分层次；2026-09-11 由深藏青调亮为品牌蓝，
-   2026-09-15 随卡片配色对调改橙——蓝条压橙卡头会撞色）
-   + 品牌绿呼吸点（与首图眉标同色）+ 缓慢流光扫过（呼应按钮 hover 流光语言，低频自动触发） */
+/* 报名横幅：报名中营卡卡顶的亮色渐变细条（与卡头同族、横向走向以区分层次）
+   + 品牌绿呼吸点（与首图眉标同色）+ 缓慢流光扫过（呼应按钮 hover 流光语言，低频自动触发）。
+   渐变随卡片主题作用域取色（新手蓝 / AIPro 橙——蓝条压橙卡头、橙条压蓝卡头均会撞色，2026-09-15 配色对调时引入橙版；
+   2026-10-09 报名班期轮换至新手营，改按营色作用域化，轮换时无需再动样式）；
+   :not(.camp-flag--muted) 把弱化预告条排除在外，预告条仍走 --soft 浅底 */
 .camp-flag {
   position: relative; overflow: hidden; isolation: isolate;
   display: flex; align-items: center; justify-content: center; gap: 10px;
   padding: 7px 12px;
-  background: linear-gradient(90deg, #FCA53C 0%, #F97E15 48%, #F26B0C 100%);
   color: #fff; font-size: 12.5px; letter-spacing: 1.5px;
 }
+.pc-c--newbie .camp-flag:not(.camp-flag--muted) { background: linear-gradient(90deg, #0B6DE8 0%, #0A80DD 48%, #0C93CF 100%); }
+.pc-c--aipro .camp-flag:not(.camp-flag--muted) { background: linear-gradient(90deg, #FCA53C 0%, #F97E15 48%, #F26B0C 100%); }
 .camp-flag b { font-weight: 700; }
 .camp-flag-date {
   padding-left: 10px; border-left: 1px solid rgba(255, 255, 255, .28);
@@ -336,8 +350,9 @@ a:focus-visible, button:focus-visible { outline: 3px solid rgba(47, 128, 237, .4
   0%, 58% { transform: translateX(-180%) skewX(-20deg); }
   100% { transform: translateX(420%) skewX(-20deg); }
 }
-/* 下期预告条（新手/大师）：AIPro 鲜色报名条的淡化同构版——取卡片自身 --soft 浅底 + 灰化主题色文字，
-   静态圆点、无流光；三卡顶条结构一致，AIPro 鲜色条保持第一视觉层级（2026-09-15 新手卡顶条随配色对调为灰蓝） */
+/* 下期预告条（未开营的营）：报名中营鲜色报名条的淡化同构版——取卡片自身 --soft 浅底 + 灰化主题色文字，
+   静态圆点、无流光；三卡顶条结构一致，报名中的营保持第一视觉层级
+   （2026-09-15 新手卡顶条随配色对调为灰蓝；2026-10-09 报名班期轮换，AIPro 卡顶条转灰橙） */
 .camp-flag--muted { background: var(--soft); }
 .camp-flag--muted .camp-flag-date { color: inherit; opacity: .75; }
 .camp-flag--muted::before { animation: none; }
@@ -345,6 +360,9 @@ a:focus-visible, button:focus-visible { outline: 3px solid rgba(47, 128, 237, .4
 .camp-flag--newbie { color: #5B7AA6; }
 .camp-flag--newbie .camp-flag-date { border-left-color: rgba(91, 122, 166, .30); }
 .camp-flag--newbie::before { background: #9CB8DC; }
+.camp-flag--aipro { color: #A98060; }
+.camp-flag--aipro .camp-flag-date { border-left-color: rgba(169, 128, 96, .30); }
+.camp-flag--aipro::before { background: #D5B9A4; }
 .camp-flag--master { color: #8363A9; }
 .camp-flag--master .camp-flag-date { border-left-color: rgba(131, 99, 169, .30); }
 .camp-flag--master::before { background: #B79FD4; }
@@ -401,7 +419,8 @@ a:focus-visible, button:focus-visible { outline: 3px solid rgba(47, 128, 237, .4
 .pc-foot { padding: 12px 16px 16px; }
 .pc-foot .btn { width: 100%; }
 /* AIPro 卡「立即报名」按钮：随卡片主题用暖橙渐变（与卡顶报名横幅同色系；2026-09-15 配色对调后，品牌蓝按钮在橙卡上突兀；
-   仅卡片作用域覆盖，首图/吸底栏等全局品牌蓝按钮不受影响） */
+   仅卡片作用域覆盖，首图/吸底栏等全局品牌蓝按钮不受影响。新手卡为蓝色主题，直接用全局 .btn--brand 无需覆盖；
+   2026-10-09 AIPro 转下期预告（暂无报名按钮），规则保留供该营再次进入报名中时复用） */
 .pc-c--aipro .btn--brand {
   background: linear-gradient(135deg, #FCA53C 0%, #F97E15 48%, #F26B0C 100%);
   box-shadow: 0 8px 20px -6px rgba(250, 123, 21, .45);
@@ -654,7 +673,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid rgba(47, 128, 237, .4
 /* ============================================================
  * S3 讲师介绍
  * ============================================================ */
-.tutors { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.tutors { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; } /* 2026-10-09 移除李天根卡后余 2 位讲师（陈汝男 / 初霁），改双列等宽 */
 /* 纵向人物卡：大头像居上、信息居中，拉开卡片高度避免扁平 */
 .tutor {
   position: relative; overflow: hidden;
@@ -795,16 +814,16 @@ a:focus-visible, button:focus-visible { outline: 3px solid rgba(47, 128, 237, .4
 .tier--1 .tier-img { border-color: rgba(245, 185, 55, .45); }
 .tier-name { margin-top: 10px; font-size: 14px; font-weight: 600; color: var(--ink-1); line-height: 1.6; }
 
-/* 证书卡：图片居左、信息居右的横向卡（省高度），小屏回落纵向居中 */
+/* 证书卡：图片居上、信息居下的纵向卡；2026-10-09 三卡改同行等宽（此前「2 列横向卡 + 末卡通栏」，三等分后横向信息栏过窄故改纵向） */
 .cert-card {
-  display: flex; flex-direction: row; align-items: center; gap: 20px; text-align: left;
+  display: flex; flex-direction: column; gap: 20px; text-align: left;
   background: linear-gradient(160deg, #F5F9FF 0%, #FDFEFF 60%);
   border: 1px solid #D8E4F5; border-radius: var(--radius-l);
   padding: 18px 20px; box-shadow: var(--shadow-card);
 }
-.certs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; } /* 通栏靠左，与上方奖品行同宽 */
+.certs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; } /* 三张证书卡（新手 / AIPro / 大师）同行等宽 */
 .cert-img {
-  flex: none; width: 200px; margin: 0;
+  flex: none; width: 100%; margin: 0;
   padding: 8px; background: #fff;
   border: 1px solid var(--line); border-radius: 12px;
   box-shadow: 0 10px 26px -10px rgba(23, 35, 61, .14);
@@ -920,8 +939,9 @@ a:focus-visible, button:focus-visible { outline: 3px solid rgba(47, 128, 237, .4
   .carousel-track { transition: none; }
   .hero-eyebrow::before { animation: none; }
   .btn--brand::after { display: none; }
-  /* 报名中的营：动画关闭时回落静态主题色描边与柔晕，流光与呼吸点一并停用 */
-  .pc-c--aipro { animation: none; box-shadow: 0 0 0 1px rgba(250, 123, 21, .16), 0 14px 34px -14px rgba(250, 123, 21, .32); }
+  /* 报名中的营：动画关闭时回落静态主题色描边与柔晕，流光与呼吸点一并停用（与上方 .is-live 规则一一对应） */
+  .pc-c--newbie.is-live { animation: none; box-shadow: 0 0 0 1px rgba(10, 128, 221, .16), 0 14px 34px -14px rgba(10, 128, 221, .32); }
+  .pc-c--aipro.is-live { animation: none; box-shadow: 0 0 0 1px rgba(250, 123, 21, .16), 0 14px 34px -14px rgba(250, 123, 21, .32); }
   .camp-flag::before { animation: none; }
   .camp-flag::after { display: none; }
   .pc-hero-tag.tag--live::before { animation: none; }
@@ -944,8 +964,10 @@ a:focus-visible, button:focus-visible { outline: 3px solid rgba(47, 128, 237, .4
 }
 @media (max-width: 900px) {
   .hl, .guide, .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  /* 证书单列横排：双列时信息栏会被挤得太窄 */
+  /* 证书：窄屏回落单列「图左信息右」横向卡（竖版卡单列时图片通栏会过高），图框回到固定 200px 宽 */
   .certs { grid-template-columns: 1fr; }
+  .cert-card { flex-direction: row; align-items: center; }
+  .cert-img { width: 200px; }
   .cta-strip { flex-direction: column; text-align: center; }
   .cta-strip-copy { display: flex; flex-direction: column; align-items: center; }
   .cta-strip-qr { display: none; }
