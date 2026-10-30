@@ -2721,6 +2721,9 @@ a.sc-course:hover{background:hsl(220,16%,96%)}
 .sc-act--video:hover,.sc-act--video:focus-visible{background:hsla(158,64%,42%,.14);color:hsl(158,64%,32%)}
 .sc-act--doc:hover,.sc-act--doc:focus-visible{background:hsla(220,100%,59%,.13);color:hsl(220,100%,48%)}
 .sc-act.is-hint{background:hsl(220,16%,92%);color:hsl(220,14%,26%)}
+/* 该条目缺这类内容（如只有视频没有图文）：按钮置灰，点击给「待补充」提示 */
+.sc-act.is-empty{opacity:.4}
+.sc-act.is-empty:hover,.sc-act.is-empty:focus-visible,.sc-act.is-empty.is-hint{opacity:.72;background:hsl(220,16%,94%);color:hsl(220,10%,46%);transform:none}
 .sc-act::after{content:attr(data-tip);position:absolute;right:0;bottom:calc(100% + 6px);padding:4px 8px;border-radius:7px;background:rgba(15,23,42,.92);color:#fff;font-size:11px;font-weight:600;line-height:1.25;white-space:nowrap;opacity:0;visibility:hidden;transform:translateY(3px);transition:opacity .15s ease,transform .15s ease;pointer-events:none;z-index:6}
 .sc-act:hover::after,.sc-act:focus-visible::after,.sc-act.is-hint::after{opacity:1;visibility:visible;transform:none}
 @media (max-width:767px){.sc-act{width:24px;height:24px}.sc-act svg{width:12px;height:12px}}
@@ -5261,10 +5264,11 @@ a.lv-act-main:active,button.lv-act-main:active{transform:scale(.98)}
 })();
 </script>
 <script>
-/* AIPro 课程条目：标题后追加「实操演示（播放）/ 图文详情（文档）」两个图标按钮
+/* 课程条目（AIPro / Quick BI 全部阶段卡）：标题后追加「实操演示（播放）/ 图文详情（文档）」两个图标按钮
  * 1) 按钮只显示图标，文案在悬浮/聚焦时以气泡提示，不占行宽
- * 2) 点击标题区域（非按钮）默认播放视频；视频地址未配置时保持原有文档跳转
- * 3) 视频地址后续按「课程标题」补进 VIDEO_SRC，值为 mp4 直链 */
+ * 2) 点击标题区域（非按钮）默认播放视频；无视频时保持原有链接行为
+ * 3) 视频地址后续按「课程标题」补进 VIDEO_SRC；条目本身链接就是 mp4 时直接复用该地址
+ * 4) 条目缺少某类内容时，对应按钮置灰态，点击给「待补充」气泡提示 */
 (function(){
   /* 视频地址：键 = 课程标题（.sc-course-main 文本），值 = mp4 直链 */
   var VIDEO_SRC = {
@@ -5292,6 +5296,11 @@ a.lv-act-main:active,button.lv-act-main:active{transform:scale(.98)}
   function normTitle(s){ return String(s || '').replace(/\s+/g, ''); }
   var VIDEO_SRC_NORM = {};
   Object.keys(VIDEO_SRC).forEach(function(k){ VIDEO_SRC_NORM[normTitle(k)] = VIDEO_SRC[k]; });
+  /* 图文地址：仅当条目本身链接是视频、但另有图文页时使用；键同为课程标题 */
+  var DOC_SRC = {};
+  var DOC_SRC_NORM = {};
+  Object.keys(DOC_SRC).forEach(function(k){ DOC_SRC_NORM[normTitle(k)] = DOC_SRC[k]; });
+  function isMp4(u){ return /\.mp4(\?|#|$)/i.test(String(u || '')); }
   var ICON_PLAY = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>';
   var ICON_DOC = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path><path d="M14 2v5h5"></path><path d="M8 13h8"></path><path d="M8 17h5"></path></svg>';
 
@@ -5329,27 +5338,35 @@ a.lv-act-main:active,button.lv-act-main:active{transform:scale(.98)}
     return el;
   }
 
-  document.querySelectorAll('.stage-card[data-line="aipro"] a.sc-course:not(.is-pending)').forEach(function(a){
+  document.querySelectorAll('.stage-card a.sc-course:not(.is-pending)').forEach(function(a){
     if (a.querySelector('.sc-acts')) return;
     var titleEl = a.querySelector('.sc-course-main');
     var title = titleEl ? titleEl.textContent.trim() : '';
     var key = a.getAttribute('data-learnkey') || '';
-    var docUrl = a.getAttribute('data-learn') || a.getAttribute('href') || '';
-    var videoUrl = a.getAttribute('data-video') || VIDEO_SRC[title] || VIDEO_SRC_NORM[normTitle(title)] || '';
+    var link = a.getAttribute('data-learn') || a.getAttribute('href') || '';
+    /* 条目自身链接是 mp4 → 它就是视频；否则视为图文页 */
+    var ownVideo = isMp4(link) ? link : '';
+    var videoUrl = a.getAttribute('data-video') || VIDEO_SRC[title] || VIDEO_SRC_NORM[normTitle(title)] || ownVideo || '';
+    var docUrl = (ownVideo ? '' : link) || DOC_SRC[title] || DOC_SRC_NORM[normTitle(title)] || '';
 
     var acts = document.createElement('span');
     acts.className = 'sc-acts';
-    acts.appendChild(makeAct('sc-act--video', '实操演示', ICON_PLAY, function(el){
+    var actVideo = makeAct('sc-act--video', '实操演示', ICON_PLAY, function(el){
       if (!videoUrl) { flash(el, '视频待补充'); return; }
       playVideo(videoUrl, title, key);
-    }));
-    acts.appendChild(makeAct('sc-act--doc', '图文详情', ICON_DOC, function(){
-      if (docUrl) window.open(docUrl, '_blank', 'noopener');
+    });
+    var actDoc = makeAct('sc-act--doc', '图文详情', ICON_DOC, function(el){
+      if (!docUrl) { flash(el, '图文待补充'); return; }
+      window.open(docUrl, '_blank', 'noopener');
       if (window.__markSeen && key) window.__markSeen(key);
-    }));
+    });
+    if (!videoUrl) actVideo.classList.add('is-empty');
+    if (!docUrl) actDoc.classList.add('is-empty');
+    acts.appendChild(actVideo);
+    acts.appendChild(actDoc);
     a.appendChild(acts);
 
-    /* 标题区域点击：有视频则站内播放，未配置则保持原有链接行为 */
+    /* 标题区域点击：有视频则站内播放，没有则保持原有链接行为 */
     a.addEventListener('click', function(e){
       if (!videoUrl) return;
       if (e.metaKey || e.ctrlKey || e.shiftKey || (e.button !== undefined && e.button !== 0)) return;
